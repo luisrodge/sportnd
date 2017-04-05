@@ -1,0 +1,18 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<h2 class="text-center">Start your new team</h2>
+		<h4 class="text-center">Teams are one and done. You are required to have a new team per tournament.</h4>
+		<br/>
+		<%= form_for [:profile, @team] do |f| %>
+			<div class="form-group">
+				<%= f.text_field :name, class: "form-control input-lg", placeholder: "Your team name" %>
+			</div>
+			<div class="form-group">
+				<%= f.text_field :name, class: "form-control input-lg", placeholder: "Short description" %>
+			</div>
+			<div class="form-group">
+				<%= f.submit class: "btn btn-primary btn-block" %>
+			</div>
+		<% end %>
+	</div>
+</div>

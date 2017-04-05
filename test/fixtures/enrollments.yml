@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  team: one
+  tournament: one
+  organizer: false
+
+two:
+  team: two
+  tournament: two
+  organizer: false

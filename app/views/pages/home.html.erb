@@ -1,0 +1,112 @@
+<div class="row row-grid">
+	<div class="col-md-12 row-title text-center">
+		<h3>Open Tournaments</h3>
+		<%= link_to "See More", "#", class: "btn btn-default btn-sm" %>
+	</div>
+	<% Tournament.open.limit(3).order("created_at DESC").each do |tournament| %>
+		<%= link_to tournament_path(tournament) do %>
+			<div class="col-md-4">
+				<figure>
+					<div class="caption">
+						<%= image_tag(tournament.venue.venue_image_url(:medium)) if tournament.venue.venue_image? %>
+						<div class="caption-text text-center">
+							<h5><%= tournament.venue.name + " - " + tournament.venue.address %></h5>
+						</div>
+					</div>
+					<figcaption>
+						<h5 class="tournament-space">Space for <%= pluralize(tournament.capacity - tournament.teams.count, "team") %> remaining</h5>
+						<h5>Sunday @ around 4:30PM</h5>
+						<h5><%= tournament.team_size %> members per team</h5>
+						<h5><%= money_format(tournament.bet_amount) %> per team member</h5>
+						<div class="progress-container">
+							<h5>Bet total @ <%= money_format(tournament.current_bet_amount) %> of <%= money_format(tournament.total_bet_amount) %></h5>
+							<div class="progress">
+							  <div class="progress-bar" role="progressbar" aria-valuenow="<%= tournament.bet_amount_percentage %>"
+							  aria-valuemin="0" aria-valuemax="100" style="width:<%= tournament.bet_amount_percentage %>">
+							  </div>
+							</div>
+						</div>
+					</figcaption>
+				</figure>
+			</div>
+		<% end %>
+	<% end %>
+</div>
+
+<div class="row row-grid">
+	<div class="col-md-12 row-title text-center">
+		<h3>Latest Members</h3>
+		<%= link_to "See More", "#", class: "btn btn-default btn-sm" %>
+	</div>
+	<% User.limit(4).order("created_at DESC").each do |user| %>
+		<div class="col-md-3">
+			<figure>
+				<%= image_tag(user.profile_image_url(:normal)) if user.profile_image? %>
+				<figcaption>
+					<h5><%= user.username %></h5>
+					<h5>San Ignacio, Cayo</h5>
+					<%= link_to "Recruit", "#", class: "btn btn-primary btn-sm btn-block" %>
+				</figcaption>
+			</figure>
+		</div>
+	<% end %>
+</div>
+
+<div class="row row-grid">
+	<div class="col-md-12 row-title text-center">
+		<h3>Nearly Full Tournaments</h3>
+		<%= link_to "See More", "#", class: "btn btn-default btn-sm" %>
+	</div>
+	<% Tournament.open.limit(3).order("created_at DESC").each do |tournament| %>
+		<%= link_to tournament_path(tournament) do %>
+			<div class="col-md-4">
+				<figure>
+					<div class="caption">
+						<%= image_tag(tournament.venue.venue_image_url(:medium)) if tournament.venue.venue_image? %>
+						<div class="caption-text text-center">
+							<h5><%= tournament.venue.name + " - " + tournament.venue.address %></h5>
+						</div>
+					</div>
+					<figcaption>
+						<h5 class="tournament-space">Space for <%= pluralize(tournament.capacity - tournament.teams.count, "team") %> remaining</h5>
+						<h5>Sunday @ around 4:30PM</h5>
+						<h5><%= tournament.team_size %> members per team</h5>
+						<h5><%= money_format(tournament.bet_amount) %> per team member</h5>
+						<div class="progress-container">
+							<h5>Bet total @ <%= money_format(tournament.current_bet_amount) %> of <%= money_format(tournament.total_bet_amount) %></h5>
+							<div class="progress">
+							  <div class="progress-bar" role="progressbar" aria-valuenow="<%= tournament.bet_amount_percentage %>"
+							  aria-valuemin="0" aria-valuemax="100" style="width:<%= tournament.bet_amount_percentage %>">
+							  </div>
+							</div>
+						</div>
+					</figcaption>
+				</figure>
+			</div>
+		<% end %>
+	<% end %>
+</div>
+
+
+<div class="row row-grid">
+	<div class="col-md-12 row-title text-center">
+		<h3>Teams With Space</h3>
+		<%= link_to "See More", "#", class: "btn btn-default btn-sm" %>
+	</div>
+	<div class="col-md-3"><img src="http://hpci.net/wordpressNew/wp-content/uploads/2015/09/TeamCoaching.jpg" alt=""><p>San Ignacio, Cayo </p>
+		<a href="#" class="btn btn-primary btn-block btn-sm">Join</a>
+	</div>
+	<div class="col-md-3"><img src="http://hpci.net/wordpressNew/wp-content/uploads/2015/09/TeamCoaching.jpg" alt=""><p>Belize City, Belize</p>
+		<a href="#" class="btn btn-primary btn-block btn-sm">Join</a>
+
+	</div>
+	<div class="col-md-3"><img src="http://hpci.net/wordpressNew/wp-content/uploads/2015/09/TeamCoaching.jpg" alt=""><p>San Pedro, Belize</p>
+		<a href="#" class="btn btn-primary btn-block btn-sm">Join</a>
+
+	</div>
+	<div class="col-md-3"><img src="http://hpci.net/wordpressNew/wp-content/uploads/2015/09/TeamCoaching.jpg" alt=""><p>San Pedro, Belize</p>
+		<a href="#" class="btn btn-primary btn-block btn-sm">Join</a>
+
+	</div>
+</div>
+

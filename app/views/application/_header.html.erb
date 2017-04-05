@@ -1,0 +1,21 @@
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 brand">
+        <h2><%= link_to "TeamSporting", root_path %></h2>
+        <h4>A new sporting experience for Belizeans</h4>
+      </div>
+      <div class="col-md-7">
+        <div class="pull-right">
+          <% if !user_signed_in? %>
+            <%= link_to "Sign In", new_user_session_path %>
+            <%= link_to "Register", new_user_registration_path, class: "header-btn auth" %>
+          <% else %>
+            <%= link_to "My Tournaments", profile_tournaments_path, class: "btn btn-default btn-sm" %>
+            <%= image_tag(current_user.profile_image_url(:small), class: "img-circle default profile-img") if current_user.profile_image? %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

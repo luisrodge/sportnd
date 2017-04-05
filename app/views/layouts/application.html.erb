@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home - Welcome</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="<%= controller_name %> <%= action_name %>">
+    <%= render "header" %>  
+
+  	<div class="container">
+      <div class="row">
+        <div class="col-md-10 center-block">
+            <%= yield %>
+        </div>
+      </div>
+    </div>
+
+    <%= render "footer" %>    
+  </body>
+</html>

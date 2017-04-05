@@ -1,0 +1,51 @@
+<div class="row">
+	<div class="col-md-12 text-center">
+		<%= link_to "New Tournament", new_profile_tournament_path, class: "btn btn-primary" %>
+	</div>
+</div>
+<hr>
+<div class="row row-grid">
+	<div class="col-md-12">
+		<h3>Tournaments you started</h3>
+		<div class="row">
+			<div class="col-md-12">
+			<% current_user.started_tournaments.each do |tournament| %>
+				<%= link_to tournament_path(tournament) do %>
+					<div class="col-md-4 well">
+						<h4><%= tournament.name %></h4>
+						<h4>Bet amount: <%= number_to_currency(tournament.bet_amount, :unit => "$") %></h4>
+						<h4>Sport: <%= tournament.sport.name %></h4>
+						<h4>Venue: <%= tournament.venue.name %></h4>
+						<%= link_to "Enroll Team", "#", class: "btn btn-primary btn-xs" %>
+						<%= link_to "Edit", "#", class: "btn btn-default btn-xs" %>
+						<%= link_to "Close", "#", class: "btn btn-default btn-xs" %>
+					</div>
+				<% end %>
+			<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+<hr>
+<div class="row row-grid">
+	<div class="col-md-12">
+		<h3>Other tournaments you are enrolled in</h3>
+		<div class="row">
+			<div class="col-md-12">
+			<% current_user.tournaments.each do |tournament| %>
+				<%= link_to profile_tournament_path(tournament) do %>
+					<div class="col-md-4 well">
+						<h4><%= tournament.name %></h4>
+						<h4>Organizer: <%= tournament.organizer.email %></h4>
+						<h4>Teams already enrolled: <%= tournament.teams.count %></h4>
+						<h4>Bet amount: <%= number_to_currency(tournament.bet_amount, :unit => "$") %></h4>
+						<h4>Sport: <%= tournament.sport.name %></h4>
+						<h4>Venue: <%= tournament.venue.name %></h4>
+						<%= link_to "Unenroll Team", "#", class: "btn btn-danger btn-xs" %>
+					</div>
+				<% end %>
+			<% end %>
+			</div>
+		</div>
+	</div>
+</div>

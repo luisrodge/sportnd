@@ -1,0 +1,10 @@
+<div class="row">
+	<div class="col-md-12">
+		<h3>Venues across Belize</h3>
+	</div>
+	<% Venue.all.each do |venue| %>
+		<div class="col-md-4">
+	    	<%= image_tag(venue.venue_image_url(:medium)) if venue.venue_image? %>
+		</div>
+	<% end %>
+</div>

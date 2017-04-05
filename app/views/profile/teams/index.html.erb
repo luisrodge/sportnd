@@ -1,0 +1,34 @@
+<div class="row row-grid">
+	<div class="col-md-12">
+		<h2>Future Games (4)</h2>
+	</div>
+	<div class="col-md-3 col-sm-6 col-xs-6">
+		<h4>LenaLakers vs SmithyDids</h4>
+		<p>Feb 6 @ 2:30PM</p>
+	</div>
+	<div class="col-md-3 col-sm-6 col-xs-6">
+		<h4>GoatsPloats vs SmithyDids</h4>
+		<p>Feb 6 @ 2:30PM</p>
+	</div>
+	<div class="col-md-3 col-sm-6 col-xs-6">
+		<h4>LenaLakers vs SmithyDids</h4>
+		<p>Feb 6 @ 2:30PM</p>
+	</div>
+	<div class="col-md-3 col-sm-6 col-xs-6">
+		<h4>TheElites vs SmithyDids</h4>
+		<p>Feb 6 @ 2:30PM</p>
+	</div>
+</div>
+<hr>
+<div class="row row-grid">
+	<div class="col-md-12">
+		<h2>Teams (<%= current_user.teams.count %>)</h2>
+	</div>
+	<% current_user.teams.each do |team| %>
+		<div class="col-md-4">
+			<img src="http://hpci.net/wordpressNew/wp-content/uploads/2015/09/TeamCoaching.jpg" alt="">
+			<h3><%= team.name %></h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus nobis, magni dicta voluptatem dolore quis earum, culpa cumque!</p>
+		</div>
+	<% end %>
+</div>

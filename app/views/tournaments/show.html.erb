@@ -1,0 +1,40 @@
+<div class="row tournament-details">
+	<div class="col-md-4">
+		<%= image_tag(@tournament.venue.venue_image_url(:medium)) if @tournament.venue.venue_image? %>
+	</div>
+	<div class="col-md-4">
+		<h4><%= format_datetime(@tournament.date) %></h4>
+		<h4><%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per team member</h4>
+		<h4>Max of <%= pluralize(@tournament.capacity, "team") %></h4>
+		<h4><%= @tournament.sport.name %></h4>
+		<h4>Total bet amount at <%= money_format(@tournament.total_bet_amount) %></h4>
+		<h4>Currently at <%= money_format(@tournament.current_bet_amount) %></h4>
+		<div class="progress">
+		  <div class="progress-bar" role="progressbar" aria-valuenow="<%= @tournament.bet_amount_percentage %>"
+		  aria-valuemin="0" aria-valuemax="100" style="width:<%= @tournament.bet_amount_percentage %>">
+		  </div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<% if !@tournament.enrolled?(current_user) && @tournament.allow_enrollment? %>
+			<h4>Enroll by starting a new team</h4>
+			<h4><%= @tournament.capacity %> space remaining</h4><br>
+			<%= link_to "Enroll", new_profile_tournament_enrollment_path(@tournament), class: "btn btn-primary btn-block" %>
+		<% else %>
+			<h4>Enrollment period has ended</h4>
+		<% end %>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<br><h3>Teams Enrolled</h3>
+	</div>
+	<% @tournament.teams.each do |team| %>
+		<div class="col-md-3">
+			<%= image_tag(team.captain.profile_image_url(:normal)) if team.captain.profile_image? %>
+			<h4><%= team.color %> Team</h4>
+			<h4><%= team.captain.email %></h4>
+			<h4><%= @tournament.team_size - team.users.count %> space remaining</h4>
+		</div>
+	<% end %>
+</div>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home - Welcome</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="<%= controller_name %> <%= action_name %>">
+    <%= render "header" %>  
+
+    <div class="container">
+      <div class="row gutter-40">
+          <%= render "nav" %>
+        <div class="col-md-7">
+          <div class="main-content">
+            <%= yield %>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <%= yield :sidebar %>
+        </div>
+      </div>
+    </div>
+
+    <%= render "footer" %>    
+  </body>
+
+</html>

@@ -1,0 +1,19 @@
+<div class="tournaments js-items-container">
+	<%= render partial: 'tournaments/item', collection: @tournaments %>
+</div>
+
+<div class="pagination" data-pagination-endpoint="<%= @endpoint %>" data-pagination-pages="<%= @page_amount %>">
+	<%= image_tag 'ajax-loader.gif' %>
+</div>
+
+
+<% content_for :sidebar do %>
+	<% Team.order("created_at DESC").each do |team| %>
+	    <div class="team">
+	    	<p class="text-center"><%= image_tag(team.captain.profile_image_url(:small), class: "img-circle default profile-img") if team.captain.profile_image? %></p>
+	     	 <h5 class="truncate"><%= team.color %> Team</h5>
+	     	 <h5 class="truncate"><%= team.captain.email %></h5>
+	     	 <%= link_to "Join", "#", class: "btn btn-primary btn-xs btn-block" %>
+	    </div>
+	<% end %>
+<% end %>
