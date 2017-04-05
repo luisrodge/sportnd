@@ -16,7 +16,14 @@ class Profile::TeamsController < ApplicationController
   	team.captain = current_user
   	team.save
     @tournament.users << current_user
-  	redirect_to profile_teams_path
+  	redirect_to tournament_path(@tournament)
+  end
+
+  def destroy
+    tournament = Tournament.find(params[:tournament_id])
+    tournament.teams.delete(Team.find(params[:id]))
+    tournament.users.delete(current_user)
+    redirect_to tournament
   end
 
   private

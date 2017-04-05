@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
-	layout "secondary", only: :index
-	
+	layout "secondary", except: :show
+
 	def index
 		@tournaments = Tournament.all.page;
 		@endpoint = pagination_tournaments_path

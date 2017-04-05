@@ -45,23 +45,32 @@ select {
 .progress {
     height: 7px;
     box-shadow: none;
-    background: #DEDEDE;
+    background: #F2F2F2;
 }
 
 .progress-bar {
-    background-color: #e95949;
+    background-color: #E74C3C;
     box-shadow: none;
 }
 
 /* BOOTSTRAP COLUMN GUTTERS */
-/* 100px gutter */
-.gutter-100.row {
-  margin-right: -50px;
-  margin-left: -50px;
+/* 60px gutter */
+.gutter-60.row {
+  margin-right: -30px;
+  margin-left: -30px;
 }
-.gutter-100 > [class^="col-"], .gutter-100 > [class^=" col-"] {
-  padding-right: 50px;
-  padding-left: 50px;
+.gutter-60 > [class^="col-"], .gutter-60 > [class^=" col-"] {
+  padding-right: 30px;
+  padding-left: 30px;
+}
+/* 50px gutter */
+.gutter-50.row {
+  margin-right: -25px;
+  margin-left: -25px;
+}
+.gutter-50 > [class^="col-"], .gutter-50 > [class^=" col-"] {
+  padding-right: 25px;
+  padding-left: 25px;
 }
 /* 40px gutter */
 .gutter-40.row {
@@ -188,14 +197,14 @@ select {
 	box-shadow: none;
 }
 .btn-danger {
-	background: #f25454;
+	background: #ed2412;
 	color: #ffffff;
 }
 .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open > .dropdown-toggle.btn-danger {
-	background: #f26d6d;
+	background: #d52110;
 }
 .btn-danger:active, .btn-danger.active {
-	background: #bf4343;
+	background: #d52110;
 	box-shadow: none;
 }
 

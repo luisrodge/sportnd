@@ -20,10 +20,6 @@ Rails.application.routes.draw do
       resources :teams
   		resources :enrollments
   	end
-    namespace :membership_requests do
-      resources :pending
-      resources :requested
-    end
   end
 
 end

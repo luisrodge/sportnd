@@ -14,4 +14,8 @@ class User < ApplicationRecord
 
   mount_uploader :profile_image, ProfileImageUploader
 
+  def tournament_team(tournament)
+    teams.where(tournament_id: tournament).first
+  end
+
 end

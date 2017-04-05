@@ -11,14 +11,15 @@
   <body class="<%= controller_name %> <%= action_name %>">
     <%= render "header" %>  
 
-  	<div class="container">
-      <div class="row">
-        <div class="col-md-10 center-block">
+    <div id="main">
+    	<div class="container ">
+        <div class="row">
+          <div class="col-md-10 center-block">
             <%= yield %>
+          </div>
         </div>
       </div>
     </div>
-
-    <%= render "footer" %>    
+    <%= render "footer" %> 
   </body>
 </html>
