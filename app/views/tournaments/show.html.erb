@@ -61,6 +61,11 @@
 	<div class="row">
 		<% @tournament.teams.each do |team| %> 
 			<div class="col-md-3">
+				<% if @tournament.organizer == current_user %>
+					<%= link_to profile_team_path(team), method: :delete, class: "btn btn-danger btn-xs btn-block" do %>
+						<%= fa_icon "remove" %> Remove Team
+					<% end %>
+				<% end %>
 				<figure>
 					<%= image_tag(team.captain.profile_image_url(:normal)) if team.captain.profile_image? %>
 					<figcaption>
@@ -74,3 +79,11 @@
 		<% end %>
 	</div>
 </div>
+<% if @tournament.organizer == current_user %>
+	<div class="manage-tournament">
+		<p class="text-center"><%= link_to profile_tournament_path(@tournament), method: :delete, class: "btn btn-danger btn-sm" do %>
+			<%= fa_icon "remove" %> Cancel Tournament
+			<% end %>
+		</p>
+	</div>
+<% end %>

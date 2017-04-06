@@ -10,10 +10,10 @@ class Tournament < ApplicationRecord
   has_many :enrollments, dependent: :destroy
   has_many :users, -> { distinct }, through: :enrollments
 
-  paginates_per 3
+  paginates_per 4
 
   def enrolled?(user)
-    users.exists?(user)
+    user.teams.where(tournament_id: self).any?
   end
 
   def self.open

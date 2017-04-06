@@ -22,6 +22,11 @@ class Profile::TournamentsController < ApplicationController
 		end
 	end
 
+	def destroy
+		Tournament.find(params[:id]).destroy
+		redirect_to root_path
+	end
+
 	private
 
 	def tournament_params

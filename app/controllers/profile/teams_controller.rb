@@ -20,9 +20,12 @@ class Profile::TeamsController < ApplicationController
   end
 
   def destroy
-    tournament = Tournament.find(params[:tournament_id])
-    tournament.teams.delete(Team.find(params[:id]))
-    tournament.users.delete(current_user)
+    team = Team.find(params[:id])
+    tournament = team.tournament
+    team.users.each do |user|
+      tournament.users.delete(user)
+    end
+    tournament.teams.delete(team)
     redirect_to tournament
   end
 

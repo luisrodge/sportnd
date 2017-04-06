@@ -35,9 +35,6 @@ img{
 .tournament {
     border-bottom: 1px solid $light_border;
     padding: 30px 25px;
-    &:last-of-type {
-        border: none;
-    }
 }
 
 img.default{
@@ -246,6 +243,19 @@ hr.st {
             margin: 0;
             margin-bottom: 18px;
         }
+    }
+    .manage-tournament {
+        border-top: 1px solid $light_border;
+        margin-top: 50px;
+        padding-top: 40px;
+    }
+}
+
+.my-tournaments {
+    margin-top: 50px;
+    .section-title{
+        margin: 0;  
+        padding-bottom: 18px;
     }
 }
 
