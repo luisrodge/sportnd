@@ -3,7 +3,6 @@
 		<div class="col-md-12">
 			<div class="organizer-details">
 				<h3 class="text-center"><%= @tournament.sport.name %> tournament organized by <%= @tournament.organizer.username %></h3>
-				<h4 class="text-center">Total bet amount at <%= money_format(@tournament.total_bet_amount) %></h4>
 				<h4 class="text-center"><%= @tournament.venue.address %></h4>
 				<p class="text-center"><%= image_tag(@tournament.organizer.profile_image_url(:small), class: "img-circle default profile-img") if @tournament.organizer.profile_image? %></p>
 			</div>
@@ -13,7 +12,7 @@
 				<h4><%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per team member</h4>
 			</div>
 			<div class="progress-container">
-			  	<h4>Betting total currently at <%= money_format(@tournament.current_bet_amount) %></h4>
+			  	<h4>Betting total currently at <%= money_format(@tournament.current_bet_amount) + "/" + money_format(@tournament.total_bet_amount) %></h4>
 				<div class="progress">
 				  <div class="progress-bar" role="progressbar" aria-valuenow="<%= @tournament.bet_amount_percentage %>"
 				  aria-valuemin="0" aria-valuemax="100" style="width:<%= @tournament.bet_amount_percentage %>">
@@ -29,7 +28,7 @@
 		</div>
 		<div class="col-md-7">
 			<% if !@tournament.enrolled?(current_user) && @tournament.allow_enrollment? %>
-				<h3>Enroll In Tournament</h3>
+				<h3>Enroll A New Team</h3>
 				<h4>choose a team color | <%= @tournament.capacity %> space remaining</h4>
 				<%= form_for [:profile, @tournament, Team.new] do |f| %>
 					<div class="form-group">
@@ -40,9 +39,9 @@
 			<% else %>
 				<div class="row enrolled-team">
 					<div class="col-md-12 header">
-						<h3>Enrolled In <%= current_user.tournament_team(@tournament).color %> Team</h3>
-						<h4>1 space remaining</h4>
-						<%= link_to "Leave Team", "#", class: "btn btn-danger btn-xs" %>
+						<h3>Enrolled With <%= current_user.tournament_team(@tournament).color %> Team</h3>
+						<%= link_to "Leave Team", leave_profile_team_path(current_user.tournament_team(@tournament)), method: :delete, class: "btn btn-danger btn-xs" %>
+						<%= leave_btn(@tournament, current_user.tournament_team(@tournament)) %>
 					</div>
 					<% current_user.tournament_team(@tournament).users.each do |user| %>
 						<div class="col-md-3">
@@ -53,21 +52,24 @@
 			<% end %>
 		</div>
 	</div>
-</div>
-<div class="row">
+<div class="enrolled-teams">
 	<div class="row">
 		<div class="col-md-12">
-			<br><h3>Teams Enrolled</h3>
+			<h3>Teams Enrolled</h3>
 		</div>
 	</div>
 	<div class="row">
-		<% @tournament.teams.each do |team| %>
+		<% @tournament.teams.each do |team| %> 
 			<div class="col-md-3">
-				<%= image_tag(team.captain.profile_image_url(:normal)) if team.captain.profile_image? %>
-				<h4><%= team.color %> Team</h4>
-				<h4><%= team.captain.email %></h4>
-				<h4><%= @tournament.team_size - team.users.count %> space remaining</h4>
-				<%= leave_btn(@tournament, team) %>
+				<figure>
+					<%= image_tag(team.captain.profile_image_url(:normal)) if team.captain.profile_image? %>
+					<figcaption>
+						<h5><%= team.color %> Team</h5>
+						<h5>Captain - <%= team.captain.username %></h5>
+						<h5><%= @tournament.team_size - team.users.count %> space remaining</h5>
+						<%= link_to "Join", join_profile_team_path(team), method: :put, class: "btn btn-primary btn-xs btn-block" %>
+					</figcaption>
+				</figure>				
 			</div>
 		<% end %>
 	</div>

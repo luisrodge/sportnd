@@ -26,6 +26,20 @@ class Profile::TeamsController < ApplicationController
     redirect_to tournament
   end
 
+  def join
+    team = Team.find(params[:id])
+    team.users << current_user
+    team.tournament.users << current_user
+    redirect_to team.tournament
+  end
+
+  def leave
+    team = Team.find(params[:id])
+    team.users.delete(current_user)
+    team.tournament.users.delete(current_user)
+    redirect_to team.tournament
+  end
+
   private
 
   def team_params

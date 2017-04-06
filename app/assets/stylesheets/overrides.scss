@@ -46,6 +46,7 @@ select {
     height: 7px;
     box-shadow: none;
     background: #F2F2F2;
+    border-radius: 0;
 }
 
 .progress-bar {
@@ -127,7 +128,6 @@ select {
 	border: 0 none;
 	font-weight: 700;
 	letter-spacing: 1px;
-	text-transform: uppercase;
 	border-radius: 0;
 }
 .btn:focus, .btn:active:focus, .btn.active:focus {

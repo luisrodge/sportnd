@@ -15,7 +15,12 @@ Rails.application.routes.draw do
 
   namespace :profile do
     resources :venues
-  	resources :teams
+  	resources :teams do
+      member do 
+        put "join"
+        delete "leave"
+      end
+    end
   	resources :tournaments do
       resources :teams
   		resources :enrollments
