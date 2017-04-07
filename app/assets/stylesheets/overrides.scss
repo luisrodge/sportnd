@@ -55,6 +55,24 @@ select {
 }
 
 /* BOOTSTRAP COLUMN GUTTERS */
+/* 80px gutter */
+.gutter-80.row {
+  margin-right: -40px;
+  margin-left: -40px;
+}
+.gutter-80 > [class^="col-"], .gutter-80 > [class^=" col-"] {
+  padding-right: 40px;
+  padding-left: 40px;
+}
+/* 70px gutter */
+.gutter-70.row {
+  margin-right: -35px;
+  margin-left: -35px;
+}
+.gutter-70 > [class^="col-"], .gutter-70 > [class^=" col-"] {
+  padding-right: 35px;
+  padding-left: 35px;
+}
 /* 60px gutter */
 .gutter-60.row {
   margin-right: -30px;
@@ -116,7 +134,7 @@ select {
 	Name:		Push - Bootstrap Button Pack
 	Author:		BootstrapBay - (http://www.bootstrapbay.com/)
 	Version:	1.0
-	
+
 *********************************************************************/
 
 /******************************************************

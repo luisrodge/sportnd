@@ -46,7 +46,7 @@
 					<% current_user.tournament_team(@tournament).users.each do |user| %>
 						<div class="col-md-3">
 							<%= image_tag(user.profile_image_url(:normal), class: "img-circle") if user.profile_image? %>
-						</div>	
+						</div>
 					<% end %>
 				</div>
 			<% end %>
@@ -59,7 +59,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<% @tournament.teams.each do |team| %> 
+		<% @tournament.teams.each do |team| %>
 			<div class="col-md-3">
 				<% if @tournament.organizer == current_user %>
 					<%= link_to profile_team_path(team), method: :delete, class: "btn btn-danger btn-xs btn-block" do %>
@@ -69,12 +69,12 @@
 				<figure>
 					<%= image_tag(team.captain.profile_image_url(:normal)) if team.captain.profile_image? %>
 					<figcaption>
-						<h5><%= team.color %> Team</h5>
-						<h5>Captain - <%= team.captain.username %></h5>
-						<h5><%= @tournament.team_size - team.users.count %> space remaining</h5>
+						<h5 class="truncate"><%= team.color %> Team</h5>
+						<h5 class="truncate">Captain - <%= team.captain.username %></h5>
+						<h5 class="truncate"><%= @tournament.team_size - team.users.count %> space remaining</h5>
 						<%= link_to "Join", join_profile_team_path(team), method: :put, class: "btn btn-primary btn-xs btn-block" %>
 					</figcaption>
-				</figure>				
+				</figure>
 			</div>
 		<% end %>
 	</div>
