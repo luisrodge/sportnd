@@ -1,6 +1,6 @@
 class Profile::TeamsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
   end
 
@@ -19,6 +19,9 @@ class Profile::TeamsController < ApplicationController
   	redirect_to tournament_path(@tournament)
   end
 
+  # Remove a team from a tournament
+  # Remove team members from tournament
+  # Remove team from tournament
   def destroy
     team = Team.find(params[:id])
     tournament = team.tournament
@@ -29,6 +32,9 @@ class Profile::TeamsController < ApplicationController
     redirect_to tournament
   end
 
+  # User joins an existing team in a tournament
+  # Add user team users
+  # Add user to tournament users
   def join
     team = Team.find(params[:id])
     team.users << current_user
@@ -36,6 +42,9 @@ class Profile::TeamsController < ApplicationController
     redirect_to team.tournament
   end
 
+  # User leaves a team
+  # Remove user from team users
+  # Remove user from tournament users
   def leave
     team = Team.find(params[:id])
     team.users.delete(current_user)

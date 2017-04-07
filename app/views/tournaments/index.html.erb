@@ -14,7 +14,7 @@
 	     	 <h5 class="truncate text-center"><%= team.color %> Team</h5>
 	     	 <h5 class="truncate text-center">Captain - <%= team.captain.username %></h5>
 	     	 <h5 class="truncate text-center"><%= team.tournament.sport.name %> Tournament</h5>
-	     	 <%= link_to "Join", "#", class: "btn btn-primary btn-xs btn-block" %>
+	     	 <%= link_to "Join", join_profile_team_path(team), class: "btn btn-primary btn-xs btn-block" %>
 	    </div>
 	<% end %>
 <% end %>

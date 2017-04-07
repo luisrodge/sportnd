@@ -5,4 +5,5 @@
 //= require bootstrap-datetimepicker
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require rails.validations
 //= require_tree .

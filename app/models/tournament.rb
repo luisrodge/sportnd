@@ -10,6 +10,13 @@ class Tournament < ApplicationRecord
   has_many :enrollments, dependent: :destroy
   has_many :users, -> { distinct }, through: :enrollments
 
+  validates_presence_of :capacity, :team_size, :bet_amount, :sport_id, :venue_id, :date
+  validates :capacity, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 8 }
+  validates :team_size, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 5 }
+  validates :bet_amount, numericality: true
+
+  accepts_nested_attributes_for :teams
+
   paginates_per 4
 
   def enrolled?(user)
@@ -31,7 +38,7 @@ class Tournament < ApplicationRecord
 
   def current_bet_amount
     total = 0.0
-    teams.each do |team| 
+    teams.each do |team|
       total += team.users.count * bet_amount
     end
     total

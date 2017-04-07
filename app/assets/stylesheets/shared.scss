@@ -19,6 +19,10 @@ img{
     height: auto;
 }
 
+label.message {
+  color: #ed2412;
+}
+
 /* MAIN CONTENT SECTION */
 .main-content {
     background: #FFF;
@@ -148,7 +152,7 @@ nav.sidebar{
             color: #525252;
         }
     }
-    span.title{ 
+    span.title{
         display: block;
         color: #525252;
         padding-bottom: 10px;
@@ -206,7 +210,7 @@ hr.st {
         h3, h4 {
             margin:0;
         }
-        img{ 
+        img{
             margin-top: 12px;
         }
     }
@@ -254,7 +258,7 @@ hr.st {
 .my-tournaments {
     margin-top: 50px;
     .section-title{
-        margin: 0;  
+        margin: 0;
         padding-bottom: 18px;
     }
 }

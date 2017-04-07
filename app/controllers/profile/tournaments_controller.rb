@@ -8,28 +8,45 @@ class Profile::TournamentsController < ApplicationController
 		@tournament = Tournament.find(params[:id])
 	end
 
+	# New tournament
+	# New tournament team
 	def new
+		@tournament = Tournament.new
+		@tournament.teams.build
 	end
 
+	# Create a new tournament
+	# Enroll organizer team in tournament
+	# Associate organizer in tournament
 	def create
-		tournament = Tournament.new(tournament_params)
+		@tournament = Tournament.new(tournament_params)
 		date_format = "%m/%d/%Y %I:%M %p"
-      	date = DateTime.strptime(params[:tournament][:date], date_format).change(offset: Time.now.strftime("%z")).to_s
-		tournament.date = date
-		tournament.organizer = current_user
-		if tournament.save
-			redirect_to profile_tournaments_path
+  	date = DateTime.strptime(params[:tournament][:date], date_format).change(offset: Time.now.strftime("%z")).to_s
+		@tournament.date = date
+		@tournament.organizer = current_user
+		if @tournament.valid?
+			@tournament.save
+			team = @tournament.teams.new(color: params[:tournament][:teams_attributes]["0"][:color])
+			team.captain = current_user
+			team.save
+			@tournament.users << current_user
+			redirect_to tournament_path(@tournament)
+		else
+			@tournament.teams.build if @tournament.teams.blank?
+  		render :action => 'new'
 		end
 	end
 
+	# Cancel or destroy a tournament
 	def destroy
 		Tournament.find(params[:id]).destroy
-		redirect_to root_path
+		redirect_to profile_tournaments_path
 	end
 
 	private
 
 	def tournament_params
-		params.require(:tournament).permit(:name, :capacity, :team_size, :bet_amount, :sport_id, :venue_id, :date, :organizer_id)
+		params.require(:tournament).permit(:name, :capacity, :team_size, :bet_amount,
+			:sport_id, :venue_id, :date, :organizer_id)
 	end
 end
