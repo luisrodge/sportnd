@@ -62,6 +62,7 @@
 	<div class="row">
 		<% @tournament.teams.each do |team| %>
 			<div class="col-md-3">
+				<div class="text-center"><i class="fa fa-circle <%= team.color.name.downcase %>"></i></div>
 				<% if @tournament.organizer == current_user %>
 					<%= link_to profile_team_path(team), method: :delete, class: "btn btn-danger btn-xs btn-block" do %>
 						<%= fa_icon "remove" %> Remove Team
@@ -70,8 +71,7 @@
 				<figure>
 					<%= image_tag(team.captain.profile_image_url(:normal)) if team.captain.profile_image? %>
 					<figcaption>
-						<h5 class="truncate"><%= team.color.name %> Team</h5>
-						<h5 class="truncate">Captain - <%= team.captain.username %></h5>
+						<h5 class="truncate" data-toggle="tooltip" title="<%= team.captain.full_name %>">Captain - <%= team.captain.full_name %></h5>
 						<h5 class="truncate"><%= @tournament.team_size - team.users.count %> space remaining</h5>
 						<%= link_to "Join", join_profile_team_path(team), method: :put, class: "btn btn-primary btn-xs btn-block" %>
 					</figcaption>
