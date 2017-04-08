@@ -23,6 +23,19 @@ label.message {
   color: #ed2412;
 }
 
+.tournament-notice {
+  border: 1px solid $light_border;
+  padding: 15px 40px;
+  h3, h4 {
+    line-height: 1.5em;
+    margin: 0;
+  }
+}
+
+.tournament-notice.st{
+  margin-top: 40px;
+}
+
 /* MAIN CONTENT SECTION */
 .main-content {
     background: #FFF;
@@ -33,6 +46,10 @@ label.message {
     border: 1px solid $light_border;
     margin-bottom: 30px;
     padding: 12px;
+    &:last-of-type {
+      margin: 0;
+      margin-bottom: 20px;
+    }
 }
 
 
@@ -135,12 +152,15 @@ header{
 
 nav.sidebar{
     text-transform: uppercase;
-    a{
+    .items a{
         color: $dark;
         &:hover, &:focus{
             color: #000;
             text-decoration: none;
         }
+    }
+    .search-form {
+      margin-top: 12px;
     }
     ul {
         height: auto;
@@ -149,13 +169,14 @@ nav.sidebar{
         padding: 0;
     }
     li{
-        padding-top: 5px;
+        padding-top: 4px;
         padding-left: 25px;
     }
     h4 {
         margin: 0;
     }
     span.home {
+
       color: $dark;
         a {
             &:hover {
@@ -172,8 +193,11 @@ nav.sidebar{
         margin-bottom: 20px;
         padding-bottom: 20px;
         border-bottom: 1px solid $light_border;
-        &:last-of-type {
+        &:last-of-type, &:first-of-type {
             border: none;
+        }
+        &:first-of-type {
+          margin-bottom: 10px;
         }
     }
 }
@@ -265,6 +289,16 @@ hr.st {
         margin: 0;
         padding-bottom: 18px;
     }
+}
+
+/* LINKS */
+a.default {
+  font-size: 14px;
+  background: $light_border;
+  padding: 6px;
+  &:hover {
+    background: #d9d9d9;
+  }
 }
 
 /* Container */

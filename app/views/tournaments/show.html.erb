@@ -2,7 +2,7 @@
 	<div class="row header">
 		<div class="col-md-12">
 			<div class="organizer-details">
-				<h3 class="text-center"><%= @tournament.sport.name %> tournament organized by <%= @tournament.organizer.username %></h3>
+				<h3 class="text-center"><%= @tournament.sport.name %> tournament organized by <%= @tournament.organizer.full_name %></h3>
 				<h4 class="text-center"><%= @tournament.venue.address %></h4>
 				<p class="text-center"><%= image_tag(@tournament.organizer.profile_image_url(:small), class: "img-circle default profile-img") if @tournament.organizer.profile_image? %></p>
 			</div>
@@ -27,23 +27,24 @@
 			<%= image_tag(@tournament.venue.venue_image_url(:medium)) if @tournament.venue.venue_image? %>
 		</div>
 		<div class="col-md-7">
-			<% if !@tournament.enrolled?(current_user) && @tournament.allow_enrollment? %>
+			<% if !@tournament.enrolled?(current_user) && @tournament.enrollment_period? %>
 				<h3>Enroll A New Team</h3>
-				<h4>choose a team color | <%= @tournament.capacity %> space remaining</h4>
+				<h4><%= @tournament.remaining_capacity %> space remaining</h4>
 				<%= form_for [:profile, @tournament, Team.new] do |f| %>
 					<div class="form-group">
-						<%= f.select :color, options_for_select([['Red', 'Red'], ['Black', 'Black'], ['Orange', 'Orange'], ['Yello', 'Yellow']]), {:include_blank => 'Select a color'}, class: "form-control input-lg" %>
+						<%= f.select :color_id, options_for_select(Color.where.not(id: @tournament.teams.select(:color_id)).map{ |c| [c.name, c.id] }), {:include_blank => 'Select a team color'}, class: "form-control input-lg" %>
 					</div>
 						<%= f.submit "Enroll", class: "btn btn-primary btn-block" %>
 				<% end %>
+				<h5>NOTE: It is recommended that what you wear has some ressemblance of the color you choose. For example, if you choose red then try to wear a red shirt or pants for the day of the tournament.</h5>
 			<% else %>
 				<div class="row enrolled-team">
 					<div class="col-md-12 header">
-						<h3>Enrolled With <%= current_user.tournament_team(@tournament).color %> Team</h3>
-						<%= link_to "Leave Team", leave_profile_team_path(current_user.tournament_team(@tournament)), method: :delete, class: "btn btn-danger btn-xs" %>
-						<%= leave_btn(@tournament, current_user.tournament_team(@tournament)) %>
+						<h3>Enrolled With <%= current_user.team_for_tournament(@tournament).color.name %> Team</h3>
+						<%= link_to "Leave Team", leave_profile_team_path(current_user.team_for_tournament(@tournament)), method: :delete, class: "btn btn-danger btn-xs" %>
+						<%= leave_btn(@tournament, current_user.team_for_tournament(@tournament)) %>
 					</div>
-					<% current_user.tournament_team(@tournament).users.each do |user| %>
+					<% current_user.team_for_tournament(@tournament).users.each do |user| %>
 						<div class="col-md-3">
 							<%= image_tag(user.profile_image_url(:normal), class: "img-circle") if user.profile_image? %>
 						</div>
@@ -69,7 +70,7 @@
 				<figure>
 					<%= image_tag(team.captain.profile_image_url(:normal)) if team.captain.profile_image? %>
 					<figcaption>
-						<h5 class="truncate"><%= team.color %> Team</h5>
+						<h5 class="truncate"><%= team.color.name %> Team</h5>
 						<h5 class="truncate">Captain - <%= team.captain.username %></h5>
 						<h5 class="truncate"><%= @tournament.team_size - team.users.count %> space remaining</h5>
 						<%= link_to "Join", join_profile_team_path(team), method: :put, class: "btn btn-primary btn-xs btn-block" %>

@@ -8,13 +8,13 @@
 
 
 <% content_for :sidebar do %>
-	<% Team.order("created_at DESC").each do |team| %>
+	<% Team.order("created_at DESC").limit(4).each do |team| %>
 	    <div class="team">
 	    	<p class="text-center"><%= image_tag(team.captain.profile_image_url(:small), class: "img-circle default profile-img") if team.captain.profile_image? %></p>
-	     	 <h5 class="truncate text-center"><%= team.color %> Team</h5>
-	     	 <h5 class="truncate text-center">Captain - <%= team.captain.username %></h5>
+	     	 <h5 class="truncate text-center"><%= team.color.name %> Team</h5>
 	     	 <h5 class="truncate text-center"><%= team.tournament.sport.name %> Tournament</h5>
 	     	 <%= link_to "Join", join_profile_team_path(team), class: "btn btn-primary btn-xs btn-block" %>
 	    </div>
 	<% end %>
+	<p class="text-center"><%= link_to "More Teams", "#", class: "default btn-block" %></p>
 <% end %>

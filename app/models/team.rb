@@ -6,6 +6,7 @@ class Team < ApplicationRecord
   has_one :captain, through: :captain_membership, source: :user
 
   belongs_to :tournament
+	belongs_to :color
 
 	validates_presence_of :color
 

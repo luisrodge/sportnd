@@ -26,7 +26,7 @@ class Profile::TournamentsController < ApplicationController
 		@tournament.organizer = current_user
 		if @tournament.valid?
 			@tournament.save
-			team = @tournament.teams.new(color: params[:tournament][:teams_attributes]["0"][:color])
+			team = @tournament.teams.new(color_id: params[:tournament][:teams_attributes]["0"][:color])
 			team.captain = current_user
 			team.save
 			@tournament.users << current_user

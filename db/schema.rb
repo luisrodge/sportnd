@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170407050250) do
+ActiveRecord::Schema.define(version: 20170408061851) do
 
   create_table "challenges", force: :cascade do |t|
     t.integer  "team_id"
@@ -21,6 +21,21 @@ ActiveRecord::Schema.define(version: 20170407050250) do
     t.datetime "updated_at",                           null: false
     t.index ["opponent_id"], name: "index_challenges_on_opponent_id"
     t.index ["team_id"], name: "index_challenges_on_team_id"
+  end
+
+  create_table "colorations", force: :cascade do |t|
+    t.integer  "tournament_id"
+    t.integer  "color_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["color_id"], name: "index_colorations_on_color_id"
+    t.index ["tournament_id"], name: "index_colorations_on_tournament_id"
+  end
+
+  create_table "colors", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "enrollments", force: :cascade do |t|
@@ -57,9 +72,10 @@ ActiveRecord::Schema.define(version: 20170407050250) do
     t.text     "description"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.string   "color"
     t.integer  "tournament_id"
     t.integer  "size"
+    t.integer  "color_id"
+    t.index ["color_id"], name: "index_teams_on_color_id"
     t.index ["name"], name: "index_teams_on_name"
     t.index ["tournament_id"], name: "index_teams_on_tournament_id"
   end
