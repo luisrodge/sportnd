@@ -16,13 +16,13 @@ class Profile::TournamentsController < ApplicationController
 	end
 
 	# Create a new tournament
-	# Enroll organizer team in tournament
-	# Associate organizer in tournament
+	# Enroll organizer with a new team in tournament
+	# Associate organizer in saved tournament
 	def create
 		@tournament = Tournament.new(tournament_params)
 		date_format = "%m/%d/%Y %I:%M %p"
-  	date = DateTime.strptime(params[:tournament][:date], date_format).change(offset: Time.now.strftime("%z")).to_s
-		@tournament.date = date
+  	#date = DateTime.strptime(params[:tournament][:date], date_format).change(offset: Time.now.strftime("%z")).to_s
+		#@tournament.date = date
 		@tournament.organizer = current_user
 		if @tournament.valid?
 			@tournament.save
@@ -47,6 +47,6 @@ class Profile::TournamentsController < ApplicationController
 
 	def tournament_params
 		params.require(:tournament).permit(:name, :capacity, :team_size, :bet_amount,
-			:sport_id, :venue_id, :date, :organizer_id)
+			:sport_id, :venue_id, :date, :time, :organizer_id)
 	end
 end

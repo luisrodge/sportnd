@@ -1,35 +1,13 @@
+<div class="application-col">
+
 <div class="row">
-	<% if !current_user.start_new_tournament? %>
+	<% if (!current_user.start_new_tournament?) && (Date.today.saturday? || Date.today.sunday?) %>
 		<div class="col-md-12">
-			<p class="text-center"><%= link_to "New Tournament", new_profile_tournament_path, class: "btn btn-primary" %></p>
-			<div class="tournament-notice st">
-				<h3>Things to take into account</h3>
-				<ul>
-					<li>
-						<h4>You are allowed to start only one tournament per week.</h4>
-					</li>
-					<li>
-						<h4>You can only enroll in two tournaments per weekend - one on Saturday, the other on Sunday, but never twice on the same day.</h4>
-					</li>
-				</ul>
-			</div>
-		</div>
-	<% else %>
-		<div class="col-md-12 tournament-notice">
-			<h3>You already started a tournament for the current week</h3>
-			<ul>
-				<li>
-					<h4>You are allowed to start only one tournament per week.</h4>
-				</li>
-				<li>
-					<h4>You can only enroll in two tournaments per weekend - one on Saturday, the other on Sunday, but never twice on the same day.</h4>
-				</li>
-			</ul>
-		</div>
+			<p class="text-center"><%= link_to "New Tournament", new_profile_tournament_path, class: "btn btn-primary round" %></p>
 	<% end %>
 </div>
 <div class="my-tournaments">
-	<h3>Your Upcoming Tournaments</h3>
+	<br><h3 class="text-center">Upcoming Tournaments</h3>
 	<div class="row">
 		<% current_user.tournaments.order("date ASC").each do |tournament| %>
 			<%= link_to tournament_path(tournament) do %>
@@ -43,7 +21,7 @@
 						<figcaption class="text-center">
 							<h4><%= tournament.sport.name %> Tournament</h4>
 							<h4><%= tournament.venue.name %></h4>
-							<h4><%= format_datetime(tournament.date) %></h4>
+							<h4><%= format_datetime(tournament.date, tournament.time) %></h4>
 							<h4><%= pluralize(tournament.teams.count, "team") %> already enrolled</h4>
 						</figcaption>
 					</figure>
@@ -51,4 +29,5 @@
 			<% end %>
 		<% end %>
 	</div>
+</div>
 </div>

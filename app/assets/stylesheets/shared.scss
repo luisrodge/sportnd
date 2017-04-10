@@ -5,13 +5,21 @@ body{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size:16px;
     color: $dark;
+    background: #71BA51;
 }
 
 #main {
     flex: 1;
+}
+
+.application-col {
+    background: #FFF;
+    padding: 40px;
+    border: 1px solid #f7f7f7;
+    border-radius: 2px;
 }
 
 img{
@@ -23,6 +31,9 @@ label.message {
   color: #ed2412;
 }
 
+#tournament_date, #tournament_time {
+  background: #FFF;
+}
 
 /* TEAM COLORS */
 .fa-circle.blue {
@@ -53,7 +64,7 @@ label.message {
 }
 
 .tournament-notice {
-  border: 1px solid $light_border;
+  border: 1px solid #f7f7f7;
   padding: 15px 40px;
   h3, h4 {
     line-height: 1.5em;
@@ -68,23 +79,34 @@ label.message {
 /* MAIN CONTENT SECTION */
 .main-content {
     background: #FFF;
+    color: $dark;
     border: 1px solid $light_border;
+    border-radius: 2px;
 }
 
 .team {
-    border: 1px solid $light_border;
+    border-radius: 2px;
     margin-bottom: 30px;
     padding: 12px;
+    background: #FFF;
+    color: $dark;
+    border: 1px solid #f7f7f7;
+    h5 {
+      margin: 0;
+    }
     &:last-of-type {
       margin: 0;
       margin-bottom: 20px;
+    }
+    a {
+      margin-top: 10px;
     }
 }
 
 
 .tournament {
-    border-bottom: 1px solid $light_border;
     padding: 30px 25px;
+    border-bottom: 1px solid $light_border;
 }
 
 img.default{
@@ -138,10 +160,10 @@ header{
         margin: 0;
     }
     margin-bottom: 60px;
-    background: $dark_blue;
+    background: #79be5b;
     color: #FFF;
     .brand{
-        margin-top:5px;
+        margin-top:10px;
         a{
             font-family: 'Revalia', cursive;
             font-size: 25px;
@@ -150,14 +172,14 @@ header{
     a{
         color: #FFF;
         &:hover, &:focus{
-            color: #FFF;
+            color: #294543;
             text-decoration: none;
         }
 
     }
     .col-md-7{
-        line-height: 70px;
-        height: 70px;
+        line-height: 80px;
+        height: 80px;
         .profile-img {
             margin-left: 18px;
         }
@@ -171,7 +193,6 @@ header{
         }
         a{
             margin-right:14px;
-            background: $dark_blue;
             &:last-of-type{
                 margin:0;
             }
@@ -180,9 +201,8 @@ header{
 }
 
 nav.sidebar{
-    text-transform: uppercase;
     .items a{
-        color: $dark;
+        color: #FFF;
         &:hover, &:focus{
             color: #000;
             text-decoration: none;
@@ -190,6 +210,8 @@ nav.sidebar{
     }
     .search-form {
       margin-top: 12px;
+      border-radius: 40px;
+      border: none;
     }
     ul {
         height: auto;
@@ -199,14 +221,14 @@ nav.sidebar{
     }
     li{
         padding-top: 4px;
-        padding-left: 25px;
+        padding-left: 20px;
     }
     h4 {
         margin: 0;
     }
     span.home {
 
-      color: $dark;
+      color: #FFF;
         a {
             &:hover {
               color: #000;
@@ -215,18 +237,15 @@ nav.sidebar{
     }
     span.title{
         display: block;
-        color: $dark;
+        color: #FFF;
         padding-bottom: 10px;
     }
     .section {
         margin-bottom: 20px;
         padding-bottom: 20px;
-        border-bottom: 1px solid $light_border;
-        &:last-of-type, &:first-of-type {
-            border: none;
-        }
-        &:first-of-type {
-          margin-bottom: 10px;
+        border-bottom: 2px solid #5fa441;
+        &:last-of-type {
+          border:none;
         }
     }
 }
@@ -290,11 +309,13 @@ hr.st {
         }
     }
     .details {
-        margin-top: 30px;
+        margin-top: 20px;
         padding: 18px;
-        border: 1px solid $light_border;
+        border: 1px solid #79BE5B;
+        color:$dark;
+        border-radius: 2px;
         h4 {
-            font-size: 19px;
+            font-size: 20px;
             &:last-of-type {
                 margin: 0;
             }
@@ -365,9 +386,10 @@ a.default {
 }
 
 footer{
-    border-top: 1px solid $light_border;
     margin-top: 60px;
     padding: 30px 0;
+    color: #FFF;
+    background: #79be5b;
     h1, h2, h3, h4{
         margin: 0;
     }

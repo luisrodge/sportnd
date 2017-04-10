@@ -9,7 +9,7 @@ class Tournament < ApplicationRecord
   has_many :enrollments, dependent: :destroy
   has_many :users, -> { distinct }, through: :enrollments
 
-  validates_presence_of :capacity, :team_size, :bet_amount, :sport_id, :venue_id, :date
+  validates_presence_of :capacity, :team_size, :bet_amount, :sport_id, :venue_id, :date, :time
   validates :capacity, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 8 }
   validates :team_size, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 5 }
   validates :bet_amount, numericality: true

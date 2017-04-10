@@ -2,8 +2,9 @@
 //= require jquery_ujs
 //= require moment
 //= require lodash
-//= require bootstrap-datetimepicker
 //= require bootstrap-sprockets
 //= require turbolinks
-//= require rails.validations
-//= require_tree .
+//= require infinite_scrolling
+//= require picker
+//= require picker.date
+//= require picker.time

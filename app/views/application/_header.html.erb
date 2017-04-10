@@ -11,7 +11,7 @@
             <%= link_to "Sign In", new_user_session_path %>
             <%= link_to "Register", new_user_registration_path, class: "header-btn auth" %>
           <% else %>
-            <%= link_to "My Tournaments", profile_tournaments_path, class: "btn btn-default btn-sm" %>
+            <%= link_to "My Tournaments", profile_tournaments_path %>
             <%= image_tag(current_user.profile_image_url(:small), class: "img-circle default profile-img") if current_user.profile_image? %>
           <% end %>
         </div>

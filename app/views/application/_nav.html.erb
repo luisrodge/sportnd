@@ -2,21 +2,22 @@
   <nav class="sidebar">
     <ul>
       <div class="section">
-        <span class="home"><%= fa_icon "home" %> <%= link_to "Home", root_path %></span>
-        <input type="text" name="" placeholder="Search Members" class="form-control search-form">
+        <span class="home"><%= link_to "Home", root_path %></span>
+        <input type="text" name="" placeholder="Search for stuff" class="form-control search-form">
       </div>
        <div class="section items">
-        <span class="title"><%= fa_icon "puzzle-piece" %> Tournaments</span>
+        <span class="title">Tournaments</span>
         <li><%= link_to "Near You", "#" %></li>
         <li><%= link_to "Almost Full", "#" %></li>
       </div>
       <div class="section items">
-        <span class="title"><%= fa_icon "users" %> Teams</span>
+        <span class="title">Teams</span>
+        <li><%= link_to "Latest", teams_path %></li>
         <li><%= link_to "Near You", "#" %></li>
         <li><%= link_to "Almost Full", "#" %></li>
       </div>
        <div class="section items">
-        <span class="title"><%= fa_icon "user-circle" %>  Account</span>
+        <span class="title">Account</span>
         <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
         <li><%= link_to "Settings", "#" %></li>
       </div>

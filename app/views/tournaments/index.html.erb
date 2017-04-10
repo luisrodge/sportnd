@@ -11,9 +11,9 @@
 	<% Team.order("created_at DESC").limit(4).each do |team| %>
 	    <div class="team">
 	    	<p class="text-center"><%= image_tag(team.captain.profile_image_url(:small), class: "img-circle default profile-img") if team.captain.profile_image? %></p>
-	     	 <h5 class="truncate text-center"><%= team.color.name %> Team</h5>
-	     	 <h5 class="truncate text-center"><%= team.tournament.sport.name %> Tournament</h5>
-	     	 <%= link_to "Join", join_profile_team_path(team), class: "btn btn-primary btn-xs btn-block" %>
+	     	 <div class="text-center"><i class="fa fa-circle <%= team.color.name.downcase %>"></i></div>
+	     	 <h6 class="truncate text-center"><%= team.tournament.sport.name %> Tournament</h6>
+	     	 <%= link_to "Join", join_profile_team_path(team), class: "btn btn-primary btn-xs btn-block round" %>
 	    </div>
 	<% end %>
 	<p class="text-center"><%= link_to "More Teams", "#", class: "default btn-block" %></p>

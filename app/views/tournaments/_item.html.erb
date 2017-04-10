@@ -5,9 +5,9 @@
 				<%= image_tag(item.venue.venue_image_url(:medium)) if item.venue.venue_image? %>
 			</div>
 			<div class="col-md-8">
+				<h4><%= item.sport.name + " Tournament" %></h4>
 				<h4><%= item.venue.name + " - " + item.venue.address %></h4>
 				<h4><%= item.team_size %> members per team</h4>
-				<h4><%= money_format(item.bet_amount) %> per team member</h4>
 				<div class="progress-container">
 					<h4>Bet total @ <%= money_format(item.current_bet_amount) %> of <%= money_format(item.total_bet_amount) %></h4>
 					<div class="progress">

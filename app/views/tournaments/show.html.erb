@@ -1,15 +1,16 @@
+<div class="application-col">
+
 <div class="row">
-	<div class="row header">
-		<div class="col-md-12">
+		<div class="col-md-12 header">
 			<div class="organizer-details">
 				<h3 class="text-center"><%= @tournament.sport.name %> tournament organized by <%= @tournament.organizer.full_name %></h3>
 				<h4 class="text-center"><%= @tournament.venue.address %></h4>
 				<p class="text-center"><%= image_tag(@tournament.organizer.profile_image_url(:small), class: "img-circle default profile-img") if @tournament.organizer.profile_image? %></p>
 			</div>
 			<div class="details text-center">
-				<h4><%= format_datetime(@tournament.date) %></h4>
-				<h4>Max of <%= pluralize(@tournament.capacity, "team") %> with <%= pluralize(@tournament.team_size, "member") %> per team</h4>
-				<h4><%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per team member</h4>
+				<h4><%= format_datetime(@tournament.date, @tournament.time) %></h4>
+				<h4>Open to <%= pluralize(@tournament.capacity, "team") %> with <%= pluralize(@tournament.team_size, "member") %> per team</h4>
+				<h4>Betting entry at <%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per team member</h4>
 			</div>
 			<div class="progress-container">
 			  	<h4>Betting total currently at <%= money_format(@tournament.current_bet_amount) + "/" + money_format(@tournament.total_bet_amount) %></h4>
@@ -20,8 +21,8 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="row body gutter-60">
+</div>
+<div class="row body gutter-60">
 		<div class="col-md-5">
 			<h3><%= @tournament.venue.name %></h3>
 			<%= image_tag(@tournament.venue.venue_image_url(:medium)) if @tournament.venue.venue_image? %>
@@ -34,14 +35,14 @@
 					<div class="form-group">
 						<%= f.select :color_id, options_for_select(Color.where.not(id: @tournament.teams.select(:color_id)).map{ |c| [c.name, c.id] }), {:include_blank => 'Select a team color'}, class: "form-control input-lg" %>
 					</div>
-						<%= f.submit "Enroll", class: "btn btn-primary btn-block" %>
+						<%= f.submit "Enroll", class: "btn btn-primary btn-block round" %>
 				<% end %>
 				<h5>NOTE: It is recommended that what you wear has some ressemblance of the color you choose. For example, if you choose red then try to wear a red shirt or pants for the day of the tournament.</h5>
 			<% else %>
 				<div class="row enrolled-team">
 					<div class="col-md-12 header">
 						<h3>Enrolled With <%= current_user.team_for_tournament(@tournament).color.name %> Team</h3>
-						<%= link_to "Leave Team", leave_profile_team_path(current_user.team_for_tournament(@tournament)), method: :delete, class: "btn btn-danger btn-xs" %>
+						<%= link_to "Leave Team", leave_profile_team_path(current_user.team_for_tournament(@tournament)), method: :delete, class: "btn btn-danger btn-xs round" %>
 						<%= leave_btn(@tournament, current_user.team_for_tournament(@tournament)) %>
 					</div>
 					<% current_user.team_for_tournament(@tournament).users.each do |user| %>
@@ -52,7 +53,7 @@
 				</div>
 			<% end %>
 		</div>
-	</div>
+</div>
 <div class="enrolled-teams">
 	<div class="row">
 		<div class="col-md-12">
@@ -73,7 +74,7 @@
 					<figcaption>
 						<h5 class="truncate" data-toggle="tooltip" title="<%= team.captain.full_name %>">Captain - <%= team.captain.full_name %></h5>
 						<h5 class="truncate"><%= @tournament.team_size - team.users.count %> space remaining</h5>
-						<%= link_to "Join", join_profile_team_path(team), method: :put, class: "btn btn-primary btn-xs btn-block" %>
+						<%= link_to "Join", join_profile_team_path(team), method: :put, class: "btn btn-primary btn-xs btn-block round" %>
 					</figcaption>
 				</figure>
 			</div>
@@ -82,9 +83,10 @@
 </div>
 <% if @tournament.organizer == current_user %>
 	<div class="manage-tournament">
-		<p class="text-center"><%= link_to profile_tournament_path(@tournament), method: :delete, class: "btn btn-danger btn-sm" do %>
+		<p class="text-center"><%= link_to profile_tournament_path(@tournament), method: :delete, class: "btn btn-danger btn-sm round" do %>
 			<%= fa_icon "remove" %> Cancel Tournament
 			<% end %>
 		</p>
 	</div>
 <% end %>
+</div>

@@ -1,7 +1,9 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import 'bootstrap-datetimepicker';
+@import 'default';
+@import 'default.date';
+@import 'default.time';
 
 @import "font-awesome";
 
@@ -9,5 +11,4 @@
 
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans');
 @import url('https://fonts.googleapis.com/css?family=Revalia');
-
-
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
