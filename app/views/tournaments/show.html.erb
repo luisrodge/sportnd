@@ -83,7 +83,7 @@
 </div>
 <% if @tournament.organizer == current_user %>
 	<div class="manage-tournament">
-		<p class="text-center"><%= link_to profile_tournament_path(@tournament), method: :delete, class: "btn btn-danger btn-sm round" do %>
+		<p class="text-center"><%= link_to profile_tournament_path(@tournament), method: :delete, data: { confirm: 'Are you sure?','sweet-alert-type': 'warning', text: 'You are about remove this tournament and all teams enrolled', 'confirm-button-color': '#EE543A' }, class: "btn btn-danger btn-sm round" do %>
 			<%= fa_icon "remove" %> Cancel Tournament
 			<% end %>
 		</p>

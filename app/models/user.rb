@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :enrollments, dependent: :destroy
   has_many :tournaments, through: :enrollments
 
+  MAX_ENROLLMENTS = 2
+
   # Check if the user is not enrolled in another tournament with the date matching this new enrollment's
   # Max of two enrollments, one per weekend-day
   def has_tournament_this_date?(tournament)
@@ -32,6 +34,12 @@ class User < ApplicationRecord
         return true
     end
     false
+  end
+
+  # Returns true if enrollment limit is reached in a given week
+  def enrollment_limit?
+    tournaments.where("Date(date) BETWEEN ? AND ?", Date.today.beginning_of_week,
+        Date.today.end_of_week).count == MAX_ENROLLMENTS
   end
 
 end
