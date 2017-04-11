@@ -23,10 +23,15 @@ class User < ApplicationRecord
     teams.where(tournament_id: tournament).first
   end
 
-  # Start a new tournament only if a user hasn't already started for weekend
-  # A user can only start and organize one tournament for weekend every week
+  # Start a new tournament only if a user hasn't already started one for the weekend already
+  # A user can only start and organize one tournament for a weekend every week
+  # A user can only start a tournament on the weekends
   def start_new_tournament?
-    tournaments.where("Date(date) BETWEEN ? AND ?", Date.today.beginning_of_week, Date.today.end_of_week).where(organizer: self).exists?
+    if ((tournaments.where("Date(date) BETWEEN ? AND ?", Date.today.beginning_of_week,
+        Date.today.end_of_week).where(organizer: self).empty?) && (Date.today.saturday? || Date.today.sunday?))
+        return true
+    end
+    false
   end
 
 end

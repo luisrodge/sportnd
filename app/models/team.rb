@@ -10,4 +10,8 @@ class Team < ApplicationRecord
 
 	validates_presence_of :color
 
+	def is_member?(user)
+		users.exists?(user)
+	end
+
 end

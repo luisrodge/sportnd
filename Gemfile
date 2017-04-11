@@ -22,7 +22,12 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 gem "font-awesome-rails"
 
+gem 'friendly_id', '~> 5.1.0'
+
 gem 'client_side_validations'
+
+gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'https://rails-assets.org'
+gem 'sweet-alert2-rails'
 
 gem 'carrierwave'
 gem 'mini_magick'

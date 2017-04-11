@@ -18,7 +18,6 @@ body{
 .application-col {
     background: #FFF;
     padding: 40px;
-    border: 1px solid #f7f7f7;
     border-radius: 2px;
 }
 
@@ -80,7 +79,6 @@ label.message {
 .main-content {
     background: #FFF;
     color: $dark;
-    border: 1px solid $light_border;
     border-radius: 2px;
 }
 
@@ -126,9 +124,9 @@ img.default{
     position: relative;
     .caption-text {
         position: absolute;
-        background: #000;
+        background: #71BA51;
         color: #FFF;
-        opacity: 0.9;
+        opacity: 0.92;
         width: 100%;
         padding: 6px 0;
         top: 0;
@@ -177,7 +175,7 @@ header{
         }
 
     }
-    .col-md-7{
+    .col-md-5{
         line-height: 80px;
         height: 80px;
         .profile-img {
@@ -336,10 +334,12 @@ hr.st {
 }
 
 .my-tournaments {
-    margin-top: 50px;
     .section-title{
         margin: 0;
         padding-bottom: 18px;
+    }
+    h3 {
+      padding-bottom: 20px;
     }
 }
 

@@ -11,7 +11,7 @@ class Profile::TeamsController < ApplicationController
   # Associate new team for a tournament
   # Associate the current user to tournament
   def create
-    @tournament = Tournament.find(params[:tournament_id])
+    @tournament = Tournament.find_by_hash_id!(params[:tournament_id])
     team = @tournament.teams.new(team_params)
   	team.captain = current_user
   	team.save

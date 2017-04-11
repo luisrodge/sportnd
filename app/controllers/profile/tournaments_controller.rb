@@ -39,7 +39,7 @@ class Profile::TournamentsController < ApplicationController
 
 	# Cancel or destroy a tournament
 	def destroy
-		Tournament.find(params[:id]).destroy
+		Tournament.find_by_hash_id(params[:id]).destroy
 		redirect_to profile_tournaments_path
 	end
 
@@ -47,6 +47,6 @@ class Profile::TournamentsController < ApplicationController
 
 	def tournament_params
 		params.require(:tournament).permit(:name, :capacity, :team_size, :bet_amount,
-			:sport_id, :venue_id, :date, :time, :organizer_id)
+			:sport_id, :venue_id, :date, :time, :organizer_id, :hash_id)
 	end
 end

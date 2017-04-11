@@ -8,7 +8,7 @@ class TournamentsController < ApplicationController
 	end
 
 	def show
-		@tournament = Tournament.find(params[:id])
+		@tournament = Tournament.find_by_hash_id!(params[:id])
 	end
 
 	def pagination

@@ -1,4 +1,6 @@
 class Tournament < ApplicationRecord
+  include Obfuscate
+  
   belongs_to :venue
   belongs_to :sport
 

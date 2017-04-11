@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170408202303) do
+ActiveRecord::Schema.define(version: 20170411001151) do
 
   create_table "challenges", force: :cascade do |t|
     t.integer  "team_id"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20170408202303) do
     t.integer  "organizer_id"
     t.integer  "team_size"
     t.time     "time"
+    t.string   "hash_id"
     t.index ["organizer_id"], name: "index_tournaments_on_organizer_id"
     t.index ["sport_id"], name: "index_tournaments_on_sport_id"
     t.index ["venue_id"], name: "index_tournaments_on_venue_id"
