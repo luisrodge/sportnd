@@ -12,8 +12,8 @@ class Tournament < ApplicationRecord
   has_many :users, -> { distinct }, through: :enrollments
 
   validates_presence_of :capacity, :team_size, :bet_amount, :sport_id, :venue_id, :date, :time
-  validates :capacity, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 8 }
-  validates :team_size, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 5 }
+  validates :capacity, numericality: { only_integer: true, greater_than: 2, less_than_or_equal_to: 8 }
+  validates :team_size, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 3 }
   validates :bet_amount, numericality: true
 
   accepts_nested_attributes_for :teams

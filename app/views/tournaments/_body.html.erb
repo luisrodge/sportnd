@@ -1,0 +1,60 @@
+<div class="col-md-5">
+  <h3><%= @tournament.venue.name %></h3>
+  <%= image_tag(@tournament.venue.venue_image_url(:medium)) if @tournament.venue.venue_image? %>
+</div>
+<div class="col-md-7">
+  <% if @tournament.enrollment_period?  %>
+    <% if user_signed_in? %>
+      <% if @tournament.enrolled?(current_user) %>
+        <div class="row enrolled-team">
+          <div class="col-md-12 header">
+            <h3>Enrolled With <%= current_user.team_for_tournament(@tournament).color.name %> Team</h3>
+            <%= leave_team_btn(@tournament) %>
+            <%= leave_tournament_btn(@tournament, current_user.team_for_tournament(@tournament)) %>
+          </div>
+          <% current_user.team_for_tournament(@tournament).users.each do |user| %>
+            <div class="col-md-3">
+              <%= image_tag(user.profile_image_url(:normal), class: "img-circle") if user.profile_image? %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <% if @tournament.remaining_capacity > 0 %>
+          <% if !current_user.has_tournament_this_date?(@tournament) %>
+            <h3>Enroll A New Team</h3>
+            <h4>Space for <%= pluralize(@tournament.remaining_capacity, "team") %> remaining</h4>
+            <%= form_for [:profile, @tournament, Team.new] do |f| %>
+              <div class="form-group">
+                <div class="select-style">
+                  <%= f.select :color_id, options_for_select(Color.where.not(id: @tournament.teams.select(:color_id)).map{ |c| [c.name, c.id] }), {:include_blank => 'Select a team color'}, class: "form-control input-lg" %>
+                </div>
+              </div>
+              <%= f.submit "Enroll", class: "btn btn-primary btn-block round" %>
+            <% end %>
+          <% else %>
+            <h3>Unable to enroll because you are already enrolled in another <%= link_to "tournament", tournament_path(current_user.tournament_this_date(@tournament)) %> on this same date</h3>
+          <% end %>
+        <% else %>
+          <h3>Maximum teams enrolled</h3>
+          <h4><%= pluralize(@tournament.teams_with_space, "enrolled team") %> still with available space</h4>
+        <% end %>
+      <% end %>
+    <% else %>
+      <% if @tournament.remaining_capacity > 0 %>
+        <h3>Enroll A New Team</h3>
+        <h4>Space for <%= pluralize(@tournament.remaining_capacity, "team") %> remaining</h4>
+        <%= form_for [:profile, @tournament, Team.new] do |f| %>
+          <div class="form-group">
+            <div class="select-style">
+              <%= f.select :color_id, options_for_select(Color.where.not(id: @tournament.teams.select(:color_id)).map{ |c| [c.name, c.id] }), {:include_blank => 'Select a team color'}, class: "form-control input-lg" %>
+            </div>
+          </div>
+          <%= f.submit "Enroll", class: "btn btn-primary btn-block round" %>
+        <% end %>
+      <% else %>
+        <h3>Maximum teams enrolled</h3>
+        <h4><%= pluralize(@tournament.teams_with_space, "enrolled team") %> still with available space</h4>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

@@ -20,6 +20,10 @@ class User < ApplicationRecord
     tournaments.where(date: tournament.date).exists?
   end
 
+  def tournament_this_date(tournament)
+    tournaments.where(date: tournament.date).first
+  end
+
   # Returns the team a user user is enrolled with for a tournament
   def team_for_tournament(tournament)
     teams.where(tournament_id: tournament).first
