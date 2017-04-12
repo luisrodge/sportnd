@@ -30,13 +30,13 @@ class User < ApplicationRecord
   # A user can only start a tournament on the weekends
   def start_new_tournament?
     if ((tournaments.where("Date(date) BETWEEN ? AND ?", Date.today.beginning_of_week,
-        Date.today.end_of_week).where(organizer: self).empty?) && (Date.today.saturday? || Date.today.sunday?))
+        Date.today.end_of_week).where(organizer: self).empty?) || (Date.today.saturday? || Date.today.sunday?))
         return true
     end
     false
   end
 
-  # Returns true if enrollment limit is reached in a given week
+  # Returns true if enrollment limit is reached in a given week for a user
   def enrollment_limit?
     tournaments.where("Date(date) BETWEEN ? AND ?", Date.today.beginning_of_week,
         Date.today.end_of_week).count == MAX_ENROLLMENTS

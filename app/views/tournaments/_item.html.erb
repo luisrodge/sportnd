@@ -5,6 +5,9 @@
 				<%= image_tag(item.venue.venue_image_url(:medium)) if item.venue.venue_image? %>
 			</div>
 			<div class="col-md-8">
+				<% if item.full? %>
+					<h4>Full</h4>
+				<% end %>
 				<h4><%= item.sport.name + " Tournament" %></h4>
 				<h4><%= item.venue.name + " - " + item.venue.address %></h4>
 				<h4><%= item.team_size %> members per team</h4>

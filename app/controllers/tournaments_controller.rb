@@ -2,7 +2,7 @@ class TournamentsController < ApplicationController
 	layout "secondary", except: :show
 
 	def index
-		@tournaments = Tournament.all.page;
+		@tournaments = Tournament.all.order("created_at DESC").page;
 		@endpoint = pagination_tournaments_path
 		@page_amount = @tournaments.total_pages
 	end

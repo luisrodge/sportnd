@@ -1,6 +1,6 @@
 class Tournament < ApplicationRecord
   include Obfuscate
-  
+
   belongs_to :venue
   belongs_to :sport
 
@@ -26,12 +26,26 @@ class Tournament < ApplicationRecord
     user.teams.where(tournament_id: self).any?
   end
 
+  # Tournaments with available space either via new team enrollment or team membership
   def self.open
-  	where(status: "enroll")
+    #joins(:teams).group("tournaments.id").having("count(teams.id) < tournaments.capacity")
+    joins(:users).group("tournaments.id").having("count(users.id) < (tournaments.capacity * tournaments.team_size)")
+  end
+
+  # Is a tournament already full?
+  def full?
+    users.count == (capacity * team_size)
+    #joins(:users).group("tournaments.id").having("count(users.id) < ? ", (capacity * team_size))
   end
 
   def remaining_capacity
     capacity - teams.count
+  end
+
+  # Teams with available space in a tournament
+  def teams_with_space
+    teams.joins(:users).group("teams.id").having("count(users.id) < ?", capacity).each.count
+    #(tournaments.capacity * tournaments.team_size) - (tournaments.users)
   end
 
   # Returns true if the tournament is still in enrollment period
