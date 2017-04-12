@@ -38,11 +38,12 @@ class Tournament < ApplicationRecord
     #joins(:users).group("tournaments.id").having("count(users.id) < ? ", (capacity * team_size))
   end
 
+  # Remaining space for new team enrollments
   def remaining_capacity
     capacity - teams.count
   end
 
-  # Teams with available space in a tournament
+  # Number of teams with available space in a tournament
   def teams_with_space
     teams.joins(:users).group("teams.id").having("count(users.id) < ?", capacity).each.count
     #(tournaments.capacity * tournaments.team_size) - (tournaments.users)
