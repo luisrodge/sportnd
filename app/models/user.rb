@@ -14,6 +14,11 @@ class User < ApplicationRecord
 
   MAX_ENROLLMENTS = 2
 
+  # Future tournaments for a user
+  def upcoming_tournaments
+    tournaments.where("date >= ?", Date.today).order("date ASC")
+  end
+
   # Check if the user is not enrolled in another tournament with the date matching this new enrollment's
   # Max of two enrollments, one per weekend-day
   def has_tournament_this_date?(tournament)
@@ -29,12 +34,12 @@ class User < ApplicationRecord
     teams.where(tournament_id: tournament).first
   end
 
-  # Start a new tournament only if a user hasn't already started one for the weekend already
-  # A user can only start and organize one tournament for a weekend every week
-  # A user can only start a tournament on the weekends
+  # Start a new tournament only if a user hasn't already started one for the current weekend
+  # A user can only start and organize one tournament for a weekend per week
+  # A user can only start a tournament on the weekends, to compensate for the enrollment period
   def start_new_tournament?
     if ((tournaments.where("Date(date) BETWEEN ? AND ?", Date.today.beginning_of_week,
-        Date.today.end_of_week).where(organizer: self).empty?) || (Date.today.saturday? || Date.today.sunday?))
+        Date.today.end_of_week).where(organizer: self).empty?) && (Date.today.saturday? || Date.today.sunday?))
         return true
     end
     false

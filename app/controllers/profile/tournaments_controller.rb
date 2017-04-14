@@ -11,6 +11,7 @@ class Profile::TournamentsController < ApplicationController
 	# New tournament
 	# New tournament team
 	def new
+		authorize Tournament
 		@tournament = Tournament.new
 		@tournament.teams.build
 	end

@@ -1,70 +1,76 @@
 <div class="application-col">
-
-<div class="row">
-		<div class="col-md-12 header">
-			<div class="organizer-details">
-				<h3 class="text-center"><%= @tournament.sport.name %> tournament organized by <%= @tournament.organizer.full_name %></h3>
-				<h4 class="text-center"><%= @tournament.venue.address %></h4>
-				<p class="text-center"><%= image_tag(@tournament.organizer.profile_image_url(:small), class: "img-circle default profile-img") if @tournament.organizer.profile_image? %></p>
-			</div>
-			<div class="details text-center">
-				<h4><%= format_datetime(@tournament.date, @tournament.time) %></h4>
-				<h4>Open to <%= pluralize(@tournament.capacity, "team") %> with <%= pluralize(@tournament.team_size, "member") %> per team</h4>
-				<h4>Betting entry at <%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per team member</h4>
-			</div>
-			<div class="progress-container">
-			  	<h4>Betting total currently at <%= money_format(@tournament.current_bet_amount) + "/" + money_format(@tournament.total_bet_amount) %></h4>
-				<div class="progress">
-				  <div class="progress-bar" role="progressbar" aria-valuenow="<%= @tournament.bet_amount_percentage %>"
-				  aria-valuemin="0" aria-valuemax="100" style="width:<%= @tournament.bet_amount_percentage %>">
-				  </div>
+	<div class="row">
+			<div class="col-md-12 header">
+				<div class="organizer-details">
+					<h3 class="text-center"><%= @tournament.sport.name %> tournament organized by <%= @tournament.organizer.full_name %></h3>
+					<h4 class="text-center"><%= @tournament.venue.address %></h4>
+					<p class="text-center organizer-img"><%= image_tag(@tournament.organizer.profile_image_url(:normal), class: "img-circle default") if @tournament.organizer.profile_image? %></p>
+				</div>
+				<div class="details text-center">
+					<h4><%= format_datetime(@tournament.date, @tournament.time) %></h4>
+					<h4>Open to <%= pluralize(@tournament.capacity, "team") %> with <%= pluralize(@tournament.team_size, "member") %> per team</h4>
+					<h4>Betting entry at <%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per team member</h4>
+				</div>
+				<div class="progress-container">
+				  	<h4>Betting total currently at <%= money_format(@tournament.current_bet_amount) + "/" + money_format(@tournament.total_bet_amount) %></h4>
+					<div class="progress">
+					  <div class="progress-bar" role="progressbar" aria-valuenow="<%= @tournament.bet_amount_percentage %>"
+					  aria-valuemin="0" aria-valuemax="100" style="width:<%= @tournament.bet_amount_percentage %>">
+					  </div>
+					</div>
 				</div>
 			</div>
-		</div>
-</div>
-<div class="row body gutter-60">
-		<%= render 'body' %>
-</div>
-<div class="enrolled-teams">
-	<div class="row">
-		<div class="col-md-12">
-			<h3>Teams Enrolled</h3>
-		</div>
 	</div>
-	<div class="row">
-		<% @tournament.teams.each do |team| %>
-			<div class="col-md-4">
-				<div class="text-center"><i class="fa fa-circle <%= team.color.name.downcase %>"></i></div>
-				<% if @tournament.organizer == current_user %>
-					<%= link_to profile_team_path(team), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs btn-block" do %>
-						<%= fa_icon "remove" %> Remove Team
-					<% end %>
-				<% end %>
-				<figure>
-					<%= image_tag(team.captain.profile_image_url(:medium)) if team.captain.profile_image? %>
-					<figcaption>
-						<h5 data-toggle="tooltip" title="<%= team.captain.full_name %>"><%= team.captain.full_name %>'s Team</h5>
-						<h5><%= @tournament.team_size - team.users.count %> space remaining</h5>
-						<div class="row gutter-10 team-members">
-								<% team.users.each do |user| %>
-									<div class="col-md-4">
-										<%= image_tag(user.profile_image_url(:medium), class: "img-circle") if user.profile_image? %>
-									</div>
-								<% end %>
+
+	<div class="row body gutter-60">
+			<%= render 'body' %>
+	</div>
+
+	<div class="enrolled-teams">
+		<div class="row">
+				<div class="col-sm-12">
+					<div class="row gutter-60">
+						<div class="col-md-4">
+							<h3>Teams</h3>
 						</div>
-						<%= join_btn(@tournament, team) %>
-					</figcaption>
-				</figure>
-			</div>
-		<% end %>
+						<div class="col-md-8">
+							<h3>Members</h3>
+						</div>
+					</div>
+							<% @tournament.teams.each do |team| %>
+								<div class="enrolled-team">
+									<div class="row gutter-60">
+										<div class="col-md-4">
+											<div class="team-container  <%= team.color.name.downcase %> text-center">
+												<h4><%= team.color.name %> Team</h4>
+												<h4><%= pluralize(team.remaining_space, "space") %></h4>
+											</div>
+											<%= join_btn(@tournament, team) %>
+										</div>
+										<div class="col-md-8">
+											<% team.users.each do |user| %>
+												<div class="col-md-4">
+													<div class="members">
+														<h5><%= user.full_name %></h5>
+														<%= image_tag(user.profile_image_url(:medium), class: "img-circle") if user.profile_image? %>
+													</div>
+												</div>
+											<% end %>
+										</div>
+									</div>
+								</div>
+							<% end %>
+				</div>
+		</div>
 	</div>
-</div>
-<% if @tournament.organizer == current_user %>
-	<div class="manage-tournament">
-		<p class="text-center"><%= link_to profile_tournament_path(@tournament), method: :delete, data: { confirm: 'Are you sure?','sweet-alert-type': 'warning', text: 'You are about remove this tournament and all teams enrolled', 'confirm-button-color': '#EE543A' }, class: "btn btn-danger btn-sm round" do %>
-			<%= fa_icon "remove" %> Cancel Tournament
-			<% end %>
-		</p>
-	</div>
-<% end %>
+
+
+	<% if @tournament.organizer == current_user %>
+		<div class="manage-tournament">
+			<p class="text-center"><%= link_to profile_tournament_path(@tournament), method: :delete, data: { confirm: 'Are you sure?','sweet-alert-type': 'warning', text: 'You are about remove this tournament and all teams enrolled', 'confirm-button-color': '#EE543A' }, class: "btn btn-danger btn-sm round" do %>
+				<%= fa_icon "remove" %> Cancel Tournament
+				<% end %>
+			</p>
+		</div>
+	<% end %>
 </div>

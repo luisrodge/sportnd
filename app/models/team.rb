@@ -14,4 +14,8 @@ class Team < ApplicationRecord
 		users.exists?(user)
 	end
 
+	def remaining_space
+		tournament.team_size - users.count
+	end
+
 end

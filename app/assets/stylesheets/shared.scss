@@ -58,7 +58,7 @@ label.message {
   color: #FD5B03;
 }
 .fa-circle.red {
-  color: #E22211;
+  color: #e74c3c;
 }
 .fa-circle.green {
   color: #27AE60;
@@ -113,6 +113,10 @@ label.message {
 .tournament {
     padding: 30px 25px;
     border-bottom: 1px solid $light_border;
+    h4 {
+      margin: 0;
+      padding-bottom: 7px;
+    }
 }
 
 img.default{
@@ -139,6 +143,84 @@ img.default{
         padding: 6px 0;
         top: 0;
     }
+}
+
+.organizer-img {
+  margin-bottom: 40px;
+  margin-top: 10px;
+}
+
+/* TEAM COLORS */
+
+.team-container {
+  border-radius: 2px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+
+.members {
+  h5 {
+    margin: 0;
+    padding-bottom: 8px;
+  }
+}
+
+ul.teams {
+  list-style-type: none;
+  margin:0;
+  padding: 0;
+  li {
+      border-bottom: 1px solid $light_border;
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+      &:first-child {
+        border: none;
+      }
+      &:last-child {
+        border: none;
+      }
+    a {
+      margin-top: 20px;
+    }
+  }
+}
+
+.team-container.red {
+  background: #e74c3c;
+  color: #FFF;
+}
+
+.team.container.gray {
+  background: #D6DAC2;
+}
+
+.team-container.green {
+  background: #55C34D;
+  color: #FFF;
+}
+
+.team-container.orange {
+  background: #FF7416;
+  color: #FFF;
+}
+
+.team-container.yellow {
+  background: #FCB410;
+  color:#FFF;
+}
+
+.team-container.white {
+  border: 1px solid $light_border;
+}
+
+.team-container.blue {
+  background: #3D8EB9;
+  color: #FFF;
+}
+
+.team-container.black {
+  background: #333333;
+  color: #FFF;
 }
 
 figcaption {
@@ -173,6 +255,9 @@ header{
         a{
             font-family: 'Revalia', cursive;
             font-size: 25px;
+            &:hover {
+              color: $light_border;
+            }
         }
     }
     a{
@@ -210,7 +295,7 @@ nav.sidebar{
     .items a{
         color: #FFF;
         &:hover, &:focus{
-            color: #000;
+            color: $light_border;
             text-decoration: none;
         }
     }
@@ -284,6 +369,14 @@ hr.st {
     }
     .progress-container {
         margin-top: 20px;
+    }
+    .enrolled-team {
+      border-bottom: 1px solid $light_border;
+      padding: 20px 0;
+      &:last-of-type {
+        border: none;
+      }
+
     }
     .organizer-details {
         h3 {

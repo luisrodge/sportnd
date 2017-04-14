@@ -12,14 +12,18 @@ class Tournament < ApplicationRecord
   has_many :users, -> { distinct }, through: :enrollments
 
   validates_presence_of :capacity, :team_size, :bet_amount, :sport_id, :venue_id, :date, :time
-  validates :capacity, numericality: { only_integer: true, greater_than: 2, less_than_or_equal_to: 8 }
-  validates :team_size, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 3 }
+  validates :capacity, numericality: { only_integer: true, greater_than_or_equal_to: 2, less_than_or_equal_to: 8 }
+  validates :team_size, numericality: { only_integer: true, greater_than_or_equal_to: 2, less_than_or_equal_to: 3 }
   validates :bet_amount, numericality: true
 
   accepts_nested_attributes_for :teams
 
   # Pagination for infinite scroll feature
   paginates_per 4
+
+  def self.upcoming
+    where('date >= ?', Date.today)
+  end
 
   # Returns true if a user is enrolled in a tournament
   def enrolled?(user)
@@ -50,8 +54,18 @@ class Tournament < ApplicationRecord
   end
 
   # Returns true if the tournament is still in enrollment period
+  # Enrollment period - monday to friday with relation to the date a tournament was created on
+  # And the date a tournament is scheduled on
   def enrollment_period?
-    return true if Date.today.strftime("%U").to_i <= date.strftime("%U").to_i
+    if Date.today.strftime("%U").to_i < date.strftime("%U").to_i
+      return true
+    elsif Date.today.strftime("%U").to_i == date.strftime("%U").to_i
+      if Date.today <= Date.today.end_of_week - 2
+        return true
+      else
+        return false
+      end
+    end
     false
   end
 

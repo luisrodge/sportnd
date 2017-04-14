@@ -14,7 +14,7 @@
           </div>
           <% current_user.team_for_tournament(@tournament).users.each do |user| %>
             <div class="col-md-3">
-              <%= image_tag(user.profile_image_url(:normal), class: "img-circle") if user.profile_image? %>
+              <%= image_tag(user.profile_image_url(:small), class: "img-circle") if user.profile_image? %>
             </div>
           <% end %>
         </div>
@@ -32,11 +32,12 @@
               <%= f.submit "Enroll", class: "btn btn-primary btn-block round" %>
             <% end %>
           <% else %>
-            <h3>Unable to enroll because you are already enrolled in another <%= link_to "tournament", tournament_path(current_user.tournament_this_date(@tournament)) %> on this same date</h3>
+            <h3>Unable To Enroll</h3>
+            <h4>You are already enrolled in another <%= link_to "tournament", tournament_path(current_user.tournament_this_date(@tournament)) %> that falls on this same date.</h4>
           <% end %>
         <% else %>
-          <h3>Maximum teams enrolled</h3>
-          <h4><%= pluralize(@tournament.teams_with_space, "enrolled team") %> still with available space</h4>
+          <h3>Maximum Teams Enrolled</h3>
+          <h4>Don't worry you can still participate, there are <%= pluralize(@tournament.teams_with_space, "enrolled team") %> with available space (see below).</h4>
         <% end %>
       <% end %>
     <% else %>
@@ -52,8 +53,8 @@
           <%= f.submit "Enroll", class: "btn btn-primary btn-block round" %>
         <% end %>
       <% else %>
-        <h3>Maximum teams enrolled</h3>
-        <h4><%= pluralize(@tournament.teams_with_space, "enrolled team") %> still with available space</h4>
+        <h3>Maximum Teams Enrolled</h3>
+        <h4>Don't worry you can still participate, there are <%= pluralize(@tournament.teams_with_space, "enrolled team") %> with available space (see below).</h4>
       <% end %>
     <% end %>
   <% end %>

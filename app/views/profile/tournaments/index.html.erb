@@ -1,14 +1,14 @@
 <div class="application-col">
 <div class="row">
-	<% if current_user.start_new_tournament? %>
+	<% if policy(Tournament).new? %>
 		<div class="col-md-12">
-			<p class="text-center"><%= link_to "New Tournament", new_profile_tournament_path, class: "btn btn-primary round" %></p><br>
+			<p class="text-center"><%= new_tournament_btn %></p><br>
 	<% end %>
 </div>
 <div class="my-tournaments">
 	<h3 class="text-center">Upcoming Tournaments</h3>
 	<div class="row">
-		<% current_user.tournaments.order("date ASC").each do |tournament| %>
+		<% current_user.upcoming_tournaments.each do |tournament| %>
 			<%= link_to tournament_path(tournament) do %>
 				<div class="col-md-6">
 					<h4 class="text-center">
