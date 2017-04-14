@@ -3,18 +3,22 @@
     <ul>
       <div class="section">
         <span class="home"><%= link_to "Home", root_path %></span>
-        <input type="text" name="" placeholder="Search for stuff" class="form-control search-form">
+        <input type="text" name="" placeholder="Search tournaments" class="form-control search-form">
       </div>
        <div class="section items">
         <span class="title">Tournaments</span>
         <li><%= link_to "Almost Full", "#" %></li>
-        <li><%= link_to "This Week", "#" %></li>
-        <li><%= link_to "Next Week", "#" %></li>
+        <li><%= link_to "Near You", "#" %></li>
       </div>
-       <div class="section items">
+      <div class="section items">
         <span class="title">Account</span>
         <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
         <li><%= link_to "Settings", "#" %></li>
+      </div>
+      <div class="section items">
+        <span class="title">About</span>
+        <li><%= link_to "Rules", "#" %></li>
+        <li><%= link_to "Faq", "#" %></li>
       </div>
     </ul>
   </nav>

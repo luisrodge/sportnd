@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     delete 'logout', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
 
-  resources :teams
   resources :venues, only: :index
 
   resource :tournaments, only: [:index] do

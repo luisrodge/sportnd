@@ -7,6 +7,7 @@
 </div>
 <div class="my-tournaments">
 	<h3 class="text-center">Upcoming Tournaments</h3>
+	<p class="text-center history"><%= link_to "History", "#", class: "btn btn-primary btn-sm round" %></p>
 	<div class="row">
 		<% current_user.upcoming_tournaments.each do |tournament| %>
 			<%= link_to tournament_path(tournament) do %>

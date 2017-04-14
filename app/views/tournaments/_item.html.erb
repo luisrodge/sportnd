@@ -8,9 +8,8 @@
 				<% if item.full? %>
 					<h4>Full</h4>
 				<% end %>
-				<h4><%= item.sport.name + " Tournament" %></h4>
+				<h4><%= item.sport.name + " Tournament" +" - " + item.venue.address %></h4>
 				<h4><%= format_datetime(item.date, item.time) %></h4>
-				<h4><%= item.venue.name + " - " + item.venue.address %></h4>
 				<div class="progress-container">
 					<h4>Betting total @ <%= money_format(item.current_bet_amount) %> of <%= money_format(item.total_bet_amount) %></h4>
 					<div class="progress">
@@ -19,6 +18,15 @@
 						</div>
 					</div>
 				</div>
+					<div class="tournament-enrolled-users">
+						<div class="row gutter-10">
+							<% item.users.order("RANDOM()").limit(6).each do |user| %>
+								<div class="col-md-2">
+									<%= image_tag(user.profile_image_url(:medium), class: "img-circle") if user.profile_image? %>
+								</div>
+							<% end %>
+						</div>
+					</div>
 			</div>
 		</div>
 	</div>

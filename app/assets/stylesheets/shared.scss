@@ -21,6 +21,10 @@ body{
     border-radius: 2px;
 }
 
+.tournament-enrolled-users {
+  padding-top: 8px;
+}
+
 .team-members {
   border-top: 1px solid #f7f7f7;
   margin-top: 20px;
@@ -111,7 +115,7 @@ label.message {
 
 
 .tournament {
-    padding: 30px 25px;
+    padding: 40px;
     border-bottom: 1px solid $light_border;
     h4 {
       margin: 0;
@@ -153,8 +157,7 @@ img.default{
 /* TEAM COLORS */
 
 .team-container {
-  border-radius: 2px;
-  padding: 14px;
+  padding: 10px;
   margin-bottom: 10px;
 }
 
@@ -190,8 +193,9 @@ ul.teams {
   color: #FFF;
 }
 
-.team.container.gray {
-  background: #D6DAC2;
+.team-container.gray {
+  background: #C7C7C7;
+  color: #FFF;
 }
 
 .team-container.green {
@@ -443,7 +447,10 @@ hr.st {
         padding-bottom: 18px;
     }
     h3 {
-      padding-bottom: 20px;
+      padding-bottom: 8px;
+    }
+    .history {
+      margin-bottom: 30px;
     }
 }
 
