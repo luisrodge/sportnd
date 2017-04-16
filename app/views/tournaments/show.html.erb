@@ -44,14 +44,14 @@
 											<div class="team-container  <%= team.color.name.downcase %>">
 												<h4 class="text-center"><%= team.color.name %> Team</h4>
 												<h4 class="text-center"><%= pluralize(team.remaining_space, "Space") %></h4>
+												<%= join_btn(@tournament, team, "sm") %>
 											</div>
-											<%= join_btn(@tournament, team, "sm") %>
 										</div>
 										<div class="col-md-8">
 											<% team.users.each do |user| %>
 												<div class="col-md-4">
 													<div class="members">
-														<h5><%= user.full_name %></h5>
+														<h5 class="truncate"><%= user.full_name %></h5>
 														<%= image_tag(user.profile_image_url(:medium), class: "img-circle") if user.profile_image? %>
 													</div>
 												</div>

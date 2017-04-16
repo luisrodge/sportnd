@@ -22,7 +22,15 @@ body{
 }
 
 .tournament-enrolled-users {
-  padding-top: 8px;
+}
+
+.tournament-address{
+  margin-bottom: 24px;
+  h4 {
+    background: #f5f5f5;
+    padding: 6px;
+    border-radius: 2px;
+  }
 }
 
 .team-members {
@@ -189,28 +197,23 @@ ul.teams {
 }
 
 .team-container.red {
-  background: #e74c3c;
-  color: #FFF;
+  border: 1px solid #e74c3c;
 }
 
 .team-container.gray {
-  background: #C7C7C7;
-  color: #FFF;
+  border: 1px solid #C7C7C7;
 }
 
 .team-container.green {
-  background: #55C34D;
-  color: #FFF;
+  border: 1px solid #55C34D;
 }
 
 .team-container.orange {
-  background: #FF7416;
-  color: #FFF;
+  border: 1px solid #FF7416;
 }
 
 .team-container.yellow {
-  background: #FCB410;
-  color:#FFF;
+  border: 1px solid #FCB410;
 }
 
 .team-container.white {
@@ -218,13 +221,11 @@ ul.teams {
 }
 
 .team-container.blue {
-  background: #3D8EB9;
-  color: #FFF;
+  border: 1px solid #3D8EB9;
 }
 
 .team-container.black {
-  background: #333333;
-  color: #FFF;
+  border: 1px solid #333333;
 }
 
 figcaption {
@@ -387,7 +388,9 @@ hr.st {
       &:last-of-type {
         border: none;
       }
-
+      .btn {
+        margin-top: 14px;
+      }
     }
     .organizer-details {
         h3 {

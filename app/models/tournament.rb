@@ -12,7 +12,7 @@ class Tournament < ApplicationRecord
   has_many :users, -> { distinct }, through: :enrollments
 
   validates_presence_of :capacity, :team_size, :bet_amount, :sport_id, :venue_id, :date, :time
-  validates :capacity, numericality: { only_integer: true, greater_than_or_equal_to: 2, less_than_or_equal_to: 8 }
+  validates :capacity, numericality: { only_integer: true, greater_than_or_equal_to: 2, less_than_or_equal_to: 4 }
   validates :team_size, numericality: { only_integer: true, greater_than_or_equal_to: 2, less_than_or_equal_to: 3 }
   validates :bet_amount, numericality: true
   validate :start_new_tournament?, :organized_tournament_this_week?, if: :date
@@ -69,13 +69,11 @@ class Tournament < ApplicationRecord
   end
 
   # Returns true if the tournament is still in enrollment period
-  # Enrollment period - monday to friday with relation to the date a tournament was created on
-  # And the date a tournament is scheduled on
   def enrollment_period?
     if Date.today.strftime("%U").to_i < date.strftime("%U").to_i
       return true
     elsif Date.today.strftime("%U").to_i == date.strftime("%U").to_i
-      if Date.today <= Date.today.end_of_week - 2
+      if  Date.today <= date.end_of_week - 2
         return true
       else
         return false

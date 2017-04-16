@@ -13,8 +13,8 @@
             <%= leave_tournament_btn(@tournament, current_user.team_for_tournament(@tournament)) %>
           </div>
           <% current_user.team_for_tournament(@tournament).users.each do |user| %>
-            <div class="col-md-3">
-              <%= image_tag(user.profile_image_url(:small), class: "img-circle") if user.profile_image? %>
+            <div class="col-md-4">
+              <%= image_tag(user.profile_image_url(:medium), class: "img-circle") if user.profile_image? %>
             </div>
           <% end %>
         </div>
