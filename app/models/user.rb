@@ -34,16 +34,19 @@ class User < ApplicationRecord
     teams.where(tournament_id: tournament).first
   end
 
-  # Start a new tournament only if a user hasn't already started one for the current weekend
+  def organized_tournament_this_week?(date)
+    tournaments.where("Date(date) BETWEEN ? AND ?", date.end_of_week.to_date - 2, date.end_of_week.to_date).exists?
+  end
+
   # A user can only start and organize one tournament for a weekend per week
   # A user can only start a tournament on the weekends, to compensate for the enrollment period
-  def start_new_tournament?
-    if ((tournaments.where("Date(date) BETWEEN ? AND ?", Date.today.beginning_of_week,
-        Date.today.end_of_week).where(organizer: self).empty?) && (Date.today.saturday? || Date.today.sunday?))
-        return true
-    end
-    false
-  end
+  # def start_new_tournament?
+  #   if ((tournaments.where("Date(date) BETWEEN ? AND ?", Time.now.next_week,
+  #       Time.now.next_week.end_of_week).where(organizer: self).empty?) && (Date.today.saturday? || Date.today.sunday?))
+  #       return true
+  #   end
+  #   false
+  # end
 
   # Returns true if enrollment limit is reached in a given week for a user
   def enrollment_limit?

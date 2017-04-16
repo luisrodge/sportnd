@@ -57,5 +57,7 @@
         <h4>Don't worry you can still participate, there are <%= pluralize(@tournament.teams_with_space, "enrolled team") %> with available space (see below).</h4>
       <% end %>
     <% end %>
+  <% else %>
+  <h3>Enrollment Period Has Ended</h3>
   <% end %>
 </div>

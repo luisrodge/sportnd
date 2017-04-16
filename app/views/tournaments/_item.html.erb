@@ -1,6 +1,6 @@
 <%= link_to tournament_path(item) do %>
 	<div class="tournament">
-		<div class="row">
+		<div class="row gutter-50">
 			<div class="col-md-4">
 				<%= image_tag(item.venue.venue_image_url(:medium)) if item.venue.venue_image? %>
 			</div>

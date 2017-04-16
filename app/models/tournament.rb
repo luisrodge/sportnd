@@ -15,11 +15,26 @@ class Tournament < ApplicationRecord
   validates :capacity, numericality: { only_integer: true, greater_than_or_equal_to: 2, less_than_or_equal_to: 8 }
   validates :team_size, numericality: { only_integer: true, greater_than_or_equal_to: 2, less_than_or_equal_to: 3 }
   validates :bet_amount, numericality: true
+  validate :start_new_tournament?, :organized_tournament_this_week?, if: :date
 
   accepts_nested_attributes_for :teams
 
   # Pagination for infinite scroll feature
   paginates_per 4
+
+  # Prevents a user from starting a tournament on a date that he/she is already enrolled in another tournament
+  def start_new_tournament?
+    if self.organizer.has_tournament_this_date?(self)
+      errors.add(:date, " - you are already enrolled in a tournament for the entered date, choose another date")
+    end
+  end
+
+  # Ensures that a user can only start one tournament per week
+  def organized_tournament_this_week?
+    if self.organizer.organized_tournament_this_week?(self.date)
+      errors.add(:date, " - you have already started a tournament for the week relative to the entered date. You are limited to start one tournament per week, choose another date")
+    end
+  end
 
   def self.upcoming
     where('date >= ?', Date.today)

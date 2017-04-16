@@ -369,6 +369,10 @@ hr.st {
     padding-top: 20px;
 }
 
+.upcoming-tournament {
+  margin-bottom: 30px;
+}
+
 .tournaments.show {
     h4 {
         margin: 0;
@@ -377,7 +381,7 @@ hr.st {
     .progress-container {
         margin-top: 20px;
     }
-    .enrolled-team {
+    .team-enrolled {
       border-bottom: 1px solid $light_border;
       padding: 20px 0;
       &:last-of-type {
@@ -447,7 +451,6 @@ hr.st {
         padding-bottom: 18px;
     }
     h3 {
-      padding-bottom: 8px;
     }
     .history {
       margin-bottom: 30px;

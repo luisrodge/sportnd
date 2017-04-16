@@ -11,7 +11,7 @@
 	<div class="row">
 		<% current_user.upcoming_tournaments.each do |tournament| %>
 			<%= link_to tournament_path(tournament) do %>
-				<div class="col-md-6">
+				<div class="col-md-6 upcoming-tournament">
 					<h4 class="text-center">
 						<%= organized_enrolled_txt(tournament) %>
 					</h4>

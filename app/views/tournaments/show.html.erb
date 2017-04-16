@@ -38,14 +38,14 @@
 						</div>
 					</div>
 							<% @tournament.teams.each do |team| %>
-								<div class="enrolled-team">
+								<div class="team-enrolled">
 									<div class="row gutter-60">
 										<div class="col-md-4">
 											<div class="team-container  <%= team.color.name.downcase %>">
 												<h4 class="text-center"><%= team.color.name %> Team</h4>
 												<h4 class="text-center"><%= pluralize(team.remaining_space, "Space") %></h4>
 											</div>
-											<%= join_btn(@tournament, team) %>
+											<%= join_btn(@tournament, team, "sm") %>
 										</div>
 										<div class="col-md-8">
 											<% team.users.each do |user| %>
