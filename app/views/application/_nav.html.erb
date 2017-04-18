@@ -5,15 +5,13 @@
         <span class="home"><%= link_to "Home", root_path %></span>
         <input type="text" name="" placeholder="Search tournaments" class="form-control search-form">
       </div>
-       <div class="section items">
-        <span class="title">Tournaments</span>
-        <li><%= link_to "Almost Full", "#" %></li>
-        <li><%= link_to "Near You", "#" %></li>
+      <div class="section items">
+        <span class="home"><%= link_to "Sporting Venues", venues_path %></span>
       </div>
       <div class="section items">
-        <span class="title">Account</span>
+        <span class="title">Your Account</span>
         <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-        <li><%= link_to "Settings", "#" %></li>
+        <li><%= link_to "Settings", edit_user_registration_path %></li>
       </div>
       <div class="section items">
         <span class="title">About</span>

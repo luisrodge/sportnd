@@ -1,39 +1,41 @@
 <div class="application-col">
-<div class="row">
-	<% if policy(Tournament).new? %>
-		<div class="col-md-12">
-			<p class="text-center"><%= new_tournament_btn %></p><br>
-	<% end %>
-</div>
-<div class="my-tournaments">
-	<div class="col-md-12">
-	<h3 class="text-center">Upcoming Tournaments</h3>
-	<p class="text-center history"><%= link_to "Previous", "#", class: "btn btn-primary btn-sm round" %></p>
 	<div class="row">
-		<% current_user.upcoming_tournaments.each do |tournament| %>
-			<%= link_to tournament_path(tournament) do %>
-				<div class="col-md-6 upcoming-tournament">
-					<h4 class="text-center">
-						<%= organized_enrolled_txt(tournament) %>
-					</h4>
-					<figure>
-						<div class="caption">
-							<%= image_tag(tournament.venue.venue_image_url(:medium)) if tournament.venue.venue_image? %>
-							<div class="caption-text text-center">
-								<h4><%= tournament.sport.name %> Tournament</h4>
-							</div>
-						</div>
-						<figcaption class="text-center">
-							<h4><%= tournament.venue.name %></h4>
-							<h4><%= format_datetime(tournament.date, tournament.time) %></h4>
-							<h4><%= pluralize(tournament.teams.count, "team") %> already enrolled</h4>
-						</figcaption>
-					</figure>
-				</div>
-			<% end %>
+		<% if policy(Tournament).new? %>
+			<div class="col-md-12">
+				<p class="text-center"><%= new_tournament_btn %></p><br>
+			</div>
+		<% else %>
+			<div class="col-md-12">
+				<p class="text-center">You can start new tournaments only on the weekends</p><br>
+			</div>
 		<% end %>
 	</div>
-</div>
-</div>
-
+	<div class="my-tournaments">
+			<h3 class="text-center">Upcoming Tournaments</h3>
+			<p class="text-center history"><%= link_to "Previous", "#", class: "btn btn-primary btn-sm round" %></p>
+			<div class="row">
+				<% current_user.upcoming_tournaments.each do |tournament| %>
+					<%= link_to tournament_path(tournament) do %>
+						<div class="col-md-6 upcoming-tournament">
+							<h4 class="text-center">
+								<%= organized_enrolled_txt(tournament) %>
+							</h4>
+							<figure>
+								<div class="caption">
+									<%= image_tag(tournament.venue.venue_image_url(:medium)) if tournament.venue.venue_image? %>
+									<div class="caption-text text-center">
+										<h4><%= tournament.sport.name %> Tournament</h4>
+									</div>
+								</div>
+								<figcaption class="text-center">
+									<h4><%= tournament.venue.name %></h4>
+									<h4><%= format_datetime(tournament.date, tournament.time) %></h4>
+									<h4><%= pluralize(tournament.teams.count, "team") %> already enrolled</h4>
+								</figcaption>
+							</figure>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
+	</div>
 </div>

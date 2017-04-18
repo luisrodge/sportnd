@@ -1,10 +1,20 @@
 <div class="row">
 	<div class="col-md-12">
-		<h3>Venues across Belize</h3>
+		<h3>Sporting Venues Across Belize</h3>
 	</div>
-	<% Venue.all.each do |venue| %>
-		<div class="col-md-4">
-	    	<%= image_tag(venue.venue_image_url(:medium)) if venue.venue_image? %>
+	<div class="col-md-12">
+		<div class="row gutter-40">
+			<% Venue.all.each do |venue| %>
+				<div class="col-md-4">
+						<figure>
+			    		<%= image_tag(venue.venue_image_url(:medium)) if venue.venue_image? %>
+							<figcaption>
+								<h4><%= venue.name %></h4>
+								<h4><%= venue.address %></h4>
+							</figcaption>
+						</figure>
+				</div>
+			<% end %>
 		</div>
-	<% end %>
+	</div>
 </div>

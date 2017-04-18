@@ -28,7 +28,7 @@ class ProfileImageUploader < CarrierWave::Uploader::Base
 
   version :small do
     # eager
-    process :resize_to_fill => [60, 60]
+    process :resize_to_fill => [45, 45]
     # cloudinary_transformation :quality => 100
   end
 

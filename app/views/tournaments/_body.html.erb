@@ -33,7 +33,7 @@
             <% end %>
           <% else %>
             <h3>Unable To Enroll</h3>
-            <h4>You are already enrolled in another <%= link_to "tournament", tournament_path(current_user.tournament_this_date(@tournament)) %> that falls on this same date.</h4>
+            <h4>You are already enrolled in another <%= link_to "tournament", tournament_path(current_user.tournament_this_date(@tournament)), class: "notice" %> that falls on this same date.</h4>
           <% end %>
         <% else %>
           <h3>Maximum Teams Enrolled</h3>
