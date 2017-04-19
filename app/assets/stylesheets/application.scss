@@ -9,6 +9,12 @@
 
 @import "shared";
 
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
-@import url('https://fonts.googleapis.com/css?family=Revalia');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@font-face {
+  font-family: 'OpenSans-Regular';
+  src:url('OpenSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Revalia-Regular';
+  src:url('Revalia-Regular.ttf');
+}

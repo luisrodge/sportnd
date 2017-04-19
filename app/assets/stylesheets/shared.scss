@@ -5,7 +5,7 @@ body{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'OpenSans-Regular', sans-serif;
     font-size:16px;
     color: $dark;
     background: #71BA51;
@@ -264,7 +264,7 @@ header{
     .brand{
         margin-top:6px;
         a{
-            font-family: 'Revalia', cursive;
+            font-family: 'Revalia-Regular', cursive;
             font-size: 26px;
             &:hover {
               color: $light_border;
