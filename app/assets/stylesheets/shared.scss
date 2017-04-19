@@ -24,6 +24,38 @@ body{
 .tournament-enrolled-users {
 }
 
+.teams.index {
+  .team-address {
+    padding-top: 2px;
+    padding-bottom: 18px;
+    color: #5C5C5C;
+    margin: 0;
+  }
+  .col-md-4{
+    .team-container {
+      background: #FFF;
+      margin-bottom: 40px;
+      p {
+        margin: 0;
+        margin-bottom: 6px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid $light_border;
+        &:last-of-type {
+          border: 0;
+        }
+      }
+      .details {
+      }
+      .enrolled-in-team {
+        margin-bottom: 20px;
+      }
+      .btn {
+        margin-top: 15px;
+      }
+    }
+  }
+}
+
 .tournament-address{
   margin-bottom: 18px;
   h4 {
@@ -292,6 +324,9 @@ header{
             padding: 6px 10px;
             border-radius: 4px;
         }
+        .my-tournaments-btn {
+          font-size: 18px;
+        }
         .auth{
             border: 2px solid #FFF;
             padding: 8px 14px;
@@ -306,6 +341,7 @@ header{
 }
 
 nav.sidebar{
+  font-size: 18px;
     .items a{
         color: #FFF;
         &:hover, &:focus{
@@ -315,7 +351,7 @@ nav.sidebar{
     }
     .search-form {
       margin-top: 12px;
-      margin-bottom: 5px;
+      margin-bottom: 25px;
       border-radius: 40px;
       border: none;
     }
@@ -326,8 +362,13 @@ nav.sidebar{
         padding: 0;
     }
     li{
-        padding-top: 4px;
-        padding-left: 20px;
+        padding-top: 12px;
+        color: #FFF;
+          a {
+              &:hover {
+                color: $light_border;
+              }
+          }
     }
     h4 {
         margin: 0;
@@ -339,19 +380,6 @@ nav.sidebar{
             &:hover {
               color: $light_border;
             }
-        }
-    }
-    span.title{
-        display: block;
-        color: #FFF;
-        padding-bottom: 10px;
-    }
-    .section {
-        margin-bottom: 20px;
-        padding-bottom: 20px;
-        border-bottom: 2px solid #5fa441;
-        &:last-of-type {
-          border:none;
         }
     }
 }

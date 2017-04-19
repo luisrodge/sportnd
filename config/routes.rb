@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :venues, only: :index
+  resources :teams , only: :index
 
   resource :tournaments, only: [:index] do
     get :pagination

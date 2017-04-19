@@ -2,22 +2,13 @@
   <nav class="sidebar">
     <ul>
       <div class="section">
-        <span class="home"><%= link_to "Home", root_path %></span>
+        <span class="home"><%= link_to "Tournaments", root_path %></span>
         <input type="text" name="" placeholder="Search tournaments" class="form-control search-form">
       </div>
-      <div class="section items">
-        <span class="home"><%= link_to "Sporting Venues", venues_path %></span>
-      </div>
-      <div class="section items">
-        <span class="title">Your Account</span>
+        <li><%= link_to "Join A Team", teams_path %></li>
+        <li><%= link_to "Sporting Venues", venues_path %></li>
+        <li><%= link_to "Learn The Rules", "#" %></li>
         <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-        <li><%= link_to "Settings", edit_user_registration_path %></li>
-      </div>
-      <div class="section items">
-        <span class="title">About</span>
-        <li><%= link_to "Rules", "#" %></li>
-        <li><%= link_to "Faq", "#" %></li>
-      </div>
     </ul>
   </nav>
 </div>
