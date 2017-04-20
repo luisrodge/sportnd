@@ -4,10 +4,12 @@ module TeamsHelper
   def join_btn(tournament, team, size)
     if user_signed_in?
       if !tournament.enrolled?(current_user) && team.users.count < tournament.team_size && !current_user.has_tournament_this_date?(tournament)
-        link_to "Join", join_profile_team_path(team), method: :put, class: "btn btn-primary btn-#{size} btn-block round"
+        link_to "Join", profile_team_memberships_path(team), method: :post, class: "btn btn-primary btn-#{size} btn-block round"
       end
     else
-      link_to "Join", join_profile_team_path(team), method: :put, class: "btn btn-primary btn-#{size} btn-block round"
+      if team.users.count < tournament.team_size
+        link_to "Join", profile_team_memberships_path(team), method: :post, class: "btn btn-primary btn-#{size} btn-block round"
+      end
     end
   end
 
@@ -22,5 +24,13 @@ module TeamsHelper
 			link_to "Leave Tournament", profile_tournament_team_path(tournament, team), method: :delete, data: { confirm: 'Are you sure?','sweet-alert-type': 'warning', text: 'You are about to remove your team from this tournament', 'confirm-button-color': '#EE543A' }, class: "btn btn-danger btn-xs round"
 		end
 	end
+
+  def team_space_txt(team)
+    if team.remaining_space != 0
+      pluralize(team.remaining_space, "Space")
+    else
+      "Full"
+    end
+  end
 
 end

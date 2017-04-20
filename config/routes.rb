@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'members/index'
+
   root 'tournaments#index'
+  get 'information', to: 'pages#information'
 
   devise_for :users, skip: [:sessions]
   as :user do
@@ -11,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :venues, only: :index
   resources :teams , only: :index
+  resources :members , only: :index
 
   resource :tournaments, only: [:index] do
     get :pagination
@@ -21,6 +25,7 @@ Rails.application.routes.draw do
   namespace :profile do
     resources :venues
   	resources :teams do
+      resources :memberships
       member do
         put "join"
         delete "leave"

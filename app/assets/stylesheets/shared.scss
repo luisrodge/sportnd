@@ -21,7 +21,26 @@ body{
     border-radius: 2px;
 }
 
-.tournament-enrolled-users {
+.members.index {
+  h3 {
+    margin: 0;
+    padding-bottom: 35px;
+  }
+  .col-md-2 {
+    margin-bottom: 25px;
+
+  }
+}
+
+.pages.information {
+  ol {
+    li {
+      margin-bottom: 40px;
+      p {
+        margin-top: 5px;
+      }
+    }
+  }
 }
 
 .teams.index {
@@ -325,7 +344,7 @@ header{
             border-radius: 4px;
         }
         .my-tournaments-btn {
-          font-size: 18px;
+          font-size: 19px;
         }
         .auth{
             border: 2px solid #FFF;
@@ -341,7 +360,7 @@ header{
 }
 
 nav.sidebar{
-  font-size: 18px;
+  font-size: 19px;
     .items a{
         color: #FFF;
         &:hover, &:focus{

@@ -43,7 +43,9 @@
 										<div class="col-md-4">
 											<div class="team-container  <%= team.color.name.downcase %>">
 												<h4 class="text-center"><%= team.color.name %> Team</h4>
-												<h4 class="text-center"><%= pluralize(team.remaining_space, "Space") %></h4>
+												<h4 class="text-center">
+													<%= team_space_txt(team) %>
+												</h4>
 												<%= join_btn(@tournament, team, "sm") %>
 											</div>
 										</div>

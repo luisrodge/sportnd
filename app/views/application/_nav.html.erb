@@ -3,12 +3,15 @@
     <ul>
       <div class="section">
         <span class="home"><%= link_to "Tournaments", root_path %></span>
-        <input type="text" name="" placeholder="Search tournaments" class="form-control search-form">
+        <input type="text" name="" placeholder="Search sport@address" class="form-control search-form">
       </div>
         <li><%= link_to "Join A Team", teams_path %></li>
+        <li><%= link_to "Members", members_path %></li>
         <li><%= link_to "Sporting Venues", venues_path %></li>
-        <li><%= link_to "Learn The Rules", "#" %></li>
-        <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to "How It Works", information_path %></li>
+        <% if user_signed_in? %>
+          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+        <% end %>
     </ul>
   </nav>
 </div>
