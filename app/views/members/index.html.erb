@@ -13,7 +13,9 @@
   <div class="js-items-container">
     <%= render partial: 'members/member', collection: @members %>
   </div>
-  <div class="pagination" data-pagination-endpoint="<%= @endpoint %>" data-pagination-pages="<%= @page_amount %>">
-    <%= image_tag 'ajax-loader.gif' %>
+  <div class="row">
+    <div class="col-md-1 center-block pagination" data-pagination-endpoint="<%= @endpoint %>" data-pagination-pages="<%= @page_amount %>">
+      <%= image_tag 'ajax-loader.gif' %>
+    </div>
   </div>
 </div>

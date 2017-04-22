@@ -9,10 +9,6 @@ Rails.application.routes.draw do
     delete 'logout', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
 
-  resources :venues, only: :index
-  resources :teams , only: :index
-  resources :members , only: :index
-
   resource :tournaments, only: :index do
     get :pagination
   end
@@ -24,6 +20,9 @@ Rails.application.routes.draw do
   end
 
   resources :tournaments, only: [:index, :show]
+  resources :venues, only: :index
+  resources :teams , only: :index
+  resources :members , only: :index
 
   namespace :profile do
     resources :venues, only: :new

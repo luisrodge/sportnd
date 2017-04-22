@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
   def index
-    @members = User.order("created_at DESC").page;
+    @members = User.page;
 		@endpoint = pagination_members_path
 		@page_amount = @members.total_pages
   end

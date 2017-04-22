@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   def index
-    @teams = Team.order("created_at DESC").page;
+    @teams = Team.page;
 		@endpoint = pagination_teams_path
 		@page_amount = @teams.total_pages
   end

@@ -2,7 +2,7 @@ class TournamentsController < ApplicationController
 	layout "secondary", except: :show
 
 	def index
-		@tournaments = Tournament.upcoming.order("created_at DESC").page;
+		@tournaments = Tournament.upcoming.page;
 		@endpoint = pagination_tournaments_path
 		@page_amount = @tournaments.total_pages
 	end
@@ -13,7 +13,7 @@ class TournamentsController < ApplicationController
 
 	def pagination
 	    tournaments = Tournament.all.page(params[:page]);
-	    render partial: 'tournaments/item', layout: false, collection: tournaments
+	    render partial: 'tournaments/tournament', layout: false, collection: tournaments
 	end
 
 end
