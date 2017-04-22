@@ -1,0 +1,22 @@
+<% if team.tournament.enrollment_period? && team.remaining_space != 0%>
+  <div class="members-wrapper">
+    <div class="row gutter-60">
+      <div class="col-md-4">
+        <div class="team-container <%= team.color.name.downcase %>">
+          <h4><%= team.color.name %> Team</h4>
+          <h5><%= team_space_txt(team) %></h5>
+          <h5><%= link_to team.tournament.sport.name + " Tournament", tournament_path(team.tournament), class: "notice" %></h5>
+          <%= join_btn(team.tournament, team, "sm") %>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <% team.users.each do |user| %>
+          <div class="col-md-4">
+            <h4 class="truncate"><%= user.full_name %></h4>
+            <%= image_tag(user.profile_image_url(:medium), class: "img-circle") if user.profile_image? %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

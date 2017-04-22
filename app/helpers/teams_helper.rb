@@ -3,11 +3,12 @@ module TeamsHelper
   # Join button for a team enrolled in a tournament
   def join_btn(tournament, team, size)
     if user_signed_in?
-      if !tournament.enrolled?(current_user) && team.users.count < tournament.team_size && !current_user.has_tournament_this_date?(tournament)
+      if tournament.enrollment_period? && !tournament.enrolled?(current_user) &&
+        team.users.count < tournament.team_size && !current_user.has_tournament_this_date?(tournament)
         button_to "Join", profile_team_memberships_path(team), method: :post, class: "btn btn-primary btn-#{size} btn-block round"
       end
     else
-      if team.users.count < tournament.team_size
+      if tournament.enrollment_period? && team.users.count < tournament.team_size
         button_to "Join", profile_team_memberships_path(team), method: :post, class: "btn btn-primary btn-#{size} btn-block round"
       end
     end

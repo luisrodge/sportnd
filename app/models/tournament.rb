@@ -37,7 +37,7 @@ class Tournament < ApplicationRecord
   end
 
   def self.upcoming
-    where('date >= ?', Date.today)
+    where('DATE(date) > ?', Date.today)
   end
 
   # Returns true if a user is enrolled in a tournament

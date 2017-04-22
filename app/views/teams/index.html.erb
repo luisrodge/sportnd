@@ -1,23 +1,13 @@
-<div class="row">
-    <% Team.all.each do |team| %>
-      <% if team.tournament.enrollment_period? && team.remaining_space != 0 %>
-        <div class="col-md-4">
-          <div class="col-md-12 team-container <%= team.color.name.downcase %>">
-            <h4 class="text-center team-title"><%= team.color.name %> Team</h4>
-            <h6 class="text-center team-address"><%= team.tournament.venue.address %></h6>
-            <div class="row enrolled-in-team">
-              <% team.users.each do |user| %>
-                <div class="col-md-4">
-                  <%= image_tag(user.profile_image_url(:medium), class: "img-circle") if user.profile_image? %>
-                </div>
-              <% end %>
-            </div>
-            <p><%= link_to team.tournament.sport.name + " Tournament", tournament_path(team.tournament), class: "notice" %></p>
-            <p class="details"><%= format_datetime(team.tournament.date, team.tournament.time) %> </p>
-            <p class="details">Betting entry @ <%= number_to_currency(team.tournament.bet_amount, :unit => "$") %> per team member</p>
-            <%= join_btn(team.tournament, team, "sm") %>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+<div class="application-col">
+    <div class="row header">
+      <div class="col-md-12">
+        <h3>Existing Teams Enrolled In Tournaments</h3><br>
+      </div>
+    </div>
+    <div class="js-items-container">
+    	<%= render partial: 'teams/team', collection: @teams %>
+    </div>
+    <div class="pagination" data-pagination-endpoint="<%= @endpoint %>" data-pagination-pages="<%= @page_amount %>">
+    	<%= image_tag 'ajax-loader.gif' %>
+    </div>
 </div>

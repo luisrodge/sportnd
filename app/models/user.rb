@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_many :enrollments, dependent: :destroy
   has_many :tournaments, through: :enrollments
 
+  # Pagination for infinite scroll feature
+  paginates_per 4
+
   MAX_ENROLLMENTS = 2
 
   # Future tournaments for a user
@@ -35,18 +38,8 @@ class User < ApplicationRecord
   end
 
   def organized_tournament_this_week?(date)
-    tournaments.where("Date(date) BETWEEN ? AND ?", date.end_of_week.to_date - 2, date.end_of_week.to_date).exists?
+    tournaments.where(organizer: self).where("Date(date) BETWEEN ? AND ?", date.end_of_week.to_date - 2, date.end_of_week.to_date).exists?
   end
-
-  # A user can only start and organize one tournament for a weekend per week
-  # A user can only start a tournament on the weekends, to compensate for the enrollment period
-  # def start_new_tournament?
-  #   if ((tournaments.where("Date(date) BETWEEN ? AND ?", Time.now.next_week,
-  #       Time.now.next_week.end_of_week).where(organizer: self).empty?) && (Date.today.saturday? || Date.today.sunday?))
-  #       return true
-  #   end
-  #   false
-  # end
 
   # Returns true if enrollment limit is reached in a given week for a user
   def enrollment_limit?

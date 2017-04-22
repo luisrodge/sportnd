@@ -1,4 +1,4 @@
-<div class="application-col">
+<div class="application-col <%= "closed" if !@tournament.enrollment_period? %>">
 	<div class="row">
 			<div class="col-md-12 header">
 				<div class="organizer-details">
@@ -6,12 +6,12 @@
 					<h4 class="text-center"><%= @tournament.venue.address %></h4>
 					<p class="text-center organizer-img"><%= image_tag(@tournament.organizer.profile_image_url(:normal), class: "img-circle default") if @tournament.organizer.profile_image? %></p>
 				</div>
-				<div class="details text-center">
+				<div class="details text-center <%= "closed" if !@tournament.enrollment_period? %>">
 					<h4><%= format_datetime(@tournament.date, @tournament.time) %></h4>
 					<h4>Open to <%= pluralize(@tournament.capacity, "team") %> with <%= pluralize(@tournament.team_size, "member") %> per team</h4>
 					<h4>Betting entry at <%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per team member</h4>
 				</div>
-				<div class="progress-container">
+				<div class="progress-container <%= "closed" if !@tournament.enrollment_period? %>">
 				  <h4>Betting total currently at <%= money_format(@tournament.current_bet_amount) + "/" + money_format(@tournament.total_bet_amount) %></h4>
 					<div class="progress">
 					  <div class="progress-bar" role="progressbar" aria-valuenow="<%= @tournament.bet_amount_percentage %>"

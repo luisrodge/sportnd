@@ -10,18 +10,10 @@
       <a href="#" class="btn btn-xs btn-primary round">Toledo</a>
     </div>
   </div>
-  <% User.order("created_at DESC").each do |user| %>
-    <div class="member">
-      <div class="row gutter-60">
-          <div class="col-md-3">
-            <%= image_tag(user.profile_image_url(:medium), class: "img-circle") if user.profile_image? %>
-          </div>
-          <div class="col-md-9">
-            <h4><%= user.full_name %> from San Ignacio, Cayo</h4>
-            <h4><%= pluralize(user.tournaments.count, "tournament") %>, 1 this week</h4>
-            <h4>Current teams: Red, Blue</h4>
-          </div>
-      </div>
-    </div>
-  <% end %>
+  <div class="js-items-container">
+    <%= render partial: 'members/member', collection: @members %>
+  </div>
+  <div class="pagination" data-pagination-endpoint="<%= @endpoint %>" data-pagination-pages="<%= @page_amount %>">
+    <%= image_tag 'ajax-loader.gif' %>
+  </div>
 </div>

@@ -13,7 +13,13 @@ Rails.application.routes.draw do
   resources :teams , only: :index
   resources :members , only: :index
 
-  resource :tournaments, only: [:index] do
+  resource :tournaments, only: :index do
+    get :pagination
+  end
+  resource :teams, only: :index do
+    get :pagination
+  end
+  resource :members, only: :index do
     get :pagination
   end
 

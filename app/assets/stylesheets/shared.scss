@@ -21,6 +21,19 @@ body{
     border-radius: 2px;
 }
 
+.application-col.closed {
+  color: #ccc;
+  .details.closed {
+    color: #CCC;
+    border: 1px solid #CCC;
+  }
+  .progress-container.closed {
+    .progress-bar {
+      background: #CCC;
+    }
+  }
+}
+
 .your-tournaments{
   margin-top: 35px;
 }
@@ -63,6 +76,16 @@ body{
     padding-bottom: 21px;
     color: #5C5C5C;
     margin: 0;
+  }
+  .header {
+    margin-bottom: 25px;
+  }
+  .members-wrapper {
+    border-bottom: 1px solid $light_border;
+    margin-bottom: 35px;
+    &:last-of-type {
+      border-bottom: none;
+    }
   }
   .col-md-4{
     .team-container {
