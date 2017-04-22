@@ -1,9 +1,6 @@
 class Profile::TeamsController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-  end
-
   def new
   	@team = Team.new
   end
@@ -30,26 +27,6 @@ class Profile::TeamsController < ApplicationController
     end
     tournament.teams.delete(team)
     redirect_to tournament
-  end
-
-  # User joins an existing team in a tournament
-  # Add user team users
-  # Add user to tournament users
-  def join
-    team = Team.find(params[:id])
-    team.users << current_user
-    team.tournament.users << current_user
-    redirect_to team.tournament
-  end
-
-  # User leaves a team
-  # Remove user from team users
-  # Remove user from tournament users
-  def leave
-    team = Team.find(params[:id])
-    team.users.delete(current_user)
-    team.tournament.users.delete(current_user)
-    redirect_to team.tournament
   end
 
   private

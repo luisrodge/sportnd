@@ -12,7 +12,7 @@
 					<h4>Betting entry at <%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per team member</h4>
 				</div>
 				<div class="progress-container">
-				  	<h4>Betting total currently at <%= money_format(@tournament.current_bet_amount) + "/" + money_format(@tournament.total_bet_amount) %></h4>
+				  <h4>Betting total currently at <%= money_format(@tournament.current_bet_amount) + "/" + money_format(@tournament.total_bet_amount) %></h4>
 					<div class="progress">
 					  <div class="progress-bar" role="progressbar" aria-valuenow="<%= @tournament.bet_amount_percentage %>"
 					  aria-valuemin="0" aria-valuemax="100" style="width:<%= @tournament.bet_amount_percentage %>">
@@ -66,7 +66,7 @@
 		</div>
 	</div>
 
-	<% if @tournament.organizer == current_user %>
+	<% if policy(@tournament).destroy? %>
 		<div class="manage-tournament">
 			<p class="text-center"><%= link_to profile_tournament_path(@tournament), method: :delete, data: { confirm: 'Are you sure?','sweet-alert-type': 'warning', text: 'You are about remove this tournament and all teams enrolled', 'confirm-button-color': '#EE543A' }, class: "btn btn-danger btn-sm round" do %>
 				<%= fa_icon "remove" %> Cancel Tournament

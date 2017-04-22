@@ -4,18 +4,18 @@ module TeamsHelper
   def join_btn(tournament, team, size)
     if user_signed_in?
       if !tournament.enrolled?(current_user) && team.users.count < tournament.team_size && !current_user.has_tournament_this_date?(tournament)
-        link_to "Join", profile_team_memberships_path(team), method: :post, class: "btn btn-primary btn-#{size} btn-block round"
+        button_to "Join", profile_team_memberships_path(team), method: :post, class: "btn btn-primary btn-#{size} btn-block round"
       end
     else
       if team.users.count < tournament.team_size
-        link_to "Join", profile_team_memberships_path(team), method: :post, class: "btn btn-primary btn-#{size} btn-block round"
+        button_to "Join", profile_team_memberships_path(team), method: :post, class: "btn btn-primary btn-#{size} btn-block round"
       end
     end
   end
 
   def leave_team_btn(tournament)
     if tournament.organizer != current_user
-      link_to "Leave Team", leave_profile_team_path(current_user.team_for_tournament(@tournament)), data: { confirm: 'Are you sure?','sweet-alert-type': 'warning', text: 'You are about to leave this team & tournament', 'confirm-button-color': '#EE543A' }, method: :delete, class: "btn btn-danger btn-xs round"
+      link_to "Leave Team", profile_team_membership_path(current_user.team_for_tournament(@tournament)), data: { confirm: 'Are you sure?','sweet-alert-type': 'warning', text: 'You are about to leave this team & tournament', 'confirm-button-color': '#EE543A' }, method: :delete, class: "btn btn-danger btn-xs round"
     end
   end
 

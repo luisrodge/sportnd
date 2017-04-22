@@ -21,14 +21,29 @@ body{
     border-radius: 2px;
 }
 
+.your-tournaments{
+  margin-top: 35px;
+}
+
 .members.index {
   h3 {
     margin: 0;
-    padding-bottom: 35px;
+    padding-bottom: 8px;
+  }
+  .header {
+    margin-bottom: 40px;
   }
   .col-md-2 {
     margin-bottom: 25px;
 
+  }
+  .member {
+    margin-bottom: 20px;
+    border-bottom: 1px solid $light_border;
+    padding-bottom: 21px;
+    &:last-of-type {
+      border: none;
+    }
   }
 }
 
@@ -45,8 +60,7 @@ body{
 
 .teams.index {
   .team-address {
-    padding-top: 2px;
-    padding-bottom: 18px;
+    padding-bottom: 21px;
     color: #5C5C5C;
     margin: 0;
   }
@@ -75,10 +89,14 @@ body{
   }
 }
 
+.gray-txt {
+  color: $gray;
+}
+
 .tournament-address{
   margin-bottom: 18px;
   h4 {
-    color: #999999;
+    color: #5C5C5C;
   }
 }
 
@@ -229,6 +247,7 @@ img.default{
   margin-bottom: 10px;
   h4 {
     margin: 0!important;
+    padding-bottom: 4px;
   }
 }
 
@@ -344,7 +363,7 @@ header{
             border-radius: 4px;
         }
         .my-tournaments-btn {
-          font-size: 19px;
+          font-size: 18px;
         }
         .auth{
             border: 2px solid #FFF;
@@ -360,7 +379,7 @@ header{
 }
 
 nav.sidebar{
-  font-size: 19px;
+  font-size: 18px;
     .items a{
         color: #FFF;
         &:hover, &:focus{

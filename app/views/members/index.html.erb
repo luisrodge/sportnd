@@ -1,14 +1,27 @@
 <div class="application-col">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 header">
       <h3>Members In The Community</h3>
-    </div>
-    <div class="col-ms-12">
-      <% User.order("created_at DESC").each do |user| %>
-        <div class="col-md-2">
-          <%= image_tag(user.profile_image_url(:medium), class: "img-circle") if user.profile_image? %>
-        </div>
-      <% end %>
+      <a href="#" class="btn btn-xs btn-primary round">Cayo</a>
+      <a href="#" class="btn btn-xs btn-primary round">Belize</a>
+      <a href="#" class="btn btn-xs btn-primary round">Corozal</a>
+      <a href="#" class="btn btn-xs btn-primary round">Orange Walk</a>
+      <a href="#" class="btn btn-xs btn-primary round">Stann Creek</a>
+      <a href="#" class="btn btn-xs btn-primary round">Toledo</a>
     </div>
   </div>
+  <% User.order("created_at DESC").each do |user| %>
+    <div class="member">
+      <div class="row gutter-60">
+          <div class="col-md-3">
+            <%= image_tag(user.profile_image_url(:medium), class: "img-circle") if user.profile_image? %>
+          </div>
+          <div class="col-md-9">
+            <h4><%= user.full_name %> from San Ignacio, Cayo</h4>
+            <h4><%= pluralize(user.tournaments.count, "tournament") %>, 1 this week</h4>
+            <h4>Current teams: Red, Blue</h4>
+          </div>
+      </div>
+    </div>
+  <% end %>
 </div>

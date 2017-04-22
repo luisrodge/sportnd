@@ -10,3 +10,11 @@
 //= require picker
 //= require picker.date
 //= require picker.time
+
+
+$(function() {
+  $(".member").hover(function(e) {
+    let memberId = $(this).attr('data-member-id');
+    $(".member-details." + memberId).fadeToggle();
+  });
+})

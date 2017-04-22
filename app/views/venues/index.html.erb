@@ -11,6 +11,7 @@
 							<figcaption>
 								<h4><%= venue.name %></h4>
 								<h4><%= venue.address %></h4>
+								<h5 class="gray-txt"><%= pluralize(venue.tournaments_this_week.count, "Tournament") %> This Weekend</h5>
 							</figcaption>
 						</figure>
 				</div>

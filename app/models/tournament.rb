@@ -73,7 +73,7 @@ class Tournament < ApplicationRecord
     if Date.today.strftime("%U").to_i < date.strftime("%U").to_i
       return true
     elsif Date.today.strftime("%U").to_i == date.strftime("%U").to_i
-      if  Date.today <= date.end_of_week - 2
+      if  Date.today <= date.to_date.end_of_week - 2
         return true
       else
         return false

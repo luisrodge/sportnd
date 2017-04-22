@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-
-  get 'members/index'
-
   root 'tournaments#index'
   get 'information', to: 'pages#information'
 
@@ -20,16 +17,12 @@ Rails.application.routes.draw do
     get :pagination
   end
 
-  resources :tournaments
+  resources :tournaments, only: [:index, :show]
 
   namespace :profile do
-    resources :venues
+    resources :venues, only: :new
   	resources :teams do
       resources :memberships
-      member do
-        put "join"
-        delete "leave"
-      end
     end
   	resources :tournaments do
       resources :teams

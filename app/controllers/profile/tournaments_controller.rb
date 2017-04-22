@@ -5,7 +5,7 @@ class Profile::TournamentsController < ApplicationController
 	end
 
 	def show
-		@tournament = Tournament.find(params[:id])
+		@tournament = Tournament.find_by_hash_id!(params[:id])
 	end
 
 	# New tournament
@@ -40,7 +40,9 @@ class Profile::TournamentsController < ApplicationController
 
 	# Cancel or destroy a tournament
 	def destroy
-		Tournament.find_by_hash_id(params[:id]).destroy
+		@tournament = Tournament.find_by_hash_id(params[:id])
+		authorize @tournament
+		@tournament.destroy
 		redirect_to profile_tournaments_path
 	end
 
