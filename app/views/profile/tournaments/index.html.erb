@@ -11,30 +11,32 @@
 		<% end %>
 	</div>
 	<div class="my-tournaments">
-			<h3 class="text-center">Upcoming Tournaments</h3>
-			<div class="row your-tournaments">
-				<% current_user.upcoming_tournaments.each do |tournament| %>
-					<%= link_to tournament_path(tournament) do %>
-						<div class="col-md-6 upcoming-tournament">
-							<h4 class="text-center">
-								<%= organized_enrolled_txt(tournament) %>
-							</h4>
-							<figure>
-								<div class="caption">
-									<%= image_tag(tournament.venue.venue_image_url(:medium)) if tournament.venue.venue_image? %>
-									<div class="caption-text text-center">
-										<h4><%= tournament.sport.name %> Tournament</h4>
-									</div>
-								</div>
-								<figcaption class="text-center">
-									<h4><%= tournament.venue.name %></h4>
-									<h4><%= format_datetime(tournament.date, tournament.time) %></h4>
-									<h4><%= pluralize(tournament.teams.count, "team") %> already enrolled</h4>
-								</figcaption>
-							</figure>
-						</div>
-					<% end %>
-				<% end %>
+			<div class="header">
+				<h3 class="text-center">Upcoming Tournaments</h3>
 			</div>
+				<% current_user.upcoming_tournaments.each do |tournament| %>
+						<div class="row">
+							<div class="col-md-7 center-block upcoming-tournament">
+								<h5 class="text-center gray-txt">
+									<%= organized_enrolled_txt(tournament) %>
+								</h5>
+								<%= link_to tournament_path(tournament) do %>
+									<figure>
+										<div class="caption">
+											<%= image_tag(tournament.venue.venue_image_url(:medium)) if tournament.venue.venue_image? %>
+											<div class="caption-text text-center">
+												<h4><%= tournament.sport.name %> Tournament</h4>
+											</div>
+										</div>
+										<figcaption class="text-center">
+											<h4><%= tournament.venue.name %></h4>
+											<h4><%= format_datetime(tournament.date, tournament.time) %></h4><br>
+											<h4 class="gray-txt"><%= pluralize(tournament.teams.count, "team") %> already enrolled</h4>
+										</figcaption>
+									</figure>
+								<% end %>
+							</div>
+						</div>
+				<% end %>
 	</div>
 </div>

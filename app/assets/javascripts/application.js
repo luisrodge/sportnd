@@ -9,4 +9,4 @@
 //= require picker
 //= require picker.date
 //= require picker.time
-//= require date-time-config
+//= require datetime-config

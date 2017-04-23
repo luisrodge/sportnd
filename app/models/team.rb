@@ -21,4 +21,9 @@ class Team < ApplicationRecord
 		tournament.team_size - users.count
 	end
 
+	# Teams that a member can join given under certain conditions
+	def self.enrolled_in_tournaments
+		joins(:users).joins(:tournament).group("teams.id").having("count(users.id) <  tournaments.team_size AND DATE(tournaments.date) > ?", Date.today)
+	end
+
 end

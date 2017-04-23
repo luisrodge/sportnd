@@ -1,5 +1,5 @@
 $(function() {
-    if (!($('.tournaments.new').length > 0)) {
+    if (!($('.tournaments.new').length > 0 || $('.tournaments.create').length > 0)) {
         return;
     }
 
