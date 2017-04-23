@@ -5,6 +5,7 @@ class Profile::MembershipsController < ApplicationController
   # Add user to tournament users
   def create
     team = Team.find(params[:team_id])
+    #authorize(team)
     team.users << current_user
     team.tournament.users << current_user
     redirect_to team.tournament

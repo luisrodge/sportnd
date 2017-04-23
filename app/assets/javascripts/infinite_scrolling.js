@@ -1,4 +1,9 @@
-$(document).on("turbolinks:load", function () {
+$(function () {
+  if (!($('.tournaments.index').length > 0 || $('.teams.index').length > 0 ||
+    $('.members.index').length > 0)) {
+    return;
+  }
+
   var THRESHOLD = 300;
   var $paginationElem = $('.pagination');
   var $window = $(window);
@@ -37,4 +42,3 @@ $(document).on("turbolinks:load", function () {
       }
     }, 100));
 });
-

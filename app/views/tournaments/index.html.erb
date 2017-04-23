@@ -1,7 +1,10 @@
-<div class="tournaments js-items-container">
-	<%= render partial: 'tournaments/tournament', collection: @tournaments %>
-</div>
-
-<div class="pagination" data-pagination-endpoint="<%= @endpoint %>" data-pagination-pages="<%= @page_amount %>">
-	<%= image_tag 'ajax-loader.gif' %>
+<div class="application-col">
+	<div class="js-items-container">
+		<%= render partial: 'tournaments/tournament', collection: @tournaments %>
+	</div>
+	<div class="row">
+		<div class="col-md-1 center-block pagination" data-pagination-endpoint="<%= @endpoint %>" data-pagination-pages="<%= @page_amount %>">
+			<%= image_tag 'ajax-loader.gif' %>
+		</div>
+	</div>
 </div>

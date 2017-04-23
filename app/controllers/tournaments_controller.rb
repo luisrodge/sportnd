@@ -1,5 +1,4 @@
 class TournamentsController < ApplicationController
-	layout "secondary", except: :show
 
 	def index
 		@tournaments = Tournament.upcoming.page;
@@ -12,7 +11,7 @@ class TournamentsController < ApplicationController
 	end
 
 	def pagination
-	    tournaments = Tournament.all.page(params[:page]);
+	    tournaments = Tournament.upcoming.page(params[:page]);
 	    render partial: 'tournaments/tournament', layout: false, collection: tournaments
 	end
 
