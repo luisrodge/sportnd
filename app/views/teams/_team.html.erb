@@ -1,14 +1,15 @@
   <div class="members-wrapper">
     <div class="row gutter-60">
-      <div class="col-md-4">
+      <div class="col-md-5">
         <div class="team-container <%= team.color.name.downcase %>">
           <h4><%= team.color.name %> Team</h4>
-          <h5><%= team_space_txt(team) %></h5>
           <h5><%= link_to team.tournament.sport.name + " Tournament", tournament_path(team.tournament), class: "notice" %></h5>
+          <h5><%= team_space_txt(team) %></h5>
+          <h5>Bet Entry @ <%= money_format(team.tournament.bet_amount) %></h5>
           <%= join_btn(team.tournament, team, "sm") %>
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-7">
         <% team.users.each do |user| %>
           <div class="col-md-4">
             <h4 class="truncate"><%= user.full_name %></h4>

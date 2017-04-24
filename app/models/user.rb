@@ -28,6 +28,7 @@ class User < ApplicationRecord
     tournaments.where(date: tournament.date).exists?
   end
 
+  # Returns a tournament that falls on the same date as another
   def tournament_this_date(tournament)
     tournaments.where(date: tournament.date).first
   end
@@ -37,8 +38,13 @@ class User < ApplicationRecord
     teams.where(tournament_id: tournament).first
   end
 
+  # Checks if a user has already organized a tournament for a given week
   def organized_tournament_this_week?(date)
     tournaments.where(organizer: self).where("Date(date) BETWEEN ? AND ?", date.end_of_week.to_date - 2, date.end_of_week.to_date).exists?
+  end
+
+  def tournaments_this_week
+    tournaments.where("Date(date) BETWEEN ? AND ?", Date.today.end_of_week - 2, Date.today.end_of_week)
   end
 
   # Returns true if enrollment limit is reached in a given week for a user

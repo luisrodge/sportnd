@@ -11,8 +11,8 @@ class TournamentsController < ApplicationController
 	end
 
 	def pagination
-	    tournaments = Tournament.upcoming.page(params[:page])
-	    render partial: 'tournaments/tournament', layout: false, collection: tournaments
+	  tournaments = Tournament.upcoming.page(params[:page])
+		render partial: 'tournaments/tournament', layout: false, collection: tournaments
 	end
 
 end

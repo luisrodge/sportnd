@@ -8,7 +8,7 @@ module TeamsHelper
         button_to "Join", profile_team_memberships_path(team), method: :post, class: "btn btn-primary btn-#{size} btn-block round"
       end
     else
-      if tournament.enrollment_period? && team.users.count < tournament.team_size
+      if tournament.enrollment_period? && team.remaining_space > 0
         button_to "Join", profile_team_memberships_path(team), method: :post, class: "btn btn-primary btn-#{size} btn-block round"
       end
     end
@@ -28,7 +28,7 @@ module TeamsHelper
 
   def team_space_txt(team)
     if team.remaining_space != 0
-      pluralize(team.remaining_space, "Space")
+      pluralize(team.remaining_space, "Available Space")
     else
       "Full"
     end

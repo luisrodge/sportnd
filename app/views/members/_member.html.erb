@@ -5,7 +5,7 @@
       </div>
       <div class="col-md-9">
         <h4><%= member.full_name %> from San Ignacio, Cayo</h4>
-        <h4><%= pluralize(member.tournaments.count, "tournament") %>, 1 this week</h4>
+        <h4><%= tournaments_tracker_txt(member) %></h4>
         <h4>Current teams: Red, Blue</h4>
       </div>
   </div>

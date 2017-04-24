@@ -30,8 +30,8 @@
 										</div>
 										<figcaption class="text-center">
 											<h4><%= tournament.venue.name %></h4>
-											<h4><%= format_datetime(tournament.date, tournament.time) %></h4><br>
-											<h4 class="gray-txt"><%= pluralize(tournament.teams.count, "team") %> already enrolled</h4>
+											<h4><%= format_datetime(tournament.date, tournament.time) %></h4>
+											<h4><%= pluralize(tournament.teams.count, "team") %> already enrolled</h4>
 										</figcaption>
 									</figure>
 								<% end %>
