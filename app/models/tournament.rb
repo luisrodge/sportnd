@@ -29,6 +29,26 @@ class Tournament < ApplicationRecord
     end
   end
 
+  def can_enroll?(user)
+    if enrollment_period?
+      if !enrolled?(user)
+        if !user.has_tournament_this_date?(self)
+          if remaining_capacity > 0
+            return true
+          else
+            return false
+          end
+        else
+          return false
+        end
+      else
+        return false
+      end
+    else
+      return false
+    end
+  end
+
   # Ensures that a user can only start one tournament per week
   def organized_tournament_this_week?
     if self.organizer.organized_tournament_this_week?(self.date)
@@ -38,6 +58,11 @@ class Tournament < ApplicationRecord
 
   def self.upcoming
     where('DATE(date) > ?', Date.today).order("created_at DESC")
+  end
+
+  def self.not_enrolled(user)
+    #includes(:users).where(.not(users: {id: user}))
+    #joins(:users).group("users.id").where("users.id == ?", user).select("DISTINCT tournaments.*")
   end
 
   # Returns true if a user is enrolled in a tournament

@@ -6,13 +6,22 @@
 			</div>
 		<% else %>
 			<div class="col-md-12">
-				<p class="text-center gray-txt">Use Saturday or Sunday to start your own tournaments</p>
+				<p class="text-center gray-txt">Use Saturday & Sunday to start your own tournaments</p>
 			</div>
 		<% end %>
 	</div>
 	<div class="my-tournaments">
 			<div class="header">
-				<h3 class="text-center">Upcoming Tournaments</h3>
+				<% if current_user.upcoming_tournaments.any? %>
+					<h3 class="text-center">Upcoming Tournaments</h3>
+				<% else %>
+					<h3 class="text-center">No Tournaments, let's change that!</h3>
+					<h4 class="text-center">Enroll in upcoming tournaments or join already enrolled teams</h4><br>
+					<p class="text-center">
+					<%= link_to "Upcoming Tournaments", root_path, class: "btn btn-primary btn-sm round" %>
+					<%= link_to "Enrolled Teams", teams_path, class: "btn btn-primary btn-sm round" %>
+				</p>
+				<% end %>
 			</div>
 				<% current_user.upcoming_tournaments.each do |tournament| %>
 						<div class="row">

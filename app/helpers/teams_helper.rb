@@ -22,7 +22,7 @@ module TeamsHelper
 
   def leave_tournament_btn(tournament, team)
 		if team.users.exists?(current_user) && tournament.organizer != current_user && team.captain == current_user
-			link_to "Leave Tournament", profile_tournament_team_path(tournament, team), method: :delete, data: { confirm: 'Are you sure?','sweet-alert-type': 'warning', text: 'You are about to remove your team from this tournament', 'confirm-button-color': '#EE543A' }, class: "btn btn-danger btn-xs round"
+			link_to "Leave Tournament", profile_tournament_team_path(tournament, team), method: :delete, data: { confirm: 'Are you sure?','sweet-alert-type': 'warning', text: 'You are about to remove your team and all members from this tournament', 'confirm-button-color': '#EE543A' }, class: "btn btn-danger btn-xs round"
 		end
 	end
 

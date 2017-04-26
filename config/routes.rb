@@ -27,11 +27,10 @@ Rails.application.routes.draw do
   namespace :profile do
     resources :venues, only: :new
   	resources :teams do
-      resources :memberships
+      resources :memberships, only: [:create, :destroy]
     end
   	resources :tournaments do
-      resources :teams
-  		resources :enrollments
+      resources :teams, except: [:show, :index]
   	end
   end
 
