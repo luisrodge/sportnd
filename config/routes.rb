@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :tournaments, only: [:index, :show]
   resources :venues, only: :index
   resources :teams , only: :index
-  resources :members , only: :index
+  resources :members , only: [:index, :show]
 
   namespace :profile do
     resources :venues, only: :new

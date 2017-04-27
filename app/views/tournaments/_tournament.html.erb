@@ -2,8 +2,8 @@
 	<%= link_to tournament_path(tournament) do %>
 			<div class="row tournament-address">
 				<div class="col-md-12">
-					<h4 class="pull-left"><%= tournament.sport.name + " Tournament" %></h4>
-					<h4 class="pull-right"><%= tournament.venue.address %></h4>
+					<h5 class="pull-left"><%= tournament.sport.name %> Tournament  <% if tournament.full? %><span class="tournament-full">Full</span><% end %></h5>
+					<h5 class="pull-right"><%= tournament.venue.name + ", " + tournament.venue.address %></h5>
 				</div>
 			</div>
 			<div class="row gutter-60">
@@ -11,10 +11,8 @@
 					<%= image_tag(tournament.venue.venue_image_url(:medium)) if tournament.venue.venue_image? %>
 				</div>
 				<div class="col-md-8">
-					<% if tournament.full? %>
-						<h4>Full</h4>
-					<% end %>
 					<h4><%= format_datetime(tournament.date, tournament.time) %></h4>
+					<h4><%= teams_enrollment_txt(tournament) %></h4>
 					<div class="progress-container">
 						<h4>Betting total @ <%= money_format(tournament.current_bet_amount) %> of <%= money_format(tournament.total_bet_amount) %></h4>
 						<div class="progress">

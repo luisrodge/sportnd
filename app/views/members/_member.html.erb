@@ -1,11 +1,13 @@
 <div class="member">
-  <div class="row gutter-60">
-      <div class="col-md-3">
-        <%= image_tag(member.profile_image_url(:medium), class: "img-circle") if member.profile_image? %>
-      </div>
-      <div class="col-md-9">
-        <h4><%= member.full_name %> from San Ignacio, Cayo</h4>
-        <h4><%= tournaments_tracker_txt(member) %></h4>
-      </div>
-  </div>
+  <%= link_to member_path(member) do %>
+    <div class="row gutter-60">
+        <div class="col-md-3">
+          <%= image_tag(member.profile_image_url(:medium), class: "img-circle") if member.profile_image? %>
+        </div>
+        <div class="col-md-9">
+          <h4><%= member.full_name %> from San Ignacio, Cayo</h4>
+          <h4><%= tournaments_tracker_txt(member) %></h4>
+        </div>
+    </div>
+  <% end %>
 </div>

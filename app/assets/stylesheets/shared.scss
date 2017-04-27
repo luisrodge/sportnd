@@ -15,6 +15,60 @@ body{
     flex: 1;
 }
 
+.tournament-full{
+  background: #79BE5B;
+  color: #FFF;
+  padding: 0 8px;
+  border-radius: 24px;
+}
+
+.tournament-enrolled-users {
+  margin-top: 14px;
+}
+
+.members.show {
+  display: flex!important;
+}
+
+.gen-title {
+  padding-bottom: 25px;
+}
+
+.title {
+  margin: 0;
+  padding-bottom: 45px;
+}
+
+.member-header {
+  margin-bottom: 50px;
+  img {
+    margin-bottom: 15px;
+  }
+  h4 {
+    margin: 0;
+    padding-top: 3px;
+  }
+}
+
+.member-tournament {
+  margin-bottom: 45px;
+  border-bottom: 1px solid $light_border;
+  padding-bottom: 40px;
+  .header-address {
+    margin-bottom: 24px;
+  }
+  .col-md-8 {
+    h4 {
+      margin: 0;
+      padding-bottom: 8px;
+    }
+  }
+  &:last-of-type {
+    border: none;
+    padding-bottom: 0;
+  }
+}
+
 .tournament.cant_enroll {
   color: #CCC;
   img {
@@ -104,13 +158,20 @@ body{
       border-bottom: none;
       margin-bottom: 0;
     }
-    h5.tournament-type {
-      margin: 0;
-      padding-bottom: 8px;
+    .teams-header {
+      margin-bottom: 32px;
+      h4.tournament-type {
+        margin: 0;
+      }
+      h5.datetime {
+        margin: 0;
+        padding-top: 4px;
+      }
     }
+
   }
   .col-md-7 {
-    h4 {
+    h5 {
       margin: 0;
       padding-bottom: 8px;
     }
@@ -259,6 +320,10 @@ label.message {
         padding-bottom: 7px;
       }
   }
+}
+
+.profile-header {
+  margin-bottom: 50px;
 }
 
 img.default{

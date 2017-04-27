@@ -1,5 +1,5 @@
 <div class="application-col">
-	<div class="row">
+	<div class="row profile-header">
 		<% if policy(Tournament).new? %>
 			<div class="col-md-12">
 				<p class="text-center"><%= new_tournament_btn %></p>
@@ -10,42 +10,41 @@
 			</div>
 		<% end %>
 	</div>
-	<div class="my-tournaments">
-			<div class="header">
-				<% if current_user.upcoming_tournaments.any? %>
-					<h3 class="text-center">Upcoming Tournaments</h3>
-				<% else %>
-					<h3 class="text-center">No Tournaments, let's change that!</h3>
-					<h4 class="text-center">Enroll in upcoming tournaments or join already enrolled teams</h4><br>
-					<p class="text-center">
-					<%= link_to "Upcoming Tournaments", root_path, class: "btn btn-primary btn-sm round" %>
-					<%= link_to "Enrolled Teams", teams_path, class: "btn btn-primary btn-sm round" %>
-				</p>
-				<% end %>
-			</div>
-				<% current_user.upcoming_tournaments.each do |tournament| %>
-						<div class="row">
-							<div class="col-md-7 center-block upcoming-tournament">
-								<h5 class="text-center gray-txt">
-									<%= organized_enrolled_txt(tournament) %>
-								</h5>
-								<%= link_to tournament_path(tournament) do %>
-									<figure>
-										<div class="caption">
-											<%= image_tag(tournament.venue.venue_image_url(:medium)) if tournament.venue.venue_image? %>
-											<div class="caption-text text-center">
-												<h4><%= tournament.sport.name %> Tournament</h4>
+	<% if current_user.upcoming_tournaments.any? %>
+		<h3 class="text-center title">Upcoming Tournaments</h3>
+		<% current_user.upcoming_tournaments.each do |tournament| %>
+        <div class="member-tournament">
+          <%= link_to tournament_path(tournament) do %>
+            <div class="row gutter-60">
+              <div class="col-md-12 header-address">
+                <h5 class="pull-left"><%= tournament.sport.name %> Tournament</h5>
+                <h5 class="pull-right"><%= tournament.venue.name + ", " + tournament.venue.address %></h5>
+              </div>
+              <div class="col-md-4">
+                <%= image_tag(tournament.venue.venue_image_url(:medium)) if tournament.venue.venue_image? %>
+              </div>
+              <div class="col-md-8">
+                  <h4><%= format_datetime(tournament.date, tournament.time) %></h4>
+									<h4><%= teams_enrollment_txt(tournament) %></h4>
+									<div class="progress-container">
+										<h4>Betting total @ <%= money_format(tournament.current_bet_amount) %> of <%= money_format(tournament.total_bet_amount) %></h4>
+										<div class="progress">
+											<div class="progress-bar" role="progressbar" aria-valuenow="<%= tournament.bet_amount_percentage %>"
+														  aria-valuemin="0" aria-valuemax="100" style="width:<%= tournament.bet_amount_percentage %>">
 											</div>
 										</div>
-										<figcaption class="text-center">
-											<h4><%= tournament.venue.name %></h4>
-											<h4><%= format_datetime(tournament.date, tournament.time) %></h4>
-											<h4><%= pluralize(tournament.teams.count, "team") %> already enrolled</h4>
-										</figcaption>
-									</figure>
-								<% end %>
-							</div>
-						</div>
-				<% end %>
-	</div>
+									</div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+    <% end %>
+	<% else %>
+		<h3 class="text-center">No Tournaments, let's change that!</h3>
+		<h4 class="text-center">Enroll in upcoming tournaments or join already enrolled teams</h4><br>
+		<p class="text-center">
+			<%= link_to "Upcoming Tournaments", root_path, class: "btn btn-primary btn-sm round" %>
+			<%= link_to "Enrolled Teams", teams_path, class: "btn btn-primary btn-sm round" %>
+		</p>
+	<% end %>
 </div>

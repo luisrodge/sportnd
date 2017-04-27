@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include Obfuscate
+  
   mount_uploader :profile_image, ProfileImageUploader
 
   devise :database_authenticatable, :registerable,
