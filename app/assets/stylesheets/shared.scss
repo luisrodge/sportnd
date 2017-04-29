@@ -154,6 +154,7 @@ body{
   .members-wrapper {
     border-bottom: 1px solid $light_border;
     margin-bottom: 35px;
+    padding-bottom: 15px;
     &:last-of-type {
       border-bottom: none;
       margin-bottom: 0;
@@ -508,13 +509,6 @@ header{
 
 nav.sidebar{
   font-size: 18px;
-    .items a{
-        color: #FFF;
-        &:hover, &:focus{
-            color: $light_border;
-            text-decoration: none;
-        }
-    }
     .search-form {
       margin-top: 12px;
       margin-bottom: 25px;
@@ -528,7 +522,15 @@ nav.sidebar{
         padding: 0;
     }
     li{
-        padding-top: 12px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #79BE5B;
+        &:first-of-type {
+          padding-top: 0;
+        }
+        &:last-of-type {
+          border: none;
+        }
         color: #FFF;
           a {
               &:hover {
@@ -538,15 +540,6 @@ nav.sidebar{
     }
     h4 {
         margin: 0;
-    }
-    span.home {
-
-      color: #FFF;
-        a {
-            &:hover {
-              color: $light_border;
-            }
-        }
     }
 }
 

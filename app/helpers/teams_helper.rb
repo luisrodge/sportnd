@@ -34,4 +34,8 @@ module TeamsHelper
     end
   end
 
+  def teams_enrolled_count
+    Team.enrolled_in_tournaments.each.count
+  end
+
 end

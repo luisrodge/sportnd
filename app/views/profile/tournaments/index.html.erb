@@ -11,7 +11,7 @@
 		<% end %>
 	</div>
 	<% if current_user.upcoming_tournaments.any? %>
-		<h3 class="text-center title">Upcoming Tournaments</h3>
+		<h3 class="text-center title">Your Upcoming Tournaments</h3>
 		<% current_user.upcoming_tournaments.each do |tournament| %>
         <div class="member-tournament">
           <%= link_to tournament_path(tournament) do %>
