@@ -1,9 +1,12 @@
 <div class="application-col">
-    <div class="row header">
+    <div class="header">
+    <div class="row">
       <div class="col-md-12">
-        <h3 class="title">Enrolled Teams You Can Join (<%= teams_enrolled_count %>)</h3>
+        <h3>Enrolled Teams You Can Join (<%= teams_enrolled_count %>)</h3>
       </div>
     </div>
+  </div>
+
     <div class="js-items-container">
     	<%= render partial: 'teams/team', collection: @teams %>
     </div>

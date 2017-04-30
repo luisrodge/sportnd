@@ -60,11 +60,6 @@ class Tournament < ApplicationRecord
     where('DATE(date) > ?', Date.today).order("created_at DESC")
   end
 
-  def self.not_enrolled(user)
-    #includes(:users).where(.not(users: {id: user}))
-    #joins(:users).group("users.id").where("users.id == ?", user).select("DISTINCT tournaments.*")
-  end
-
   # Returns true if a user is enrolled in a tournament
   def enrolled?(user)
     user.teams.where(tournament_id: self).any?
@@ -76,24 +71,20 @@ class Tournament < ApplicationRecord
     joins(:users).group("tournaments.id").having("count(users.id) < (tournaments.capacity * tournaments.team_size)")
   end
 
-  # Is a tournament already full?
   def full?
     users.count == (capacity * team_size)
     #joins(:users).group("tournaments.id").having("count(users.id) < ? ", (capacity * team_size))
   end
 
-  # Remaining space for new team enrollments
   def remaining_capacity
     capacity - teams.count
   end
 
-  # Number of teams with available space in a tournament
   def teams_with_space
     teams.joins(:users).group("teams.id").having("count(users.id) < ?", team_size).each.count
     #(tournaments.capacity * tournaments.team_size) - (tournaments.users)
   end
 
-  # Returns true if the tournament is still in enrollment period
   def enrollment_period?
     Date.today <= date.to_date.end_of_week - 2
   end

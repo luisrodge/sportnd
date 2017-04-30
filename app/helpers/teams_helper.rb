@@ -1,15 +1,14 @@
 module TeamsHelper
 
-  # Join button for a team enrolled in a tournament
-  def join_btn(tournament, team, size)
+  def join_btn(tournament, team, btn_size)
     if user_signed_in?
       if tournament.enrollment_period? && !tournament.enrolled?(current_user) &&
         team.users.count < tournament.team_size && !current_user.has_tournament_this_date?(tournament)
-        button_to "Join", profile_team_memberships_path(team), method: :post, class: "btn btn-primary btn-#{size} btn-block round"
+        button_to "Join", profile_team_memberships_path(team), method: :post, class: "btn btn-primary btn-#{btn_size} btn-block round"
       end
     else
       if tournament.enrollment_period? && team.remaining_space > 0
-        button_to "Join", profile_team_memberships_path(team), method: :post, class: "btn btn-primary btn-#{size} btn-block round"
+        button_to "Join", profile_team_memberships_path(team), method: :post, class: "btn btn-primary btn-#{btn_size} btn-block round"
       end
     end
   end
@@ -26,8 +25,8 @@ module TeamsHelper
 		end
 	end
 
-  def team_space_txt(team)
-    if team.remaining_space != 0
+  def team_available_space(team)
+    if team.remaining_space > 0
       pluralize(team.remaining_space, "Available Space")
     else
       "Full"

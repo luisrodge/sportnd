@@ -7,7 +7,7 @@
       <div class="col-md-5">
         <div class="team-container <%= team.color.name.downcase %>">
           <h4><%= team.color.name %> Team</h4>
-          <h5><%= team_space_txt(team) %></h5>
+          <h5><%= team_available_space(team) %></h5>
           <h5>Bet Entry @ <%= money_format(team.tournament.bet_amount) %></h5>
           <%= join_btn(team.tournament, team, "sm") %>
         </div>

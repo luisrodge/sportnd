@@ -4,7 +4,7 @@ module TournamentsHelper
     link_to "Start New Tournament", new_profile_tournament_path, class: "btn btn-primary round"
   end
 
-  def teams_enrollment_txt(tournament)
+  def teams_enrollment_status(tournament)
     if tournament.teams.count == tournament.capacity
       if tournament.teams_with_space > 0
         pluralize(tournament.teams_with_space, 'enrolled team') + " with available space"

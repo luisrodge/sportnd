@@ -25,7 +25,7 @@
               </div>
               <div class="col-md-8">
                   <h4><%= format_datetime(tournament.date, tournament.time) %></h4>
-									<h4><%= teams_enrollment_txt(tournament) %></h4>
+									<h4><%= teams_enrollment_status(tournament) %></h4>
 									<div class="progress-container">
 										<h4>Betting total @ <%= money_format(tournament.current_bet_amount) %> of <%= money_format(tournament.total_bet_amount) %></h4>
 										<div class="progress">
@@ -40,11 +40,7 @@
         </div>
     <% end %>
 	<% else %>
-		<h3 class="text-center">No Tournaments, let's change that!</h3>
-		<h4 class="text-center">Enroll in upcoming tournaments or join already enrolled teams</h4><br>
-		<p class="text-center">
-			<%= link_to "Upcoming Tournaments", root_path, class: "btn btn-primary btn-sm round" %>
-			<%= link_to "Enrolled Teams", teams_path, class: "btn btn-primary btn-sm round" %>
-		</p>
+		<h3 class="text-center">No tournaments, let's change that!</h3>
+		<h4 class="text-center">Enroll in upcoming <%= link_to "tournaments", root_path, class: "notice" %> or join already enrolled <%= link_to "teams", teams_path, class: "notice" %></h4>
 	<% end %>
 </div>

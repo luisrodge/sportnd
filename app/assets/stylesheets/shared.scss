@@ -146,7 +146,9 @@ body{
     margin: 0;
   }
   .header {
-    margin-bottom: 25px;
+    margin-bottom: 35px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid $light_border;
     h3 {
       margin: 0;
     }
@@ -678,6 +680,9 @@ a.default {
 
 a.notice {
   color: #79BE5B!important;
+  &:hover, &:focus {
+    color: #71BA51!important;
+  }
 }
 
 /* Container */
