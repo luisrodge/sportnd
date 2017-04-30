@@ -27,7 +27,7 @@ module TeamsHelper
 
   def team_available_space(team)
     if team.remaining_space > 0
-      pluralize(team.remaining_space, "Available Space")
+      pluralize(team.remaining_space, "Space")
     else
       "Full"
     end

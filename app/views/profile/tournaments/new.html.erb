@@ -8,15 +8,15 @@
 		<% end %>
 		</ul>
 			<div class="form-group">
-				<%= f.label :capacity, "Number of teams you want in this tournament (minimum of 2 and max of 4)", class: "lb-lg" %>
+				<%= f.label :capacity, "Number of teams you want in this tournament (either 2 or 4)", class: "lb-lg" %>
 				<%= f.text_field :capacity, class: "form-control input-lg" %>
 			</div>
 			<div class="form-group">
-				<%= f.label :team_size, "Number of members each team should have", class: "lb-lg" %>
+				<%= f.label :team_size, "Number of members each team should have (either 2 or 3)", class: "lb-lg" %>
 				<%= f.text_field :team_size, class: "form-control input-lg" %>
 			</div>
 			<div class="form-group">
-				<%= f.label :bet_amount, "Bet amount per each team member", class: "lb-lg" %>
+				<%= f.label :bet_amount, "Bet amount per each team member (maximum of $5.00)", class: "lb-lg" %>
 				<%= f.text_field :bet_amount, class: "form-control input-lg" %>
 			</div>
 			<div class="form-group">
@@ -41,7 +41,7 @@
       </div>
       <div class="form-group">
         <%= f.fields_for :teams, @tournament.teams do |ff| %>
-							<%= ff.label :team_color, "Choose your team color to enroll", class: "lb-lg"  %>
+							<%= ff.label :team_color, "Please choose your team color to enroll", class: "lb-lg"  %>
 							<%= ff.select :color, options_for_select(Color.all.map{ |c| [c.name, c.id] }), {:include_blank => 'Select a color'}, class: "form-control input-lg" %>
 				<% end %>
       </div><br>
