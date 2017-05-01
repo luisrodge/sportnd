@@ -1,8 +1,8 @@
   <div class="members-wrapper">
     <div class="row gutter-60">
       <div class="col-md-12 teams-header">
-        <h4 class="tournament-type pull-left"><%= link_to team.tournament.sport.name + " Tournament", tournament_path(team.tournament), class: "notice" %></h4>
-        <h4 class="datetime pull-right"><%= format_date(team.tournament.date) %> @ <%= team.tournament.venue.address %></h4>
+        <h5 class="tournament-type pull-left"><%= link_to team.tournament.sport.name + " Tournament", tournament_path(team.tournament), class: "notice" %></h5>
+        <h5 class="datetime pull-right gray-txt"><%= team.tournament.venue.address %></h5>
       </div>
       <div class="col-md-5">
         <div class="team-container <%= team.color.name.downcase %>">
@@ -14,10 +14,12 @@
       </div>
       <div class="col-md-7">
         <% team.users.each do |user| %>
-          <div class="col-md-4">
-            <h5 class="truncate"><%= user.full_name %></h5>
-            <%= image_tag(user.profile_image_url(:medium), class: "img-circle") if user.profile_image? %>
-          </div>
+            <div class="col-md-4">
+              <%= link_to member_path(user) do %>
+                <h5 class="truncate"><%= user.full_name %></h5>
+                <%= image_tag(user.profile_image_url(:medium), class: "img-circle") if user.profile_image? %>
+              <% end %>
+            </div>
         <% end %>
       </div>
     </div>
