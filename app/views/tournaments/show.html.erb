@@ -51,7 +51,7 @@
 		            <%= form_for [:profile, @tournament, Team.new] do |f| %>
 		              <div class="form-group">
 		                <div class="select-style">
-		                  <%= f.select :color_id, options_for_select(Color.where.not(id: @tournament.teams.select(:color_id)).map{ |c| [c.name, c.id] }), {:include_blank => 'Choose your team color'}, class: "form-control input-lg" %>
+		                  <%= f.select :color_id, options_for_select(Color.where.not(id: @tournament.teams.select(:color_id)).map{ |c| [c.name, c.id] }), {}, class: "form-control input-lg selectpicker", title: "Choose your team color" %>
 		                </div>
 		              </div>
 		              <%= f.submit "Enroll", class: "btn btn-primary btn-block round" %>

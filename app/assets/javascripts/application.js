@@ -3,6 +3,7 @@
 //= require moment
 //= require lodash
 //= require bootstrap-sprockets
+//= require bootstrap-select
 //= require sweetalert2
 //= require sweet-alert2-rails
 //= require infinite_scrolling

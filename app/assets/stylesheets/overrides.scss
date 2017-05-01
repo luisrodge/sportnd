@@ -8,6 +8,12 @@ label {
   background-color: #a5d392;
 }
 
+.bootstrap-select {
+	.text {
+		font-size: 16px!important;
+	}
+}
+
 /* LINKS */
 a {
 	color:inherit;
@@ -22,10 +28,6 @@ a:focus, a:hover {
 /* INPUTS */
 input[type='text'], input[type='email'], input[type='password']{
 	border-radius: 0;
-}
-
-select {
-	border-radius:0px!important;
 }
 
 /* LABELS */
@@ -162,18 +164,25 @@ select {
 ******************************************************/
 
 .btn-default {
-	border: 2px solid #FFF;
-	color: #FFF;
+	color: #5C5C5C!important;
 	padding: 12px 22px;
+	border: 1px solid $light_border!important;
+	font-weight: normal;
+	font-size: 16px;
 }
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
-	background: #e95949;
+	background: #FFF;
+	border: 1px solid $light_border!important;
 	border-color: #FFF;
-	color: #FFF;
+	color: #5C5C5C;
+	font-weight: normal;
+	outline: none;
 }
 .btn-default:active, .btn-default.active {
-	border-color: #FFF;
+	border: 1px solid $light_border!important;
 	box-shadow: none;
+	font-weight: normal;
+	outline: none;
 }
 .btn-primary {
 	background: #5fa441;
