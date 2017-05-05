@@ -3,8 +3,8 @@ $(function() {
         return;
     }
 
-    let today = new Date();
-    let mindate = new Date();
+    var today = new Date();
+    var mindate = new Date();
     if (today.getDay() == 6) { // Saturday
         mindate.setDate(today.getDate() + 2);
     } else if (today.getDay() == 0) { // Sunday
