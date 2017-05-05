@@ -25,7 +25,7 @@ class Team < ApplicationRecord
 	# A member can join if a team has space & the tournament date is in the future
 	def self.enrolled_in_tournaments
 		#joins(:users).joins(:tournament).group("teams.id").having("count(users.id) <  tournaments.team_size").select{ |t| t.tournament.enrollment_period? == true }
-		joins(:users).joins(:tournament).group("teams.id").having("count(users.id) <  tournaments.team_size AND DATE(tournaments.date) > ?", Date.today).order("created_at DESC")
+		joins(:users).joins(:tournament).group("teams.id").group("tournaments.id").having("count(users.id) <  tournaments.team_size AND DATE(tournaments.date) > ?", Date.today).order("created_at DESC")
 	end
 
 end
