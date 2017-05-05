@@ -10,12 +10,4 @@
 
 @import "shared";
 
-@font-face {
-  font-family: 'OpenSans-Regular';
-  src:url('OpenSans-Regular.ttf');
-}
-
-@font-face {
-  font-family: 'Revalia-Regular';
-  src:url('Revalia-Regular.ttf');
-}
+@import 'fonts';
