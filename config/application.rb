@@ -13,5 +13,7 @@ module TeamSports
     # -- all .rb files in that directory are automatically loaded.
     config.time_zone = 'America/Belize'
     config.active_record.default_timezone = :local
+
+    config.assets.paths += %w(fonts)
   end
 end
