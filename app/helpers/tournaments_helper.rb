@@ -24,4 +24,14 @@ module TournamentsHelper
     end
   end
 
+  def profile_tournament_date(tournament)
+    if tournament.date.to_date == Date.tomorrow
+      "Tomorrow @ around #{tournament.time.strftime("%I:%M%p")}"
+    elsif tournament.date.to_date == Date.today
+      "Today @ around #{tournament.time.strftime("%I:%M%p")}"
+    else
+      tournament.date.strftime("%A %b %d") + " @ around " + tournament.time.strftime("%I:%M%p")
+    end
+  end
+
 end

@@ -20,7 +20,7 @@ class Tournament < ApplicationRecord
   accepts_nested_attributes_for :teams
 
   # Pagination for infinite scroll feature
-  paginates_per 4
+  paginates_per 6
 
   # Prevents a user from starting a tournament on a date that he/she is already enrolled in another tournament
   def start_new_tournament?

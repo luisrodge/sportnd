@@ -11,7 +11,7 @@ class Team < ApplicationRecord
 	validates_presence_of :color
 
 	# Pagination for infinite scroll feature
-  paginates_per 4
+  paginates_per 6
 
 	def is_member?(user)
 		users.exists?(user)

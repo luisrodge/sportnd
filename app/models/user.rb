@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   include Obfuscate
-  
+
   mount_uploader :profile_image, ProfileImageUploader
 
   devise :database_authenticatable, :registerable,
@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :tournaments, through: :enrollments
 
   # Pagination for infinite scroll feature
-  paginates_per 4
+  paginates_per 6
 
   MAX_ENROLLMENTS = 2
 
