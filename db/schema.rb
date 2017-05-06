@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170426164157) do
+ActiveRecord::Schema.define(version: 20170506213712) do
 
   create_table "challenges", force: :cascade do |t|
     t.integer  "team_id"
@@ -85,15 +85,15 @@ ActiveRecord::Schema.define(version: 20170426164157) do
     t.integer  "capacity"
     t.integer  "venue_id"
     t.integer  "sport_id"
-    t.string   "status",                               default: "enroll"
     t.datetime "date"
     t.decimal  "bet_amount",   precision: 8, scale: 2
-    t.datetime "created_at",                                              null: false
-    t.datetime "updated_at",                                              null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "organizer_id"
     t.integer  "team_size"
     t.time     "time"
     t.string   "hash_id"
+    t.date     "eowd_date"
     t.index ["organizer_id"], name: "index_tournaments_on_organizer_id"
     t.index ["sport_id"], name: "index_tournaments_on_sport_id"
     t.index ["venue_id"], name: "index_tournaments_on_venue_id"

@@ -21,9 +21,7 @@ class Profile::TournamentsController < ApplicationController
 	# Associate organizer in saved tournament
 	def create
 		@tournament = Tournament.new(tournament_params)
-		date_format = "%m/%d/%Y %I:%M %p"
-  	#date = DateTime.strptime(params[:tournament][:date], date_format).change(offset: Time.now.strftime("%z")).to_s
-		#@tournament.date = date
+		@tournament.eowd_date = params[:tournament][:date].to_date.end_of_week - 2
 		@tournament.organizer = current_user
 		if @tournament.valid?
 			@tournament.save
@@ -50,6 +48,6 @@ class Profile::TournamentsController < ApplicationController
 
 	def tournament_params
 		params.require(:tournament).permit(:name, :capacity, :team_size, :bet_amount,
-			:sport_id, :venue_id, :date, :time, :organizer_id, :hash_id)
+			:sport_id, :venue_id, :date, :time, :eowd_date, :organizer_id, :hash_id)
 	end
 end
