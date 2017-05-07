@@ -1,9 +1,5 @@
 <% if Venue.any? %>
-	<div class="application-col">
 		<div class="row">
-			<div class="col-md-12">
-				<h3>Sporting Venues Across Belize</h3>
-			</div>
 			<div class="col-md-12">
 				<div class="row">
 					<% Venue.all.each do |venue| %>
@@ -27,5 +23,4 @@
 				</div>
 			</div>
 		</div>
-	</div>
 <% end %>

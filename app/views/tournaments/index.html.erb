@@ -1,5 +1,4 @@
 <% if Tournament.any? %>
-	<div class="application-col">
 		<div class="js-items-container">
 			<%= render partial: 'tournaments/tournament', collection: @tournaments %>
 		</div>
@@ -8,5 +7,4 @@
 				<%= image_tag 'ajax-loader.gif' %>
 			</div>
 		</div>
-	</div>
 <% end %>

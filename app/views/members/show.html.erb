@@ -1,14 +1,13 @@
-<div class="application-col">
   <div class="row text-center member-header">
     <%= image_tag(@user.profile_image_url(:normal), class: "img-circle default") if @user.profile_image? %>
     <h4><%= @user.full_name %></h4>
     <h4><%= member_tournaments_count(@user) %></h4>
   </div>
   <% if @user.upcoming_tournaments.any? %>
-    <h3 class="text-center gen-title">Upcoming Tournaments</h3><br>
     <% @user.upcoming_tournaments.each do |tournament| %>
         <div class="member-tournament">
           <%= link_to tournament_path(tournament) do %>
+            <div class="box-shadow">
             <div class="row gutter-60">
               <div class="col-md-12 header-address">
                 <h5 class="pull-left"><%= tournament.sport.name %> Tournament</h5>
@@ -30,6 +29,8 @@
         					</div>
               </div>
             </div>
+          </div>
+
           <% end %>
         </div>
     <% end %>
@@ -37,4 +38,3 @@
   <hr>
     <h3 class="text-center">No Upcoming Tournaments</h3>
   <% end %>
-</div>

@@ -8,7 +8,6 @@ body{
     font-family: 'Open Sans', sans-serif;
     font-size:16px;
     color: $dark;
-    background: #71BA51;
 }
 
 #main {
@@ -16,14 +15,9 @@ body{
 }
 
 .details-shadow {
-  border: 1px solid #f1f1f1;
-  border-radius: 2px;
-  padding: 0 20px;
-  padding-top: 15px;
-  padding-bottom: 10px;
-  margin-bottom: 25px;
+  margin-bottom: 18px;
   .progress-container {
-    margin-top: 15px;
+    margin-top: 20px;
     h4 {
       padding-top: 15px;
     }
@@ -50,6 +44,15 @@ body{
 
 .members.show {
   display: flex!important;
+  .box-shadow {
+    margin-bottom: 40px;
+    h4 {
+      padding-bottom: 10px;
+    }
+    &:last-of-type {
+      margin: 0;
+    }
+  }
 }
 
 .gen-title {
@@ -73,11 +76,9 @@ body{
 }
 
 .member-tournament {
-  margin-bottom: 45px;
-  border-bottom: 1px solid $light_border;
-  padding-bottom: 40px;
+  margin-bottom: 40px;
   .header-address {
-    margin-bottom: 24px;
+
   }
   .col-md-8 {
     h4 {
@@ -86,8 +87,7 @@ body{
     }
   }
   &:last-of-type {
-    border: none;
-    padding-bottom: 0;
+    margin-bottom: 0;
   }
 }
 
@@ -102,10 +102,17 @@ body{
   }
 }
 
+.box-shadow {
+  border-radius: 2px;
+  border: 1px solid #f1f1f1;
+  padding: 35px;
+}
+
 .application-col {
     background: #FFF;
     padding: 40px;
     border-radius: 2px;
+    border: 1px solid #f1f1f1;
 }
 
 .application-col.closed {
@@ -138,14 +145,9 @@ body{
 
   }
   .member {
-    margin-bottom: 20px;
-    border-bottom: 1px solid $light_border;
-    padding-bottom: 21px;
+    margin-bottom: 40px;
     &:last-of-type {
-      border: none;
       margin-bottom: 0;
-      padding-bottom: 0;
-
     }
   }
 }
@@ -176,10 +178,8 @@ body{
     }
   }
   .members-wrapper {
-    border-bottom: 1px solid $light_border;
-    margin-bottom: 35px;
+    margin-bottom: 40px;
     &:last-of-type {
-      border-bottom: none;
       margin-bottom: 0;
     }
     .teams-header {
@@ -202,7 +202,6 @@ body{
   .col-md-5{
     .team-container {
       background: #FFF;
-      margin-bottom: 40px;
       h4 {
         margin: 0;
         padding-bottom: 6px;
@@ -236,7 +235,10 @@ body{
 }
 
 .tournament-address{
-  margin-bottom: 24px;
+  margin-bottom: 38px;
+  h5 {
+    margin: 0;
+  }
 }
 
 .team-members {
@@ -329,14 +331,10 @@ label.message {
 
 .tournaments.index {
   .tournament {
-      padding-top: 40px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid $light_border;
+    margin-bottom: 40px;
       &:last-of-type {
+        margin: 0;
         border: none;
-      }
-      &:first-of-type {
-        padding-top: 0;
       }
       h4 {
         margin: 0;
@@ -345,8 +343,27 @@ label.message {
   }
 }
 
+.tournaments.new {
+  label {
+    padding-bottom: 8px;
+  }
+  .form-group {
+    margin-bottom: 30px;
+  }
+  .form-gap {
+    margin-bottom: 38px;
+  }
+}
+
 .profile-header {
   margin-bottom: 50px;
+  p {
+    margin: 0;
+  }
+  h3 {
+    margin: 0;
+    padding-bottom: 20px;
+  }
 }
 
 img.default{
@@ -487,12 +504,12 @@ header{
     }
     margin-bottom: 60px;
     background: #79be5b;
+    border-bottom: 2px solid #5fa441;
     color: #FFF;
     .brand{
-        margin-top:4px;
         a{
             font-family: 'Revalia', cursive;
-            font-size: 28px;
+            font-size: 25px;
             &:hover {
               color: $light_border;
             }
@@ -510,8 +527,8 @@ header{
 
     }
     .col-md-5{
-        line-height: 80px;
-        height: 80px;
+        line-height: 65px;
+        height: 65px;
         .profile-img {
             margin-left: 18px;
         }
@@ -559,10 +576,10 @@ nav.sidebar{
         &:last-of-type {
           border: none;
         }
-        color: #FFF;
+        color: $dark;
           a {
               &:hover {
-                color: $light_border;
+                color: #79BE5B;
               }
           }
     }
@@ -749,6 +766,7 @@ footer{
     padding: 30px 0;
     color: #FFF;
     background: #79be5b;
+    border-top: 2px solid #5fa441;
     h1, h2, h3, h4{
         margin: 0;
     }
