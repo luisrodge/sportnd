@@ -21,6 +21,8 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 gem "pundit"
 
+gem 'active_link_to'
+
 gem "font-awesome-rails"
 
 gem 'friendly_id', '~> 5.1.0'
