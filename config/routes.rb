@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :members , only: [:index]
 
   namespace :profile do
-    resources :venues, only: :new
+    resources :venues, except: [:show, :index]
   	resources :teams do
       resources :memberships, only: [:create, :destroy]
     end
