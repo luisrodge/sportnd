@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- LOVE YOU ALWAYS UNCLE ZANE - ALWAYS. -->
+    <!-- LOVE YOU ALWAYS UNCLE ZANE -->
     <title>Home - Welcome</title>
     <%= csrf_meta_tags %>
 
@@ -12,15 +12,9 @@
   </head>
 
   <body class="<%= controller_name %> <%= action_name %>">
-    <%= render "header" %>
+      <%= render "header" %>
       <div class="container" id="main">
-        <div class="row gutter-70">
-            <%= render "nav" %>
-          <div class="col-md-9">
-            <%= yield %>
-          </div>
-        </div>
+        <%= yield %>
       </div>
-    <%= render "footer" %>
   </body>
 </html>

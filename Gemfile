@@ -23,6 +23,9 @@ gem "pundit"
 
 gem 'active_link_to'
 
+gem 'omniauth-facebook'
+gem 'koala'
+
 gem "font-awesome-rails"
 
 gem 'friendly_id', '~> 5.1.0'

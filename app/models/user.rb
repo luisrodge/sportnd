@@ -1,10 +1,7 @@
 class User < ApplicationRecord
-  include Obfuscate
-
-  mount_uploader :profile_image, ProfileImageUploader
-
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :memberships, dependent: :destroy
   has_many :teams, through: :memberships
@@ -18,6 +15,43 @@ class User < ApplicationRecord
   paginates_per 6
 
   MAX_ENROLLMENTS = 2
+
+  # Devise & Facebook Omniauth
+  def self.new_with_session(params, session)
+    super.tap do |user|
+	    if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+	      user.email = data["email"] if user.email.blank?
+	    end
+    end
+  end
+
+  def self.from_omniauth(auth)
+    # Update picture url for existing user if changed in fb
+    if user = find_by_uid(auth.uid)
+      if auth.info.image.present? && auth.info.image != user.image
+        user.update_attributes(image: auth.info.image)
+      end
+      user
+    else
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+  	    user.email = auth.info.email
+  	    user.password = Devise.friendly_token[0,20]
+  	    user.name = auth.info.name   # assuming the user model has a name
+  	    user.image = auth.info.image # assuming the user model has an image
+  	    user.oauth_token = auth.credentials.token
+  	    user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+
+  	    graph = Koala::Facebook::API.new(auth.credentials.token)
+  	    user_location = graph.get_object("#{auth.uid}?fields=location")
+  	    user.location = user_location["location"]["name"]
+  	  end
+    end
+  end
+
+  # Koala & Facebook
+  def facebook
+  	@facebook ||= Koala::Facebook::API.new(oauth_token)
+  end
 
   # Future tournaments for a user
   def upcoming_tournaments

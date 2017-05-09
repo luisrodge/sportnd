@@ -2,12 +2,7 @@ Rails.application.routes.draw do
   root 'tournaments#index'
   get 'information', to: 'pages#information'
 
-  devise_for :users, skip: [:sessions]
-  as :user do
-    get 'sign_in', to: 'devise/sessions#new', as: :new_user_session
-    post 'sign_in', to: 'devise/sessions#create', as: :user_session
-    delete 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
-  end
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resource :tournaments, only: :index do
     get :pagination

@@ -7,15 +7,42 @@
       </div>
       <div class="col-md-5">
         <div class="pull-right">
-          <% if !user_signed_in? %>
-            <%= link_to "Sign In", new_user_session_path %>
-            <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-sm round" %>
+          <% unless current_user %>
+            <a href="#" type="button" data-toggle="modal" data-target="#authModal">Log In</a>
+            <a href="#" class="btn btn-primary btn-sm round" type="button" data-toggle="modal" data-target="#authModal">Sign Up</a>
           <% else %>
             <%= link_to "My Tournaments", profile_tournaments_path, class: "my-tournaments-btn" %>
-            <%= image_tag(current_user.profile_image_url(:small), class: "img-circle default profile-img") if current_user.profile_image? %>
+            <%= image_tag(current_user.image + "?type=square", class: "img-circle default profile-img")  %>
           <% end %>
         </div>
       </div>
+    </div>
+  </div>
+  <!-- Sign In & Sign Up Modal -->
+  <div id="authModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title text-center">Login To Join The Community</h3>
+          <p class="text-center modal-subtitle">Made in Belize for belizeans!</p>
+        </div>
+        <div class="modal-body text-center">
+          <div class="body-content">
+            <p>
+              Sportnd is a community platform where anyone can organize and enroll in all inclusive
+              betting based sporting tournaments which are played exclusively on weekends.
+            </p>
+          </div>
+          <%= link_to "Log In With Facebook", user_facebook_omniauth_authorize_path, class: "facebook-btn" %>
+        </div>
+        <div class="modal-footer">
+          <h5 class="text-center">We will never post to your Facebook without permission from you.</h5>
+        </div>
+      </div>
+
     </div>
   </div>
 </header>
