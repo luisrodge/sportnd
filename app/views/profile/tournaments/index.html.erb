@@ -5,7 +5,7 @@
 				<p class="text-center"><%= link_to "New Tournament", new_profile_tournament_path, class: "btn btn-primary round" %></p>
 			</div>
 		<% else %>
-			<div class="col-md-12">
+			<div class="col-md-12 cant-start-tournament">
 				<h3 class="text-center">Use The Weekend To Organize Your Own Tournaments</h3>
 				<p class="text-center"><%= link_to "New Tournament", new_profile_tournament_path, class: "btn btn-primary disabled round" %></p>
 			</div>
