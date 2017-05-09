@@ -68,8 +68,9 @@ body{
 
 .details-shadow {
   margin-bottom: 18px;
+  color: #000;
   .progress-container {
-    margin-top: 20px;
+    margin-top: 10px;
     h4 {
       padding-top: 10px;
     }
@@ -510,35 +511,35 @@ ul.teams {
 }
 
 .team-container.red {
-  border: 1px solid #e74c3c;
+  border: 2px solid #e74c3c;
 }
 
 .team-container.gray {
-  border: 1px solid #C7C7C7;
+  border: 2px solid #C7C7C7;
 }
 
 .team-container.green {
-  border: 1px solid #55C34D;
+  border: 2px solid #55C34D;
 }
 
 .team-container.orange {
-  border: 1px solid #FF7416;
+  border: 2px solid #FF7416;
 }
 
 .team-container.yellow {
-  border: 1px solid #FCB410;
+  border: 2px solid #FCB410;
 }
 
 .team-container.white {
-  border: 1px solid $light_border;
+  border: 2px solid $light_border;
 }
 
 .team-container.blue {
-  border: 1px solid #3D8EB9;
+  border: 2px solid #3D8EB9;
 }
 
 .team-container.black {
-  border: 1px solid #333333;
+  border: 2px solid #333333;
 }
 
 figure {
@@ -725,9 +726,9 @@ hr.st {
     .details {
         margin-top: 20px;
         padding: 18px;
-        border: 1px solid #79BE5B;
+        border: 2px solid #79BE5B;
         border-radius: 2px;
-        color:$dark;
+        color: #000;
         border-radius: 2px;
         h4 {
             font-size: 20px;

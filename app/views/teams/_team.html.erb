@@ -1,10 +1,10 @@
   <div class="members-wrapper box-shadow">
     <div class="row gutter-60">
       <div class="col-md-12 teams-header">
-        <h4 class="tournament-type pull-left"><%= link_to team.tournament.sport.name + " Tournament", tournament_path(team.tournament), class: "notice" %></h4>
+        <h5 class="tournament-type pull-left"><%= link_to team.tournament.sport.name + " Tournament", tournament_path(team.tournament), class: "notice" %></h5>
         <h5 class="datetime pull-right"><%= team.tournament.venue.address %></h5>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-5 col-sm-5 col-xs-5">
         <div class="team-container <%= team.color.name.downcase %>">
           <h4 class="team-color-name"><%= team.color.name %> Team</h4>
           <h5><%= team_available_space(team) %></h5>
@@ -12,13 +12,11 @@
           <%= join_btn(team.tournament, team, "sm") %>
         </div>
       </div>
-      <div class="col-md-7">
+      <div class="col-md-7 col-sm-7 col-xs-7">
         <% team.users.each do |user| %>
-            <div class="col-md-4">
-              <%= link_to member_path(user) do %>
-                <h5 class="truncate"><%= user.full_name %></h5>
-                <%= image_tag(user.profile_image_url(:medium), class: "img-circle") if user.profile_image? %>
-              <% end %>
+            <div class="col-md-4 col-sm-4 col-xs-6">
+              <h5 class="truncate"><%= user.name %></h5>
+              <%= profile_image_md(user) %>
             </div>
         <% end %>
       </div>

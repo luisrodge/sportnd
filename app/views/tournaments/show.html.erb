@@ -2,9 +2,13 @@
 	<div class="row">
 			<div class="col-md-12 header">
 				<div class="organizer-details">
-					<h3 class="text-center"><%= @tournament.sport.name %> tournament organized by <%= @tournament.organizer.full_name %></h3>
-					<h4 class="text-center"><%= @tournament.venue.address %></h4>
-					<p class="text-center organizer-img"><%= image_tag(@tournament.organizer.profile_image_url(:normal), class: "img-circle default") if @tournament.organizer.profile_image? %></p>
+					<h3 class="text-center"><%= @tournament.sport.name %> tournament organized by <%= @tournament.organizer.name %></h3>
+					<h4 class="text-center">@ <%= @tournament.venue.address %></h4>
+					<div class="row">
+						<div class="col-md-2 center-block">
+							<p class="organizer-img"><%= profile_image_md(@tournament.organizer) %></p>
+						</div>
+					</div>
 				</div>
 				<div class="details text-center <%= "closed" if !@tournament.enrollment_period? %>">
 					<h4><%= format_datetime(@tournament.date, @tournament.time) %></h4>
@@ -23,11 +27,11 @@
 	</div>
 
 	<div class="row body gutter-60">
-		<div class="col-md-5">
+		<div class="col-md-5 col-sm-5 col-xs-5">
 		  <h3><%= @tournament.venue.name %></h3>
 		  <%= image_tag(@tournament.venue.venue_image_url(:medium)) if @tournament.venue.venue_image? %>
 		</div>
-		<div class="col-md-7">
+		<div class="col-md-7 col-sm-7 col-xs-7">
 		  <% if @tournament.enrollment_period?  %>
 		    <% if user_signed_in? %>
 		      <% if @tournament.enrolled?(current_user) %>
@@ -38,22 +42,22 @@
 		            <%= leave_tournament_btn(@tournament, current_user.team_for_tournament(@tournament)) %>
 		          </div>
 		          <% current_user.team_for_tournament(@tournament).users.each do |user| %>
-		            <div class="col-md-4">
-		              <%= image_tag(user.profile_image_url(:medium), class: "img-circle") if user.profile_image? %>
+		            <div class="col-md-4 col-sm-4 col-xs-4">
+		              <%= image_tag(user.image + "?height=85&width=85", class: "default img-circle")  %>
 		            </div>
 		          <% end %>
 		        </div>
 		      <% else %>
 		        <% if !current_user.has_tournament_this_date?(@tournament) %>
 		          <% if @tournament.remaining_capacity > 0 %>
-		            <h3>Enroll A New Team</h3>
+		            <h3>Enroll New Team</h3>
 		            <h4>Space for <%= pluralize(@tournament.remaining_capacity, "team") %> remaining</h4>
 		            <%= form_for [:profile, @tournament, Team.new] do |f| %>
 		              <div class="form-group">
 		                <div class="select-style">
 		                  <%= f.select :color_id, options_for_select(Color.where.not(id: @tournament.teams.select(:color_id)).map{ |c| [c.name, c.id] }), {}, class: "form-control input-lg selectpicker", title: "Choose your team color" %>
 		                </div>
-		              </div>
+		              </div><br>
 		              <%= f.submit "Enroll", class: "btn btn-primary btn-block round" %>
 		            <% end %>
 		          <% else %>
@@ -67,13 +71,13 @@
 		      <% end %>
 		    <% else %>
 		      <% if @tournament.remaining_capacity > 0 %>
-		        <h3>Enroll A New Team</h3>
+		        <h3>Enroll New Team</h3>
 		        <h4>Space for <%= pluralize(@tournament.remaining_capacity, "team") %> remaining</h4>
 		        <%= form_for [:profile, @tournament, Team.new] do |f| %>
 		          <div class="form-group">
 		            <div class="select-style">
 									<%= f.select :color_id, options_for_select(Color.where.not(id: @tournament.teams.select(:color_id)).map{ |c| [c.name, c.id] }), {}, class: "form-control input-lg selectpicker", title: "Choose your team color" %>
-		            </div>
+		            </div><br>
 		          </div>
 		          <%= f.submit "Enroll", class: "btn btn-primary btn-block round" %>
 		        <% end %>
@@ -93,17 +97,14 @@
 		<div class="row">
 				<div class="col-sm-12">
 					<div class="row gutter-60">
-						<div class="col-md-4">
-							<h3>Teams</h3>
-						</div>
-						<div class="col-md-8">
-							<h3>Members</h3>
+						<div class="col-md-12">
+							<h3>Teams Already Enrolled</h3>
 						</div>
 					</div>
 							<% @tournament.teams.each do |team| %>
 								<div class="team-enrolled">
 									<div class="row gutter-60">
-										<div class="col-md-4">
+										<div class="col-md-4 col-sm-4 col-xs-4">
 											<div class="team-container  <%= team.color.name.downcase %>">
 												<h4 class="text-center"><%= team.color.name %> Team</h4>
 												<h5 class="text-center gray-txt">
@@ -112,12 +113,12 @@
 												<%= join_btn(@tournament, team, "sm") %>
 											</div>
 										</div>
-										<div class="col-md-8">
+										<div class="col-md-8 col-sm-8 col-xs-8">
 											<% team.users.each do |user| %>
 												<div class="col-md-4">
 													<div class="members">
-														<h5 class="truncate"><%= user.full_name %></h5>
-														<%= image_tag(user.profile_image_url(:medium), class: "img-circle") if user.profile_image? %>
+														<h5 class="truncate"><%= user.name %></h5>
+														<%= profile_image_md(user) %>
 													</div>
 												</div>
 											<% end %>

@@ -53,6 +53,10 @@ class User < ApplicationRecord
   	@facebook ||= Koala::Facebook::API.new(oauth_token)
   end
 
+  def friends
+    facebook.get_connections("me", "friends", api_version: 'v2.0')
+  end
+
   # Future tournaments for a user
   def upcoming_tournaments
     tournaments.where("date >= ?", Date.today).order("date ASC")

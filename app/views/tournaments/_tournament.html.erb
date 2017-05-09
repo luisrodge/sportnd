@@ -28,7 +28,7 @@
 							<div class="row gutter-10">
 								<% tournament.users.order("RANDOM()").limit(6).each do |user| %>
 									<div class="col-md-2">
-										<%= image_tag(user.profile_image_url(:medium), class: "img-circle") if user.profile_image? %>
+										<%= profile_image(user) %>
 									</div>
 								<% end %>
 							</div>
