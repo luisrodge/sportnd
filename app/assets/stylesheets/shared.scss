@@ -68,7 +68,7 @@ body{
 
 .details-shadow {
   margin-bottom: 18px;
-  color: #000;
+  color: $dark;
   .progress-container {
     margin-top: 10px;
     h4 {
@@ -241,7 +241,7 @@ h2.devise-title{
       margin-bottom: 0;
     }
     .teams-header {
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       .tournament-type {
         margin: 0;
       }
@@ -465,19 +465,55 @@ img.default{
     margin: 0;
     padding-bottom: 40px;
   }
-  .col-md-4 {
-    margin-bottom: 50px;
-    h4 {
-      padding-bottom: 14px;
-    }
-    h5 {
-      margin: 0;
-      padding-top: 4px;
+  .venues-collection{
+    .col-md-4 {
+      margin-bottom: 50px;
+      h4 {
+        padding-bottom: 14px;
+      }
+      h5 {
+        margin: 0;
+        padding-top: 4px;
+      }
     }
   }
 }
 
+.show-team-container {
+  h4, h5 {
+    margin: 0;
+    padding-bottom: 6px;
+  }
+  .btn {
+    margin-top: 24px;
+  }
+}
+
 /* TEAM COLORS */
+.box-shadow.yellow {
+  border-right: 2px solid #FCB410;
+}
+.box-shadow.red {
+  border-right: 2px solid #e74c3c;
+}
+.box-shadow.green {
+  border-right: 2px solid #55C34D;
+}
+.box-shadow.blue {
+  border-right: 2px solid #3D8EB9;
+}
+.box-shadow.orange {
+  border-right: 2px solid #FF7416;
+}
+.box-shadow.white {
+  border-right: 2px solid $light_border;
+}
+.box-shadow.gray {
+  border-right: 2px solid #C7C7C7;
+}
+.box-shadow.black {
+  border-right: 2px solid #333333;
+}
 
 .team-container {
   padding: 20px;

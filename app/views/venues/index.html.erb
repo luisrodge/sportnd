@@ -1,13 +1,13 @@
 <% if Venue.any? %>
 		<div class="row">
 			<div class="col-md-12">
-				<div class="row">
+				<div class="row venues-collection">
 					<% Venue.all.each do |venue| %>
 						<div class="col-md-4">
 								<figure>
 					    		<%= image_tag(venue.venue_image_url(:medium)) if venue.venue_image? %>
 									<figcaption>
-										<h4><%= venue.name %></h4>
+										<h4 class="truncate"><%= venue.name %></h4>
 										<h5><%= venue.address %></h5>
 										<h5 class="tournaments-count">
 											<% if venue.tournaments_this_week.any? %>

@@ -1,16 +1,14 @@
-  <div class="members-wrapper box-shadow">
+  <div class="members-wrapper box-shadow <%= team.color.name.downcase %>">
     <div class="row gutter-60">
       <div class="col-md-12 teams-header">
         <h5 class="tournament-type pull-left"><%= link_to team.tournament.sport.name + " Tournament", tournament_path(team.tournament), class: "notice" %></h5>
         <h5 class="datetime pull-right"><%= team.tournament.venue.address %></h5>
       </div>
-      <div class="col-md-5 col-sm-5 col-xs-5">
-        <div class="team-container <%= team.color.name.downcase %>">
+      <div class="col-md-5 col-sm-5 col-xs-5 show-team-container">
           <h4 class="team-color-name"><%= team.color.name %> Team</h4>
           <h5><%= team_available_space(team) %></h5>
           <h5>Bet Entry @ <%= money_format(team.tournament.bet_amount) %></h5>
           <%= join_btn(team.tournament, team, "sm") %>
-        </div>
       </div>
       <div class="col-md-7 col-sm-7 col-xs-7">
         <% team.users.each do |user| %>
