@@ -26,14 +26,7 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    # Update picture url for existing user if changed in fb
-    if user = find_by_uid(auth.uid)
-      if auth.info.image.present? && auth.info.image != user.image
-        user.update_attributes(image: auth.info.image)
-      end
-      user
-    else
-      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
   	    user.email = auth.info.email
   	    user.password = Devise.friendly_token[0,20]
   	    user.name = auth.info.name   # assuming the user model has a name
@@ -44,7 +37,6 @@ class User < ApplicationRecord
   	    graph = Koala::Facebook::API.new(auth.credentials.token)
   	    user_location = graph.get_object("#{auth.uid}?fields=location")
   	    user.location = user_location["location"]["name"]
-  	  end
     end
   end
 
