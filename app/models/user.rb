@@ -34,9 +34,9 @@ class User < ApplicationRecord
   	    user.oauth_token = auth.credentials.token
   	    user.oauth_expires_at = Time.at(auth.credentials.expires_at)
 
-  	    graph = Koala::Facebook::API.new(auth.credentials.token)
-  	    user_location = graph.get_object("#{auth.uid}?fields=location")
-  	    user.location = user_location["location"]["name"]
+  	    #graph = Koala::Facebook::API.new(auth.credentials.token)
+  	    #user_location = graph.get_object("#{auth.uid}?fields=location")
+  	    #user.location = user_location["location"]["name"]
     end
   end
 
