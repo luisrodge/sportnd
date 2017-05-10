@@ -23,6 +23,7 @@ class Team < ApplicationRecord
 
 	# Teams that a member can join under certain conditions
 	# A member can join if a team has space & the tournament date is in the future
+	# * Friends on facebook
 	def self.enrolled_in_tournaments
 		joins(:users).joins(:tournament).group("teams.id").group("tournaments.id").having("count(users.id) <  tournaments.team_size AND tournaments.eowd_date >= ?", Date.today).order("created_at DESC")
 	end
