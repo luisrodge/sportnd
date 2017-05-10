@@ -48,6 +48,16 @@ class User < ApplicationRecord
     end
   end
 
+  def token_expired?
+    return true if expires_at < Time.now
+    false
+  end
+
+  def update_token(auth)
+    self.token = auth.credentials.token
+    self.save
+  end
+
   # Koala & Facebook
   def facebook
   	@facebook ||= Koala::Facebook::API.new(oauth_token)
