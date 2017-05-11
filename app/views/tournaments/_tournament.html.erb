@@ -3,8 +3,8 @@
 	<%= link_to tournament_path(tournament) do %>
 			<div class="row tournament-address">
 				<div class="col-md-12">
-					<h5 class="pull-left"><%= tournament.sport.name %> Tournament  <% if tournament.full? %><span class="tournament-full">Full</span><% end %></h5>
-					<h5 class="pull-right"><%= tournament.venue.name + ", " + tournament.venue.address %></h5>
+					<h5 class="pull-left"><%= tournament.venue.name + ", " + tournament.venue.address %></h5>
+					<h5 class="pull-right"><%= tournament.sport.name %> Tournament  <% if tournament.full? %><span class="tournament-full">Full</span><% end %></h5>
 				</div>
 			</div>
 			<div class="row gutter-60">

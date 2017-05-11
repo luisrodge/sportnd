@@ -611,12 +611,11 @@ header{
     }
     margin-bottom: 60px;
     background: #79be5b;
-    border-bottom: 2px solid #5fa441;
     color: #FFF;
     .brand{
         a{
             font-family: 'Revalia', cursive;
-            font-size: 25px;
+            font-size: 26px;
             &:hover, &:focus{
               color: #FFF;
               text-decoration: none;
@@ -637,7 +636,7 @@ header{
             border-radius: 4px;
         }
         .my-tournaments-btn {
-          font-size: 18px;
+          font-size: 19px;
         }
         .auth{
             border: 2px solid #FFF;
@@ -657,7 +656,7 @@ header{
 }
 
 nav.sidebar{
-  font-size: 18px;
+  font-size: 20px;
     .search-form {
       margin-top: 12px;
       margin-bottom: 25px;
@@ -718,12 +717,10 @@ hr.st {
 }
 
 .tournaments.show {
-    h4 {
-        margin: 0;
-        margin-bottom: 6px;
-    }
+
     .progress-container {
-        margin-top: 20px;
+        margin-top: 50px;
+        margin-bottom: 60px;
     }
     .team-enrolled {
       border-bottom: 1px solid $light_border;
@@ -740,20 +737,6 @@ hr.st {
         }
       }
     }
-    .organizer-details {
-        h3 {
-            padding-bottom: 5px;
-        }
-        h3, h4 {
-            margin:0;
-        }
-        h4 {
-          font-size: 20px;
-        }
-        img{
-            margin-top: 12px;
-        }
-    }
     .enrolled-team{
         .header{
             margin-bottom: 24px;
@@ -765,7 +748,7 @@ hr.st {
     }
     .enrolled-teams {
         margin-top: 60px;
-        padding-top: 30px;
+        padding-top: 50px;
         border-top: 1px solid $light_border;
         h3 {
             margin: 0;
@@ -773,15 +756,11 @@ hr.st {
         }
     }
     .details {
-        margin-top: 20px;
-        padding: 18px;
-        border: 2px solid #79BE5B;
         border-radius: 2px;
         color: #000;
         border-radius: 2px;
-        h4 {
-            font-size: 20px;
-            padding-bottom: 11px;
+        h3 {
+            padding-bottom: 14px;
             margin:0;
             &:last-of-type {
                 padding-bottom: 0
@@ -792,7 +771,7 @@ hr.st {
         margin-top: 40px;
         h3 {
             margin: 0;
-            margin-bottom: 18px;
+            margin-bottom: 28px;
         }
     }
     .manage-tournament {
@@ -800,6 +779,19 @@ hr.st {
         margin-top: 50px;
         padding-top: 40px;
     }
+}
+
+.tournament-header {
+  margin-bottom: 20px;
+  h2, h3 {
+    margin: 0;
+  }
+  h2{
+    padding-bottom: 4px;
+  }
+  img {
+    margin-top: 20px;
+  }
 }
 
 .my-tournaments {
@@ -872,7 +864,6 @@ footer{
     padding: 18px 0;
     color: #FFF;
     background: #79be5b;
-    border-top: 2px solid #5fa441;
     h1, h2, h3, h4{
         margin: 0;
     }
