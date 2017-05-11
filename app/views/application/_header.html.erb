@@ -8,7 +8,7 @@
       <div class="col-md-5">
         <div class="pull-right">
           <% unless current_user %>
-            <a href="#" type="button" data-toggle="modal" data-target="#authModal">Log In</a>
+            <%= link_to "Log In", user_facebook_omniauth_authorize_path %>
             <a href="#" class="btn btn-primary btn-sm round" type="button" data-toggle="modal" data-target="#authModal">Sign Up</a>
           <% else %>
             <%= link_to "My Tournaments", profile_tournaments_path, class: "my-tournaments-btn" %>
