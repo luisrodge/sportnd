@@ -11,16 +11,16 @@ class Tournament < ApplicationRecord
   has_many :enrollments, dependent: :destroy
   has_many :users, -> { distinct }, through: :enrollments
 
-  validates_presence_of :capacity, :team_size, :bet_amount, :sport_id, :venue_id, :date, :time
-  validates :capacity, numericality: { only_integer: true, greater_than_or_equal_to: 2, less_than_or_equal_to: 4 }
-  validates :team_size, numericality: { only_integer: true, greater_than_or_equal_to: 2, less_than_or_equal_to: 3 }
-  validates :bet_amount, numericality: true
-  validate :start_new_tournament?, :organized_tournament_this_week?, if: :date
-
-  accepts_nested_attributes_for :teams
+  #validates_presence_of :capacity, :team_size, :bet_amount, :sport_id, :venue_id, :date, :time
+  #validates :capacity, numericality: { only_integer: true, greater_than_or_equal_to: 2, less_than_or_equal_to: 4 }
+  #validates :team_size, numericality: { only_integer: true, greater_than_or_equal_to: 2, less_than_or_equal_to: 3 }
+  #validates :bet_amount, numericality: true
+  #validate :start_new_tournament?, :organized_tournament_this_week?, if: :date
 
   # Pagination for infinite scroll feature
   paginates_per 6
+
+  attr_accessor :team_color_id
 
   # Prevents a user from starting a tournament on a date that he/she is already enrolled in another tournament
   def start_new_tournament?

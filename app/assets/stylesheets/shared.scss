@@ -406,14 +406,49 @@ label.message {
 }
 
 .tournaments.new {
+  .new-header{
+    margin-bottom: 60px;
+    border-bottom: 1px solid #f1f1f1;
+    padding-bottom: 30px;
+    h2, h4 {
+      margin: 0;
+    }
+    h2 {
+      padding-bottom: 4px;
+    }
+  }
   label {
     padding-bottom: 8px;
   }
   .form-group {
-    margin-bottom: 30px;
+    margin-bottom: 48px;
   }
   .form-gap {
-    margin-bottom: 38px;
+    margin-bottom: 58px;
+  }
+  section{
+    margin-bottom: 20px;
+    &:last-of-type {
+      margin: 0;
+    }
+  }
+  .tournament-info {
+    border: 1px solid #dce0e0;
+    border-bottom: 2px solid #79BE5B;
+    padding: 20px;
+    border-radius: 2px;
+    .fa.fa-lightbulb-o{
+      font-size: 32px;
+      color: #79BE5B;
+    }
+    .info-title {
+      color: #000;
+      margin: 0;
+      padding-bottom: 6px;
+    }
+    p {
+      color: $gray;
+    }
   }
 }
 
@@ -717,7 +752,17 @@ hr.st {
 }
 
 .tournaments.show {
-
+    .tournament-details {
+      border: 1px solid #dce0e0;
+      padding: 20px 10px;
+      h3 {
+        margin: 0;
+        padding-bottom: 10px;
+        &:last-of-type {
+          padding: 0;
+        }
+      }
+    }
     .progress-container {
         margin-top: 50px;
         margin-bottom: 60px;
@@ -830,7 +875,7 @@ a.notice {
 /* Container */
 @media (min-width: 1200px) {
     .container{
-        max-width: 960px;
+        max-width: 900px;
     }
 }
 

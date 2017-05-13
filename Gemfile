@@ -23,6 +23,8 @@ gem "pundit"
 
 gem 'active_link_to'
 
+gem 'simple_form'
+
 gem 'omniauth-facebook'
 gem 'koala'
 

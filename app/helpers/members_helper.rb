@@ -20,4 +20,8 @@ module MembersHelper
     image_tag(user.image + "?width=180&height=180", class: "img-circle")
   end
 
+  def tournament_profile_img(user)
+    image_tag(user.image + "?width=110&height=110", class: "img-circle default")
+  end
+
 end

@@ -7,8 +7,6 @@ module TeamsHelper
           team.users.count < tournament.team_size && !current_user.has_tournament_this_date?(tournament)
           button_to "Join", profile_team_memberships_path(team), method: :post, class: "btn btn-primary btn-#{btn_size} btn-block round"
         end
-      else
-        "Not friends with team leader (#{team.captain.name})"
       end
     else
       if tournament.enrollment_period? && team.remaining_space > 0

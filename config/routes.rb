@@ -27,6 +27,14 @@ Rails.application.routes.draw do
   	resources :teams do
       resources :memberships, only: [:create, :destroy]
     end
+    resource :new_tournament do
+      get :step1
+      get :step2
+      get :step3
+      get :step4
+
+      post :validate_step
+    end
   	resources :tournaments do
       resources :teams, except: [:show, :index]
   	end

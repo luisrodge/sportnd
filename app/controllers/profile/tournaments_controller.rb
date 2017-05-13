@@ -1,5 +1,6 @@
 class Profile::TournamentsController < ApplicationController
 	before_action :authenticate_user!
+	layout 'full', only: :new
 
 	def index
 	end
@@ -13,7 +14,6 @@ class Profile::TournamentsController < ApplicationController
 	def new
 		authorize Tournament
 		@tournament = Tournament.new
-		@tournament.teams.build
 	end
 
 	# Create a new tournament
@@ -25,7 +25,7 @@ class Profile::TournamentsController < ApplicationController
 		@tournament.organizer = current_user
 		if @tournament.valid?
 			@tournament.save
-			team = @tournament.teams.new(color_id: params[:tournament][:teams_attributes]["0"][:color])
+			team = @tournament.teams.new(color_id: params[:tournament][:team_color_id])
 			team.captain = current_user
 			team.save
 			@tournament.users << current_user
@@ -48,6 +48,6 @@ class Profile::TournamentsController < ApplicationController
 
 	def tournament_params
 		params.require(:tournament).permit(:name, :capacity, :team_size, :bet_amount,
-			:sport_id, :venue_id, :date, :time, :eowd_date, :organizer_id, :hash_id)
+			:sport_id, :venue_id, :date, :time, :team_color_id, :eowd_date, :organizer_id, :hash_id)
 	end
 end

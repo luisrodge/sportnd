@@ -6,10 +6,10 @@
 	</div>
 </div>
 
-<div class="box-shadow details">
+<div class="tournament-details">
 	<div class="row">
-			<div class="col-md-12 header">
-				<div class="text-center <%= "closed" if !@tournament.enrollment_period? %>">
+			<div class="col-md-12">
+				<div class="text-center">
 					<h3><%= format_datetime(@tournament.date, @tournament.time) %></h3>
 					<h3>Open to <%= pluralize(@tournament.capacity, "team") %> with <%= pluralize(@tournament.team_size, "member") %> per team</h3>
 					<h3>Bet entry at <%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per team member</h3>
@@ -27,9 +27,9 @@
 	</div>
 </div>
 
-	<div class="row body gutter-60">
+	<div class="row body gutter-80">
 		<div class="col-md-5 col-sm-5 col-xs-5">
-		  <h3><%= @tournament.venue.name %></h3>
+		  <h3 class="truncate"><%= @tournament.venue.name %></h3>
 		  <%= image_tag(@tournament.venue.venue_image_url(:medium)) if @tournament.venue.venue_image? %>
 		</div>
 		<div class="col-md-7 col-sm-7 col-xs-7">

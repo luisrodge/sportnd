@@ -13,8 +13,10 @@
 
   <body class="<%= controller_name %> <%= action_name %>">
       <%= render "header" %>
-      <div class="container" id="main">
+
+      <div class="container">
         <%= yield %>
       </div>
+      <%= render "footer" %>
   </body>
 </html>

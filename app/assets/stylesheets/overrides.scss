@@ -3,11 +3,6 @@ label {
 	font-weight: normal;
 }
 
-/* TURBOLINKS PROGRESS */
-.turbolinks-progress-bar {
-  background-color: #a5d392;
-}
-
 .bootstrap-select {
 	.text {
 		font-size: 18px!important;
@@ -15,8 +10,12 @@ label {
 }
 
 input[type="text"], input[type="number"], input[type="email"], input[type="password"] {
-	border: 1px solid #E8E8E8 !important;
+	border: 1px solid #878787 !important;
 	box-shadow: none;
+	border-radius: 2px!important;
+	&:focus {
+		border: 1px solid #404040 !important;
+	}
 }
 
 /* LINKS */
@@ -28,11 +27,6 @@ a:focus, a:hover {
 	outline: none;
 	color:inherit;
 	text-decoration:none;
-}
-
-/* INPUTS */
-input[type='text'], input[type='email'], input[type='password']{
-	border-radius: 0;
 }
 
 /* LABELS */
@@ -67,6 +61,15 @@ input[type='text'], input[type='email'], input[type='password']{
 }
 
 /* BOOTSTRAP COLUMN GUTTERS */
+/* 80px gutter */
+.gutter-100.row {
+  margin-right: -85px;
+  margin-left: -85px;
+}
+.gutter-100 > [class^="col-"], .gutter-100 > [class^=" col-"] {
+  padding-right: 85px;
+  padding-left: 85px;
+}
 /* 80px gutter */
 .gutter-80.row {
   margin-right: -40px;
@@ -171,7 +174,8 @@ input[type='text'], input[type='email'], input[type='password']{
 .btn-default {
 	color: #5C5C5C!important;
 	padding: 12px 22px;
-	border: 1px solid $light_border!important;
+	border: 1px solid #878787 !important;
+	border-radius: 2px;
 	font-weight: normal;
 	font-size: 20px;
 }

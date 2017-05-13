@@ -1,7 +1,8 @@
-<div class="row">
-	<div class="col-md-10 center-block">
-		<h2 class="text-center">Kick off your new tournament</h2><br>
-		<div class="box-shadow">
+<div class="row gutter-100">
+	<div class="col-md-7">
+		<div class="new-header">
+			<h2 class="text-center">Kick off your new tournament</h2>
+		</div>
 		<%= form_for [:profile, @tournament] do |f| %>
 		<ul>
 		<% @tournament.errors.full_messages.each do |msg| %>
@@ -9,47 +10,58 @@
 		<% end %>
 		</ul>
 			<div class="form-group">
-				<%= f.label :capacity, "Number of teams you want in this tournament (either 2 or 4)", class: "lb-lg" %>
+				<%= f.label :capacity, "How many teams can enroll?", class: "lb-lg" %>
 				<%= f.text_field :capacity, class: "form-control input-lg" %>
 			</div>
 			<div class="form-group">
-				<%= f.label :team_size, "Number of members each team should have (either 2 or 3)", class: "lb-lg" %>
+				<%= f.label :team_size, "Members per team?", class: "lb-lg" %>
 				<%= f.text_field :team_size, class: "form-control input-lg" %>
 			</div>
 			<div class="form-group">
-				<%= f.label :bet_amount, "Bet amount per each team member (maximum of $5.00)", class: "lb-lg" %>
+				<%= f.label :bet_amount, "Bet amount per team member?", class: "lb-lg" %>
 				<%= f.text_field :bet_amount, class: "form-control input-lg" %>
 			</div>
 			<div class="form-group form-gap">
-				<%= f.label :sport_id, "Tournament played in which sport", class: "lb-lg" %>
+				<%= f.label :sport_id, "Played in which sport?", class: "lb-lg" %>
 				<%= f.select :sport_id, options_for_select(Sport.all.map{ |c| [c.name, c.id] }), {}, class: "form-control input-lg selectpicker", title: "Choose sport" %>
 			</div>
 			<div class="form-group form-gap">
-				<%= f.label :venue_id, "Where will this tournament take place", class: "lb-lg" %>
-				<%= f.select :venue_id, options_for_select(Venue.all.map{ |c| [c.name, c.id, {"data-subtext"=>"#{c.address}"}] }), {}, data: {"live-search" => true}, class: "form-control input-lg selectpicker", title: "Choose sporting venue" %>
+				<%= f.label :venue_id, "Played at which venue?", class: "lb-lg" %>
+				<%= f.select :venue_id, options_for_select(Venue.all.map{ |c| [c.name, c.id, {"data-subtext"=>"- #{c.address}"}] }), {}, class: "form-control input-lg selectpicker", title: "Choose sporting venue" %>
 			</div>
 			<div class="form-group">
 				<div class="row">
 					<div class="col-md-6">
-						<%= f.label :date, "Choose weekend day", class: "lb-lg" %>
+						<%= f.label :date, "Weekend day", class: "lb-lg" %>
 						<%= f.text_field :date, class: "datepicker form-control input-lg" %>
 					</div>
 					<div class="col-md-6">
-						<%= f.label :time, "Choose time", class: "lb-lg" %>
+						<%= f.label :time, "Time", class: "lb-lg" %>
 						<%= f.text_field :time, class: "timepicker form-control input-lg" %>
 					</div>
 				</div>
       </div>
       <div class="form-group">
-        <%= f.fields_for :teams, @tournament.teams do |ff| %>
-							<%= ff.label :team_color, "Please choose your team color to enroll", class: "lb-lg"  %>
-							<%= ff.select :color, options_for_select(Color.all.map{ |c| [c.name, c.id] }), {}, class: "form-control input-lg selectpicker", title: "Choose team color" %>
-				<% end %>
+				<%= f.label :team_color_id, "Choose your team color to enroll", class: "lb-lg"  %>
+				<%= f.select :team_color_id, options_for_select(Color.all.map{ |c| [c.name, c.id] }), {}, class: "form-control input-lg selectpicker", title: "Choose team color" %>
       </div><br>
 			<div class="form-group">
 				<%= f.submit class: "btn btn-primary btn-block round" %>
 			</div>
 		<% end %>
 	</div>
+	<div class="col-md-5">
+		<div class="tournament-info">
+			<p><i class="fa fa-lightbulb-o" aria-hidden="true"></i></p>
+			<section class="info">
+				<p class="info-title">New tournament</p>
+				<p>You can only start one tournament per week. 
+				</p>
+			</section>
+			<section class="info">
+				<p class="info-title">Weekends</p>
+				<p>All tournaments are played on weekends. You can enroll in a tournament for Saturday and/or Sunday, but never twice on the same day.</p>
+			</section>
+		</div>
 	</div>
 </div>
