@@ -44,7 +44,9 @@ class User < ApplicationRecord
 
   	    graph = Koala::Facebook::API.new(auth.credentials.token)
   	    user_location = graph.get_object("#{auth.uid}?fields=location")
-  	    user.location = user_location["location"]["name"]
+        if user_location["location"]
+  	       user.location = user_location["location"]["name"]
+         end
   	  end
     end
   end
