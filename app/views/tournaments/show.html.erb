@@ -1,98 +1,112 @@
-<div class="row tournament-header">
-	<h2 class="text-center"><%= @tournament.sport.name %> tournament @ <%= @tournament.venue.address %></h2>
-	<h3 class="text-center">Organized by <%= @tournament.organizer.name %></h3>
-	<div class="col-md-3 center-block">
-		<p class="organizer-img"><%= profile_image_md(@tournament.organizer) %></p>
-	</div>
-</div>
+<div class="box-shadow">
 
-<div class="tournament-details">
+<div class="organizer">
 	<div class="row">
-			<div class="col-md-12">
-				<div class="text-center">
-					<h3><%= format_datetime(@tournament.date, @tournament.time) %></h3>
-					<h3>Open to <%= pluralize(@tournament.capacity, "team") %> with <%= pluralize(@tournament.team_size, "member") %> per team</h3>
-					<h3>Bet entry at <%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per team member</h3>
+		<div class="col-md-9">
+			<div class="row gutter-10">
+				<div class="col-md-2">
+					<%= profile_image_md(@tournament.organizer) %>
+				</div>
+				<div class="col-md-9">
+					<h4 class="gray-txt">Organized by <%= @tournament.organizer.name %>.<br/>Don't be shy, anyone can enroll!</h4>
 				</div>
 			</div>
-	</div>
-</div>
-
-<div class="progress-container <%= "closed" if !@tournament.enrollment_period? %>">
-	<h3>Betting total currently at <%= money_format(@tournament.current_bet_amount) + "/" + money_format(@tournament.total_bet_amount) %></h3>
-	<div class="progress">
-		<div class="progress-bar" role="progressbar" aria-valuenow="<%= @tournament.bet_amount_percentage %>"
-		aria-valuemin="0" aria-valuemax="100" style="width:<%= @tournament.bet_amount_percentage %>">
 		</div>
 	</div>
 </div>
 
-	<div class="row body gutter-80">
-		<div class="col-md-5 col-sm-5 col-xs-5">
-		  <h3 class="truncate"><%= @tournament.venue.name %></h3>
-		  <%= image_tag(@tournament.venue.venue_image_url(:medium)) if @tournament.venue.venue_image? %>
+<div class="tournament-header">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="tournament-title">
+				<h2><%= @tournament.sport.name %> Tournament @ <%= @tournament.venue.address %></h2>
+
+				<div class="progress-container <%= "closed" if !@tournament.enrollment_period? %>">
+					<h4 class="gray-txt">Betting total currently at <%= money_format(@tournament.current_bet_amount) + "/" + money_format(@tournament.total_bet_amount) %></h4>
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuenow="<%= @tournament.bet_amount_percentage %>"
+						aria-valuemin="0" aria-valuemax="100" style="width:<%= @tournament.bet_amount_percentage %>">
+						</div>
+					</div>
+				</div>
+				<div class="tournament-details">
+					<h3><i class="fa fa-calendar" aria-hidden="true"></i>
+<%= format_datetime(@tournament.date, @tournament.time) %></h3>
+					<h3><i class="fa fa-users" aria-hidden="true"></i>
+Open to <%= pluralize(@tournament.capacity, "team") %> with <%= pluralize(@tournament.team_size, "member") %> per team</h3>
+					<h3><i class="fa fa-money" aria-hidden="true"></i>
+Bet entry at <%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per team member</h3>
+				</div>
+			</div>
+				<div class="row body gutter-70">
+						<div class="col-md-5 venue">
+								<h3 class="truncate"><%= @tournament.venue.name %></h3>
+								<%= image_tag(@tournament.venue.venue_image_url(:medium)) if @tournament.venue.venue_image? %>
+						</div>
+						<div class="col-md-7 col-sm-7 col-xs-7">
+						  <% if @tournament.enrollment_period?  %>
+						    <% if user_signed_in? %>
+						      <% if @tournament.enrolled?(current_user) %>
+						        <div class="row enrolled-team">
+						          <div class="col-md-12 header">
+						            <h3>Enrolled With <%= current_user.team_for_tournament(@tournament).color.name %> Team</h3>
+						            <%= leave_team_btn(@tournament) %>
+						            <%= leave_tournament_btn(@tournament, current_user.team_for_tournament(@tournament)) %>
+						          </div>
+						          <% current_user.team_for_tournament(@tournament).users.each do |user| %>
+						            <div class="col-md-4 col-sm-4 col-xs-4">
+						              <%= image_tag(user.image + "?height=85&width=85", class: "default img-circle")  %>
+						            </div>
+						          <% end %>
+						        </div>
+						      <% else %>
+						        <% if !current_user.has_tournament_this_date?(@tournament) %>
+						          <% if @tournament.remaining_capacity > 0 %>
+						            <h2>Enroll Team</h2>
+						            <h4>Space for <%= pluralize(@tournament.remaining_capacity, "team") %> remaining</h4>
+						            <%= form_for [:profile, @tournament, Team.new] do |f| %>
+						              <div class="form-group">
+						                <div class="select-style">
+						                  <%= f.select :color_id, options_for_select(Color.where.not(id: @tournament.teams.select(:color_id)).map{ |c| [c.name, c.id] }), {}, class: "form-control input-lg selectpicker", title: "Choose your team color" %>
+						                </div>
+						              </div><br>
+						              <%= f.submit "Enroll", class: "btn btn-primary btn-block round" %>
+						            <% end %>
+						          <% else %>
+						            <h3>Maximum Teams Enrolled</h3>
+						            <h4>Don't worry you can still participate, there are <%= pluralize(@tournament.teams_with_space, "enrolled team") %> with available space (see below).</h4>
+						          <% end %>
+						        <% else %>
+						          <h3>Unable To Enroll</h3>
+						          <h4>You are already enrolled in another <%= link_to "tournament", tournament_path(current_user.tournament_this_date(@tournament)), class: "notice" %> that falls on this same date.</h4>
+						        <% end %>
+						      <% end %>
+						    <% else %>
+						      <% if @tournament.remaining_capacity > 0 %>
+						        <h2>Enroll Team</h2>
+						        <h4>Space for <%= pluralize(@tournament.remaining_capacity, "team") %> remaining</h4>
+						        <%= form_for [:profile, @tournament, Team.new] do |f| %>
+						          <div class="form-group">
+						            <div class="select-style">
+													<%= f.select :color_id, options_for_select(Color.where.not(id: @tournament.teams.select(:color_id)).map{ |c| [c.name, c.id] }), {}, class: "form-control input-lg selectpicker", title: "Choose your team color" %>
+						            </div><br>
+						          </div>
+						          <%= f.submit "Enroll", class: "btn btn-primary btn-block round" %>
+						        <% end %>
+						      <% else %>
+						        <h3>Maximum Teams Enrolled</h3>
+						        <h4>Don't worry you can still participate, there are <%= pluralize(@tournament.teams_with_space, "enrolled team") %> with available space (see below).</h4>
+						      <% end %>
+						    <% end %>
+						  <% else %>
+						    <h3>Enrollment Period Closed</h3>
+						    <h4>You can no longer enroll a new team in this tournament or join an already enrolled team.</h4>
+						  <% end %>
+						</div>
+				</div>
+			</div>
 		</div>
-		<div class="col-md-7 col-sm-7 col-xs-7">
-		  <% if @tournament.enrollment_period?  %>
-		    <% if user_signed_in? %>
-		      <% if @tournament.enrolled?(current_user) %>
-		        <div class="row enrolled-team">
-		          <div class="col-md-12 header">
-		            <h3>Enrolled With <%= current_user.team_for_tournament(@tournament).color.name %> Team</h3>
-		            <%= leave_team_btn(@tournament) %>
-		            <%= leave_tournament_btn(@tournament, current_user.team_for_tournament(@tournament)) %>
-		          </div>
-		          <% current_user.team_for_tournament(@tournament).users.each do |user| %>
-		            <div class="col-md-4 col-sm-4 col-xs-4">
-		              <%= image_tag(user.image + "?height=85&width=85", class: "default img-circle")  %>
-		            </div>
-		          <% end %>
-		        </div>
-		      <% else %>
-		        <% if !current_user.has_tournament_this_date?(@tournament) %>
-		          <% if @tournament.remaining_capacity > 0 %>
-		            <h3>Enroll New Team</h3>
-		            <h4>Space for <%= pluralize(@tournament.remaining_capacity, "team") %> remaining</h4>
-		            <%= form_for [:profile, @tournament, Team.new] do |f| %>
-		              <div class="form-group">
-		                <div class="select-style">
-		                  <%= f.select :color_id, options_for_select(Color.where.not(id: @tournament.teams.select(:color_id)).map{ |c| [c.name, c.id] }), {}, class: "form-control input-lg selectpicker", title: "Choose your team color" %>
-		                </div>
-		              </div><br>
-		              <%= f.submit "Enroll", class: "btn btn-primary btn-block round" %>
-		            <% end %>
-		          <% else %>
-		            <h3>Maximum Teams Enrolled</h3>
-		            <h4>Don't worry you can still participate, there are <%= pluralize(@tournament.teams_with_space, "enrolled team") %> with available space (see below).</h4>
-		          <% end %>
-		        <% else %>
-		          <h3>Unable To Enroll</h3>
-		          <h4>You are already enrolled in another <%= link_to "tournament", tournament_path(current_user.tournament_this_date(@tournament)), class: "notice" %> that falls on this same date.</h4>
-		        <% end %>
-		      <% end %>
-		    <% else %>
-		      <% if @tournament.remaining_capacity > 0 %>
-		        <h3>Enroll New Team</h3>
-		        <h4>Space for <%= pluralize(@tournament.remaining_capacity, "team") %> remaining</h4>
-		        <%= form_for [:profile, @tournament, Team.new] do |f| %>
-		          <div class="form-group">
-		            <div class="select-style">
-									<%= f.select :color_id, options_for_select(Color.where.not(id: @tournament.teams.select(:color_id)).map{ |c| [c.name, c.id] }), {}, class: "form-control input-lg selectpicker", title: "Choose your team color" %>
-		            </div><br>
-		          </div>
-		          <%= f.submit "Enroll", class: "btn btn-primary btn-block round" %>
-		        <% end %>
-		      <% else %>
-		        <h3>Maximum Teams Enrolled</h3>
-		        <h4>Don't worry you can still participate, there are <%= pluralize(@tournament.teams_with_space, "enrolled team") %> with available space (see below).</h4>
-		      <% end %>
-		    <% end %>
-		  <% else %>
-		    <h3>Enrollment Period Closed</h3>
-		    <h4>You can no longer enroll a new team in this tournament or join an already enrolled team.</h4>
-		  <% end %>
-		</div>
-	</div>
+</div>
 
 	<div class="enrolled-teams">
 		<div class="row">
@@ -139,4 +153,6 @@
 			</p>
 		</div>
 	<% end %>
+</div>
+
 </div>

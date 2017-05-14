@@ -123,7 +123,7 @@ h2.devise-title{
 
 .title {
   margin: 0;
-  padding-bottom: 45px;
+  padding-bottom: 35px;
 }
 
 .member-header {
@@ -166,7 +166,7 @@ h2.devise-title{
 
 .box-shadow {
   border-radius: 2px;
-  border: 1px solid #f1f1f1;
+  border: 1px solid $light_border;
   padding: 35px;
 }
 
@@ -690,6 +690,19 @@ header{
   color: #5fa441;
 }
 
+.caption {
+  position: relative;
+  .text {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: #79BE5B;
+    color: #FFF;
+    padding: 5px 8px;
+    opacity: 0.95;
+  }
+}
+
 nav.sidebar{
   font-size: 20px;
     .search-form {
@@ -752,20 +765,54 @@ hr.st {
 }
 
 .tournaments.show {
-    .tournament-details {
-      border: 1px solid #dce0e0;
-      padding: 20px 10px;
+    .tournament-title {
+      border-top: 1px solid $light_border;
+      margin-bottom: 35px;
+      padding-top: 28px;
+    }
+    .venue {
+      h3 {
+        padding-bottom: 8px;
+      }
+    }
+    .tournament-header {
+      margin-top: 20px;
+      margin-bottom: 55px;
+      h2, h3 {
+        margin: 0;
+      }
+    }
+
+    .organizer{
       h3 {
         margin: 0;
-        padding-bottom: 10px;
+        padding-bottom: 8px;
+      }
+    }
+    .tournament-details {
+      border-bottom: 1px solid $light_border;
+      padding-bottom: 35px;
+      padding-top: 20px;
+      .fa {
+        padding-right: 14px;
+      }
+      h3 {
+        margin: 0;
+        padding-bottom: 5px;
         &:last-of-type {
           padding: 0;
         }
       }
     }
     .progress-container {
-        margin-top: 50px;
-        margin-bottom: 60px;
+      h4 {
+        margin: 0;
+        padding-top: 2px;
+        padding-bottom: 7px;
+      }
+      .progress {
+        height: 3px;
+      }
     }
     .team-enrolled {
       border-bottom: 1px solid $light_border;
@@ -792,31 +839,18 @@ hr.st {
         }
     }
     .enrolled-teams {
-        margin-top: 60px;
-        padding-top: 50px;
+        margin-top: 40px;
+        padding-top: 40px;
         border-top: 1px solid $light_border;
         h3 {
             margin: 0;
             margin-bottom: 18px;
         }
     }
-    .details {
-        border-radius: 2px;
-        color: #000;
-        border-radius: 2px;
-        h3 {
-            padding-bottom: 14px;
-            margin:0;
-            &:last-of-type {
-                padding-bottom: 0
-            }
-        }
-    }
     .body {
-        margin-top: 40px;
-        h3 {
-            margin: 0;
-            margin-bottom: 28px;
+        h2 {
+          margin: 0;
+          padding-bottom: 12px;
         }
     }
     .manage-tournament {
@@ -826,18 +860,6 @@ hr.st {
     }
 }
 
-.tournament-header {
-  margin-bottom: 20px;
-  h2, h3 {
-    margin: 0;
-  }
-  h2{
-    padding-bottom: 4px;
-  }
-  img {
-    margin-top: 20px;
-  }
-}
 
 .my-tournaments {
     .section-title{
@@ -875,7 +897,7 @@ a.notice {
 /* Container */
 @media (min-width: 1200px) {
     .container{
-        max-width: 900px;
+        max-width: 940px;
     }
 }
 

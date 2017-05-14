@@ -75,7 +75,7 @@ class User < ApplicationRecord
 
   # Future tournaments for a user
   def upcoming_tournaments
-    tournaments.where("date >= ?", Date.today).order("date ASC")
+    tournaments.where("date >= ? AND time <= ?", Date.today, Time.now).order("date ASC")
   end
 
   # Check if the user is not enrolled in another tournament with the date matching this new enrollment's
