@@ -1,6 +1,6 @@
 class Profile::TournamentsController < ApplicationController
 	before_action :authenticate_user!
-	layout 'full', only: :new
+	layout 'full', only: [:new, :create]
 
 	def index
 	end
@@ -21,7 +21,9 @@ class Profile::TournamentsController < ApplicationController
 	# Associate organizer in saved tournament
 	def create
 		@tournament = Tournament.new(tournament_params)
-		@tournament.eowd_date = params[:tournament][:date].to_date.end_of_week - 2
+		@tournament.sport = Sport.last
+		@tournament.eowd_date = Date.today.next_week.end_of_week - 2
+		@tournament.date = @tournament.eowd_date + (params[:tournament][:date].to_i - @tournament.eowd_date.wday)
 		@tournament.organizer = current_user
 		if @tournament.valid?
 			@tournament.save
@@ -48,6 +50,6 @@ class Profile::TournamentsController < ApplicationController
 
 	def tournament_params
 		params.require(:tournament).permit(:name, :capacity, :team_size, :bet_amount,
-			:sport_id, :venue_id, :date, :time, :team_color_id, :eowd_date, :organizer_id, :hash_id)
+			:sport_id, :venue_id, :date, :time, :team_color_id, :week, :eowd_date, :organizer_id, :hash_id)
 	end
 end

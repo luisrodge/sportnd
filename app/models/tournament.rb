@@ -11,7 +11,9 @@ class Tournament < ApplicationRecord
   has_many :enrollments, dependent: :destroy
   has_many :users, -> { distinct }, through: :enrollments
 
-  validates_presence_of :capacity, :team_size, :bet_amount, :sport_id, :venue_id, :date, :time
+  attr_accessor :team_color_id
+
+  validates_presence_of :capacity, :team_size, :bet_amount, :sport_id, :venue_id, :date, :time, :team_color_id
   validates :capacity, numericality: { only_integer: true, greater_than_or_equal_to: 2, less_than_or_equal_to: 4 }
   validates :team_size, numericality: { only_integer: true, greater_than_or_equal_to: 2, less_than_or_equal_to: 3 }
   validates :bet_amount, numericality: true
@@ -19,8 +21,6 @@ class Tournament < ApplicationRecord
 
   # Pagination for infinite scroll feature
   paginates_per 6
-
-  attr_accessor :team_color_id
 
   # Prevents a user from starting a tournament on a date that he/she is already enrolled in another tournament
   def start_new_tournament?
@@ -49,7 +49,7 @@ class Tournament < ApplicationRecord
     end
   end
 
-  # Ensures that a user can only start one tournament per week
+  # Ensures that a user can only start one tournament per weekend
   def organized_tournament_this_week?
     if self.organizer.organized_tournament_this_week?(self.date)
       errors.add(:date, " - you have already started a tournament for the week relative to the entered date. You are limited to start one tournament per week, choose another date")

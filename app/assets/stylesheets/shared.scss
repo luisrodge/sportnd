@@ -472,7 +472,7 @@ label.message {
   }
 }
 
-.tournaments.new {
+.tournaments.new, .tournaments.create {
   .new-header{
     margin-bottom: 60px;
     border-bottom: 1px solid #f1f1f1;
@@ -491,7 +491,7 @@ label.message {
     margin-bottom: 48px;
   }
   .form-gap {
-    margin-bottom: 58px;
+    margin-bottom: 50px;
   }
   section{
     margin-bottom: 20px;
@@ -697,7 +697,7 @@ ul.teams {
 figure {
   figcaption {
     background: #FFF;
-    border: 1px solid #f1f1f1;
+    border: 1px solid $light_border;
     padding: 20px;
     h4 {
       margin: 0;

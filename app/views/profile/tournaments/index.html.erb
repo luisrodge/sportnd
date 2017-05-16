@@ -1,16 +1,24 @@
-	<div class="row profile-header box-shadow">
+<div class="box-shadow profile-header">
+	<div class="row">
 		<% if policy(Tournament).new? %>
 			<div class="col-md-12">
-				<h3 class="text-center">Organize Your Own Tournament</h3>
+				<h3 class="text-center">Start Your Own Tournament For The Upcoming Weekend</h3>
 				<p class="text-center"><%= link_to "New Tournament", new_profile_tournament_path, class: "btn btn-primary round" %></p>
 			</div>
 		<% else %>
 			<div class="col-md-12 cant-start-tournament">
-				<h3 class="text-center">Use The Weekend To Organize Your Own Tournaments</h3>
-				<p class="text-center"><%= link_to "New Tournament", new_profile_tournament_path, class: "btn btn-primary disabled round" %></p>
+				<% if current_user.organized_for_upcoming_week? %>
+					<h3 class="text-center">You already started a tournament for the upcoming weekend</h3>
+					<p class="text-center"><%= link_to "New Tournament", new_profile_tournament_path, class: "btn btn-primary disabled round" %></p>
+				<% else %>
+					<h3 class="text-center">Use the weekend to start your own tournament for an upcoming weekend</h3>
+					<p class="text-center"><%= link_to "New Tournament", new_profile_tournament_path, class: "btn btn-primary disabled round" %></p>
+				<% end %>
 			</div>
 		<% end %>
 	</div>
+</div>
+
 	<% if current_user.upcoming_tournaments.any? %>
 		<h3 class="text-center title">Your Upcoming Tournaments</h3>
 		<% current_user.upcoming_tournaments.each do |tournament| %>

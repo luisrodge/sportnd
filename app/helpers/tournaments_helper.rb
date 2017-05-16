@@ -30,4 +30,40 @@ module TournamentsHelper
     end
   end
 
+  def options_for_weeks
+    [
+      ['Next Week',14],
+      ['Next 2 Weeks',21]
+    ]
+  end
+
+  def options_for_days
+    [
+      ['Saturday',6],
+      ['Sunday',7]
+    ]
+  end
+
+  def options_for_team_enrolls
+    [
+      ['2 Teams','2'],
+      ['4 Teams','4']
+    ]
+  end
+
+  def options_for_team_members
+    [
+      ['2 Members','2'],
+      ['3 Members','3']
+    ]
+  end
+
+  def options_for_bet_amount
+    [
+      ['$3','3'],
+      ['$4','4'],
+      ['$5','5']
+    ]
+  end
+
 end

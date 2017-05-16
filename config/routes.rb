@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  #mount ActionCable.server => "/cable"
+
   root 'tournaments#index'
   get 'information', to: 'pages#information'
 

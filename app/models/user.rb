@@ -75,6 +75,10 @@ class User < ApplicationRecord
     facebook.get_connections(uid, "friends/#{user.uid}").present?
   end
 
+  def organized_for_upcoming_week?
+    tournaments.where(organizer: self).where("Date(date) BETWEEN ? AND ?", Date.today.next_week.end_of_week - 2, Date.today.next_week.end_of_week).present?
+  end
+
   # Future tournaments for a user
   def upcoming_tournaments
     tournaments.where("date >= ? AND time <= ?", Date.today, Time.now).order("date ASC")
