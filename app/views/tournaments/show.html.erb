@@ -62,7 +62,7 @@ Bet entry at <%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per
 						      <% else %>
 						        <% if !current_user.has_tournament_this_date?(@tournament) %>
 						          <% if @tournament.remaining_capacity > 0 %>
-						            <h2>Enroll Team</h2>
+						            <h2>Enroll New Team</h2>
 						            <h4>Space for <%= pluralize(@tournament.remaining_capacity, "team") %> remaining</h4>
 						            <%= form_for [:profile, @tournament, Team.new] do |f| %>
 						              <div class="form-group">
@@ -83,7 +83,7 @@ Bet entry at <%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per
 						      <% end %>
 						    <% else %>
 						      <% if @tournament.remaining_capacity > 0 %>
-						        <h2>Enroll Team</h2>
+						        <h2>Enroll New Team</h2>
 						        <h4>Space for <%= pluralize(@tournament.remaining_capacity, "team") %> remaining</h4>
 						        <%= form_for [:profile, @tournament, Team.new] do |f| %>
 						          <div class="form-group">
@@ -112,8 +112,9 @@ Bet entry at <%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per
 		<div class="row">
 				<div class="col-sm-12">
 					<div class="row gutter-60">
-						<div class="col-md-12">
+						<div class="col-md-12 enrolled-teams-header">
 							<h3>Teams Already Enrolled</h3>
+							<h4 class="gray-txt">You can join a team only if your friend(on facebook) enrolled the team.</h4>
 						</div>
 					</div>
 							<% @tournament.teams.each do |team| %>
@@ -125,7 +126,7 @@ Bet entry at <%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per
 												<h5 class="text-center gray-txt">
 													<%= team_available_space(team) %>
 												</h5>
-												<%= join_btn(@tournament, team, "sm") %>
+												<%= join_btn(team, "sm") %>
 											</div>
 										</div>
 										<div class="col-md-8 col-sm-8 col-xs-8">

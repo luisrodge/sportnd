@@ -1,24 +1,46 @@
-<header>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-7 brand">
-        <h2><%= link_to "sportnd", root_path %></h2>
-        <h4 class="slogan">All inclusive betting-based sporting tournaments</h4>
-      </div>
-      <div class="col-md-5">
-        <div class="pull-right">
-          <% unless current_user %>
-            <%= link_to "Log In", user_facebook_omniauth_authorize_path %>
-            <a href="#" class="btn btn-primary btn-sm round" type="button" data-toggle="modal" data-target="#authModal">Sign Up</a>
-          <% else %>
-            <%= link_to "My Tournaments", profile_tournaments_path, class: "my-tournaments-btn" %>
-            <%= image_tag(current_user.image + "?type=square", class: "img-circle default profile-img")  %>
-          <% end %>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <%= link_to root_path, class: "navbar-brand" do %>
+              sportnd <small>Betting based basketball tournaments played on weekends</small>
+            <% end %>
         </div>
-      </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="nav-collapse">
+            <ul class="nav navbar-nav pull-right">
+              <% if current_user %>
+                <li><%=link_to "My Tournaments", profile_tournaments_path, class: "auth-link lg" %></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <div class="img-rounded profile-img">
+                          <img src="http://graph.facebook.com/v2.6/1786997181617714/picture?width=180&height=180"  class="img-circle" alt="profile picture">
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><%= active_link_to "Account Settings", edit_user_registration_path %></li>
+                      <li role="separator" class="divider"></li>
+                      <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+                    </ul>
+                </li>
+              <% else %>
+              <li><%=link_to "Sign In", user_facebook_omniauth_authorize_path, class: "auth-link" %></li>
+              <li><a href="#" class="auth-link header-btn" type="button" data-toggle="modal" data-target="#authModal">Sign Up</a></li>
+              <% end %>
+            </ul>
+        </div>
     </div>
-  </div>
-  <!-- Sign In & Sign Up Modal -->
+</nav>
+
+
+
+<!-- Sign In & Sign Up Modal -->
   <div id="authModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -42,7 +64,5 @@
           <h5 class="text-center">We will never post to your Facebook without permission from you.</h5>
         </div>
       </div>
-
     </div>
-  </div>
-</header>
+</div>

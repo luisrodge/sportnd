@@ -6,8 +6,6 @@
       <li><%= active_link_to "Sporting Venues", venues_path %></li>
       <!-- <li><%= link_to "How It Works", information_path %></li> -->
       <% if user_signed_in? %>
-        <li><%= active_link_to "Account Settings", edit_user_registration_path %></li>
-        <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
       <% end %>
     </ul>
   </nav>
