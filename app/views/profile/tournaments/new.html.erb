@@ -2,6 +2,7 @@
 	<div class="col-md-7">
 		<div class="new-header">
 			<h2 class="text-center">Kick off your new tournament</h2>
+			<h4 class="text-center gray-txt">The day you select will be relative to next weekend</h4>
 		</div>
 		<%= form_for [:profile, @tournament] do |f| %>
 		<ul>
@@ -47,12 +48,12 @@
 			<p><i class="fa fa-lightbulb-o" aria-hidden="true"></i></p>
 			<section class="info">
 				<p class="info-title">New tournament</p>
-				<p>You can only start one tournament per week.
+				<p>You can start just one tournament for next weekend.
 				</p>
 			</section>
 			<section class="info">
-				<p class="info-title">Weekends</p>
-				<p>All tournaments are played on weekends. You can enroll in a tournament for Saturday and/or Sunday, but never twice on the same day.</p>
+				<p class="info-title">2 tournaments per weekend</p>
+				<p>You can enroll in a tournament for Saturday and/or Sunday, but never twice on the same day.</p>
 			</section>
 		</div>
 	</div>

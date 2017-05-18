@@ -5,7 +5,7 @@ body{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-size:16px;
     color: $dark;
 }
@@ -22,7 +22,7 @@ body{
     font-size: 25px;
     padding-top: 2px;
     small {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Roboto Condensed', sans-serif;
       display:block;
       font-size:17px;
       line-height: 38px;
@@ -64,6 +64,39 @@ body{
 
 .navbar-collapse {
   padding-right: 0;
+}
+
+div.info {
+  border: 1px solid #71BA51;
+  padding: 12px 35px;
+  margin-bottom: 50px;
+  font-size: 14px;
+  border-radius: 2px;
+  p {
+    margin: 0;
+  }
+}
+
+.tournaments-this-weekend {
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.home-new-tournament {
+  margin-bottom: 40px;
+  h2, h3 {
+    margin: 0;
+  }
+  .header {
+    border-bottom: 1px solid $light_border;
+    padding-bottom: 22px;
+  }
+  .body {
+    padding-top: 22px;
+    .btn {
+      margin-top: 20px;
+    }
+  }
 }
 
 #main {

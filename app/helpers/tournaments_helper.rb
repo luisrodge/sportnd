@@ -20,6 +20,14 @@ module TournamentsHelper
     end
   end
 
+  def upcoming_tournaments_count(tournaments)
+    if Date.today.saturday? || Date.today.sunday?
+      "#{pluralize(@tournaments.count, 'Tournament')} Next Weekend"
+    else
+      "#{pluralize(@tournaments.count, 'Tournament')} This Weekend"
+    end
+  end
+
   def profile_tournament_date(tournament)
     if tournament.date.to_date == Date.tomorrow
       "Tomorrow @ around #{tournament.time.strftime("%I:%M%p")}"
@@ -30,17 +38,12 @@ module TournamentsHelper
     end
   end
 
-  def options_for_weeks
-    [
-      ['Next Week',14],
-      ['Next 2 Weeks',21]
-    ]
-  end
-
   def options_for_days
+    saturday =  Date.today.next_week.end_of_week - 1
+    sunday = Date.today.next_week.end_of_week
     [
-      ['Saturday',6],
-      ['Sunday',7]
+      [saturday.strftime("%A #{saturday.day.ordinalize}"),6],
+      [sunday.strftime("%A #{sunday.day.ordinalize}"),7]
     ]
   end
 

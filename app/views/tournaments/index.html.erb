@@ -1,10 +1,44 @@
+<% if current_user %>
+	<% if policy(Tournament).new? %>
+		<div class="box-shadow home-new-tournament">
+			<section class="header">
+				<h2 class="text-center">It's the weekend!</h2>
+			</section>
+			<section class="body">
+				<h3 class="text-center">Start your own tournament for next weekend</h3>
+				<p class="text-center"><%= link_to "New Tournament", new_profile_tournament_path, class: "btn btn-primary round" %></p>
+			</section>
+		</div>
+	<% end %>
+<% elsif Date.today.saturday? || Date.today.sunday? %>
+	<div class="box-shadow home-new-tournament">
+		<section class="header">
+			<h2 class="text-center">It's the weekend!</h2>
+		</section>
+		<section class="body">
+			<h3 class="text-center">Start your own tournament for next weekend</h3>
+			<p class="text-center"><%= link_to "New Tournament", new_profile_tournament_path, class: "btn btn-primary round" %></p>
+		</section>
+	</div>
+<% end %>
+
 <% if Tournament.any? %>
-		<div class="js-items-container">
-			<%= render partial: 'tournaments/tournament', collection: @tournaments %>
+	<% if !(Date.today.saturday? || Date.today.sunday?)  %>
+		<div class="info text-center">
+			<p>Hey there! You can join any of the following tournaments or wait for this weekend to start your own.</p>
 		</div>
-		<div class="row">
-			<div class="col-md-1 center-block pagination" data-pagination-endpoint="<%= @endpoint %>" data-pagination-pages="<%= @page_amount %>">
-				<%= image_tag 'ajax-loader.gif' %>
-			</div>
+	<% end %>
+
+	<div class="tournaments-this-weekend">
+		<h4 class="gray-txt"><%= upcoming_tournaments_count(@tournaments) %></h4>
+	</div>
+
+	<div class="js-items-container">
+		<%= render partial: 'tournaments/tournament', collection: @tournaments %>
+	</div>
+	<div class="row">
+		<div class="col-md-1 center-block pagination" data-pagination-endpoint="<%= @endpoint %>" data-pagination-pages="<%= @page_amount %>">
+			<%= image_tag 'ajax-loader.gif' %>
 		</div>
+	</div>
 <% end %>
