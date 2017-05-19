@@ -22,7 +22,7 @@
 				<h2><%= @tournament.sport.name %> Tournament @ <%= @tournament.venue.address %></h2>
 
 				<div class="progress-container <%= "closed" if !@tournament.enrollment_period? %>">
-					<h4 class="gray-txt">Betting total currently at <%= money_format(@tournament.current_bet_amount) + "/" + money_format(@tournament.total_bet_amount) %></h4>
+					<h4 class="gray-txt"><%= teams_enrollment_status(@tournament) %></h4>
 					<div class="progress">
 						<div class="progress-bar" role="progressbar" aria-valuenow="<%= @tournament.bet_amount_percentage %>"
 						aria-valuemin="0" aria-valuemax="100" style="width:<%= @tournament.bet_amount_percentage %>">
@@ -63,7 +63,6 @@ Bet entry at <%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per
 						        <% if !current_user.has_tournament_this_date?(@tournament) %>
 						          <% if @tournament.remaining_capacity > 0 %>
 						            <h2>Enroll New Team</h2>
-						            <h4>Space for <%= pluralize(@tournament.remaining_capacity, "team") %> remaining</h4>
 						            <%= form_for [:profile, @tournament, Team.new] do |f| %>
 						              <div class="form-group">
 						                <div class="select-style">
@@ -84,7 +83,6 @@ Bet entry at <%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per
 						    <% else %>
 						      <% if @tournament.remaining_capacity > 0 %>
 						        <h2>Enroll New Team</h2>
-						        <h4>Space for <%= pluralize(@tournament.remaining_capacity, "team") %> remaining</h4>
 						        <%= form_for [:profile, @tournament, Team.new] do |f| %>
 						          <div class="form-group">
 						            <div class="select-style">
@@ -120,7 +118,7 @@ Bet entry at <%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per
 							<% @tournament.teams.each do |team| %>
 								<div class="team-enrolled">
 									<div class="row gutter-60">
-										<div class="col-md-4 col-sm-4 col-xs-4">
+										<div class="col-md-4 col-sm-4 col-xs-12">
 											<div class="team-container  <%= team.color.name.downcase %>">
 												<h4 class="text-center"><%= team.color.name %> Team</h4>
 												<h5 class="text-center gray-txt">
@@ -129,9 +127,9 @@ Bet entry at <%= number_to_currency(@tournament.bet_amount, :unit => "$") %> per
 												<%= join_btn(team, "sm") %>
 											</div>
 										</div>
-										<div class="col-md-8 col-sm-8 col-xs-8">
+										<div class="col-md-8 col-sm-8 col-xs-12">
 											<% team.users.each do |user| %>
-												<div class="col-md-4">
+												<div class="col-md-4 col-sm-4 col-xs-6">
 													<div class="members">
 														<h5 class="truncate"><%= user.name %></h5>
 														<%= profile_image_md(user) %>

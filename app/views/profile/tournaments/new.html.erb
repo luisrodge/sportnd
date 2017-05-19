@@ -19,14 +19,10 @@
 				<%= f.select :team_size, options_for_team_members, {}, prompt: 'Select One', class: "form-control input-lg selectpicker" %>
 			</div>
 			<div class="form-group">
-				<%= f.label :bet_amount, "Bet amount per team member?", class: "lb-lg" %>
-				<%= f.select :bet_amount, options_for_bet_amount, {}, prompt: 'Select One', class: "form-control input-lg selectpicker" %>
-			</div>
-			<div class="form-group form-gap">
 				<%= f.label :venue_id, "Played at which venue?", class: "lb-lg" %>
 				<%= f.select :venue_id, options_for_select(Venue.all.map{ |c| [c.name, c.id, {"data-subtext"=>"- #{c.address}"}] }), {}, class: "form-control input-lg selectpicker", title: "Choose sporting venue" %>
 			</div>
-			<div class="form-group form-gap">
+			<div class="form-group">
 					<%= f.label :date, "Choose weekend day", class: "lb-lg" %>
 					<%= f.select :date, options_for_days, {}, prompt: 'Select One', class: "form-control input-lg selectpicker" %>
       </div>
