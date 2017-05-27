@@ -25,10 +25,12 @@ module TournamentsHelper
   end
 
   def upcoming_tournaments_count(tournaments)
-    if Date.today.saturday? || Date.today.sunday?
-      "#{pluralize(@tournaments.count, 'Tournament')} Next Weekend"
-    else
-      "#{pluralize(@tournaments.count, 'Tournament')} This Weekend"
+    if @tournaments.any?
+      if Date.today.saturday? || Date.today.sunday?
+        "#{pluralize(@tournaments.count, 'Tournament')} Next Weekend"
+      else
+        "#{pluralize(@tournaments.count, 'Tournament')} This Weekend"
+      end
     end
   end
 
@@ -42,8 +44,8 @@ module TournamentsHelper
     end
   end
 
-  def betting_total(tournament)
-    "Betting total @ " + format_money(tournament.current_bet_amount) + "/" + format_money(tournament.total_bet_amount)
+  def funding_total(tournament)
+    "Funding total @ " + format_money(tournament.current_bet_amount) + "/" + format_money(tournament.total_bet_amount)
   end
 
   def options_for_days
@@ -71,7 +73,6 @@ module TournamentsHelper
 
   def options_for_bet_amount
     [
-      ['$3','3'],
       ['$4','4'],
       ['$5','5']
     ]

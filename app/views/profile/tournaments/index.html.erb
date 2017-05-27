@@ -32,11 +32,11 @@
               <div class="col-md-4">
                 <%= image_tag(tournament.venue.venue_image_url(:medium)) if tournament.venue.venue_image? %>
               </div>
-              <div class="col-md-8">
+              <div class="col-md-8 profile-tourament-details">
                   <h4><%= profile_tournament_date(tournament) %></h4>
 									<h4><%= teams_enrollment_status(tournament) %></h4>
 									<div class="progress-container">
-										<h4>Betting total @ <%= money_format(tournament.current_bet_amount) %> of <%= money_format(tournament.total_bet_amount) %></h4>
+										<h4><%= funding_total(tournament) %></h4>
 										<div class="progress">
 											<div class="progress-bar" role="progressbar" aria-valuenow="<%= tournament.bet_amount_percentage %>"
 														  aria-valuemin="0" aria-valuemax="100" style="width:<%= tournament.bet_amount_percentage %>">

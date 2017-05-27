@@ -15,7 +15,7 @@
 					<div class="details-shadow">
 						<h4><%= format_datetime(tournament.date, tournament.time) %></h4>
 						<div class="progress-container">
-							<h4><%= betting_total(tournament) %></h4>
+							<h4><%= funding_total(tournament) %></h4>
 							<div class="progress">
 								<div class="progress-bar" role="progressbar" aria-valuenow="<%= tournament.bet_amount_percentage %>"
 											  aria-valuemin="0" aria-valuemax="100" style="width:<%= tournament.bet_amount_percentage %>">

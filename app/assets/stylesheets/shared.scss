@@ -25,7 +25,7 @@ body{
       font-weight: normal;
       display:block;
       font-size:17px;
-      padding-top: 2px;
+      padding-top: 3px;
     }
   }
   .nav .open > a{
@@ -85,6 +85,12 @@ div.info {
 .tournaments-this-weekend {
   margin-bottom: 20px;
   text-align: right;
+}
+
+.profile-tourament-details{
+  h4 {
+    padding-top: 6px!important;
+  }
 }
 
 .home-new-tournament {

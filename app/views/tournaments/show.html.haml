@@ -20,7 +20,7 @@
 				.tournament-title
 					%h2= "#{@tournament.sport.name}  Tournament @  #{@tournament.venue.address}"
 					.progress-container
-						%h4.gray-txt= betting_total(@tournament)
+						%h4.gray-txt= funding_total(@tournament)
 						.progress
 							%div{class: "progress-bar", role: "progressbar",
 								aria_valuenow: "#{@tournament.bet_amount_percentage}",
@@ -35,7 +35,7 @@
 						= "Open to #{pluralize(@tournament.capacity, 'team')} with #{pluralize(@tournament.team_size, 'member')} per team"
 					%h3
 						%i.fa.fa-money
-						= "Bet entry at #{number_to_currency(@tournament.bet_amount, :unit => '$')} per team member"
+						= "Entry amount at #{number_to_currency(@tournament.bet_amount, :unit => '$')} per team member"
 	.row.body.gutter-70
 		.col-md-5.venue
 			%h3.truncate= @tournament.venue.name
