@@ -20,12 +20,12 @@ body{
     color: #FFF;
     font-family: 'Revalia', cursive;
     font-size: 25px;
-    padding-top: 2px;
+    padding-top: 3px;
     small {
       font-family: 'Roboto Condensed', sans-serif;
       display:block;
       font-size:17px;
-      line-height: 38px;
+      padding-top: 8px;
     }
   }
   .nav .open > a{
@@ -40,6 +40,10 @@ body{
       color: #f7f7f7;
     }
   }
+  .username {
+    display: inline-block;
+    margin-top: 5px;
+  }
   .auth-link.lg {
     font-size: 19px!important;
   }
@@ -51,6 +55,7 @@ body{
   }
   .profile-img{
       margin-top: -3px;
+      margin-right: 5px;
       float: left;
       background: url(example.jpg) 50% 50% no-repeat; /* 50% 50% centers image in div */
       background-size: auto 100%; /* Interchange this value depending on prefering width vs. height */
@@ -199,6 +204,10 @@ h2.devise-title{
   color: #FFF;
   padding: 0 8px;
   border-radius: 24px;
+}
+
+.tournament-full.full-lg {
+  padding: 5px 18px;
 }
 
 .tournament-enrolled-users {
@@ -786,7 +795,7 @@ header{
 }
 
 .active {
-  color: #5fa441;
+  color: $gray;
 }
 
 .caption {
@@ -829,7 +838,7 @@ nav.sidebar{
         color: $dark;
           a {
               &:hover {
-                color: #79BE5B;
+                color: $gray;
               }
           }
     }
@@ -866,8 +875,11 @@ hr.st {
 .tournaments.show {
     .tournament-title {
       border-top: 1px solid $light_border;
-      margin-bottom: 35px;
-      padding-top: 28px;
+      margin-bottom: 25px;
+      padding-top: 25px;
+      h2 {
+        margin: 0;
+      }
     }
     .venue {
       h3 {
@@ -883,6 +895,7 @@ hr.st {
     }
 
     .organizer{
+      padding-bottom: 20px;
       h3 {
         margin: 0;
         padding-bottom: 8px;
@@ -897,7 +910,7 @@ hr.st {
       }
       h3 {
         margin: 0;
-        padding-bottom: 5px;
+        padding-bottom: 6px;
         &:last-of-type {
           padding: 0;
         }
@@ -953,9 +966,14 @@ hr.st {
         }
     }
     .body {
+      padding-top: 30px;
+      padding-bottom: 5px;
         h2 {
           margin: 0;
           padding-bottom: 12px;
+        }
+        h3 {
+          margin: 0;
         }
     }
     .manage-tournament {
@@ -1033,7 +1051,7 @@ a.notice {
 
 footer{
     margin-top: 80px;
-    padding: 18px 0;
+    padding: 14px 0;
     color: #FFF;
     background: #79be5b;
     h1, h2, h3, h4{

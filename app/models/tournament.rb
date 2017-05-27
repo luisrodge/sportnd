@@ -13,9 +13,10 @@ class Tournament < ApplicationRecord
 
   attr_accessor :team_color_id
 
-  validates_presence_of :capacity, :team_size, :sport_id, :venue_id, :date, :time, :team_color_id
+  validates_presence_of :capacity, :team_size, :bet_amount, :sport_id, :venue_id, :date, :time, :team_color_id
   validates :capacity, numericality: { only_integer: true, greater_than_or_equal_to: 2, less_than_or_equal_to: 4 }
   validates :team_size, numericality: { only_integer: true, greater_than_or_equal_to: 2, less_than_or_equal_to: 3 }
+  validates :bet_amount, numericality: true
   validate :start_new_tournament?, :organized_tournament_this_week?, if: :date
 
   # Pagination for infinite scroll feature
@@ -88,9 +89,24 @@ class Tournament < ApplicationRecord
     Date.today <= date.to_date.end_of_week - 2
   end
 
+  # Total bet amount for tournament
+  # Taking into account capacity and members per team
+  def total_bet_amount
+    (bet_amount * capacity) * team_size
+  end
+
+  # The current bet total with respect to enrolled teams and their members
+  def current_bet_amount
+    total = 0.0
+    teams.each do |team|
+      total += team.users.count * bet_amount
+    end
+    total
+  end
+
   # Returns a percentage of the current bet amount
   def bet_amount_percentage
-    (((users.count) / ((capacity * team_size).to_d)) * 100).round.to_s + '%'
+    (((current_bet_amount - 0) / (total_bet_amount - 0)) * 100).round.to_s + '%'
   end
 
 end

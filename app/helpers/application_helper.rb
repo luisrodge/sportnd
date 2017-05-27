@@ -8,4 +8,8 @@ module ApplicationHelper
 		date.strftime("%A %b %d")
 	end
 
+	def format_money(price)
+		number_to_currency(price, :unit => "$")
+	end
+
 end

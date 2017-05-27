@@ -1,0 +1,113 @@
+.box-shadow
+	.organizer
+		.row
+			.col-md-9
+				.row.gutter-10
+					.col-md-2
+						= profile_image_md(@tournament.organizer)
+					.col-md-9
+						%h4.gray-txt
+							= "Organized by #{@tournament.organizer.name}"
+							%br
+							Dont be shy, anyone can join!
+			- if @tournament.full?
+				.col-md-3
+					%span.tournament-full.full-lg.pull-right Full
+
+	.tournament-main-details
+		.row
+			.col-md-12
+				.tournament-title
+					%h2= "#{@tournament.sport.name}  Tournament @  #{@tournament.venue.address}"
+					.progress-container
+						%h4.gray-txt= betting_total(@tournament)
+						.progress
+							%div{class: "progress-bar", role: "progressbar",
+								aria_valuenow: "#{@tournament.bet_amount_percentage}",
+								aria_valuemin: "0", aria_valuemax: "100",
+								style: "width:#{@tournament.bet_amount_percentage}"}
+				.tournament-details
+					%h3
+						%i.fa.fa-calendar
+						= format_datetime(@tournament.date, @tournament.time)
+					%h3
+						%i.fa.fa-users
+						= "Open to #{pluralize(@tournament.capacity, 'team')} with #{pluralize(@tournament.team_size, 'member')} per team"
+					%h3
+						%i.fa.fa-money
+						= "Bet entry at #{number_to_currency(@tournament.bet_amount, :unit => '$')} per team member"
+	.row.body.gutter-70
+		.col-md-5.venue
+			%h3.truncate= @tournament.venue.name
+			= image_tag(@tournament.venue.venue_image_url(:medium)) if @tournament.venue.venue_image?
+		.col-md-7.col-sm-7.col-xs-7
+			- if @tournament.enrollment_period?
+				- if user_signed_in?
+					- if @tournament.enrolled?(current_user)
+						.row.enrolled-team
+							.col-md-12.header
+								%h3= "Enrolled With #{current_user.team_for_tournament(@tournament).color.name} Team"
+								= leave_team_btn(@tournament)
+								= leave_tournament_btn(@tournament, current_user.team_for_tournament(@tournament))
+							- current_user.team_for_tournament(@tournament).users.each do |user|
+								.col-md-4.col-sm-4.col-xs-4
+									= image_tag(user.image + "?height=85&width=85", class: "default img-circle")
+					- else
+						- if !current_user.has_tournament_this_date?(@tournament)
+							- if @tournament.remaining_capacity > 0
+								%h2 Enroll New Team
+								%h4.gray-txt= teams_enrollment_status(@tournament)
+								= render 'teams/form'
+							- else
+								%h3 Maximum Teams Enrolled
+								%h4= "No more teams can be enrolled. There are #{pluralize(@tournament.teams_with_space, "enrolled team")} with available space that you may be able to join."
+						- else
+							%h3 Unable To Enroll
+							%h4
+								You are already enrolled in another
+								= link_to "tournament", tournament_path(current_user.tournament_this_date(@tournament)), class: "notice"
+								that falls on this same date.
+				- else
+					- if @tournament.remaining_capacity > 0
+						%h2 Enroll New Team
+						%h4.gray-txt= teams_enrollment_status(@tournament)
+						= render 'teams/form'
+					- else
+						%h3 Maximum Teams Enrolled
+						%br
+						%h4= "No more teams can be enrolled. There are #{pluralize(@tournament.teams_with_space, "enrolled team")} with available space that you may be able to join."
+			- else
+				%h3 Enrollment Period Closed
+				%h4 You can no longer enroll a new team in this tournament or join an already enrolled team.
+
+	.enrolled-teams
+		.row
+			.col-sm-12
+				.row.gutter-60
+					.col-md-12.enrolled-teams-header
+						%h3 Teams Already Enrolled
+						%h4.gray-txt You can join a team only if your friend(on facebook) enrolled the team.
+				- @tournament.teams.each do |team|
+					.team-enrolled
+						.row.gutter-60
+							.col-md-4.col-sm-4.col-xs-12
+								%div{class: "team-container #{team.color.name.downcase}"}
+									%h4.text-center= "#{team.color.name} Team"
+									%h5.text-center.gray-txt= team_available_space(team)
+									= join_btn(team, "sm")
+							.col-md-8.col-sm-8.col-xs-12
+								- team.users.each do |user|
+									.col-md-4.col-sm-4.col-xs-6
+										.members
+											%h5.truncate= user.name
+											= profile_image_md(user)
+
+	- if policy(@tournament).destroy?
+		.manage-tournament
+			%p.text-center
+				= link_to profile_tournament_path(@tournament), method: :delete,
+				data: { confirm: 'Are you sure?','sweet-alert-type': 'warning',
+				text: 'You are about remove this tournament and all teams enrolled', 'confirm-button-color': '#EE543A' },
+				class: "btn btn-danger btn-sm round" do
+					= fa_icon "remove"
+					Cancel Tournament

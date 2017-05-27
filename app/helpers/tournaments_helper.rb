@@ -1,5 +1,9 @@
 module TournamentsHelper
 
+  def organizer_title(tournament)
+    "Organized by #{@tournament.organizer.name} Don't be shy, anyone can enroll!"
+  end
+
   def teams_enrollment_status(tournament)
     if tournament.teams.count == tournament.capacity
       if tournament.teams_with_space > 0
@@ -36,6 +40,10 @@ module TournamentsHelper
     else
       tournament.date.strftime("%A %b %d") + " @ around " + tournament.time.strftime("%I:%M%p")
     end
+  end
+
+  def betting_total(tournament)
+    "Betting total @ " + format_money(tournament.current_bet_amount) + "/" + format_money(tournament.total_bet_amount)
   end
 
   def options_for_days

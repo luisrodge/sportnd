@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
             </button>
             <%= link_to root_path, class: "navbar-brand" do %>
-              sportnd <small>Basketball tournaments played on the weekend across Belize</small>
+              sportnd <small>Basketball betting tournaments played on the weekend</small>
             <% end %>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -19,8 +19,9 @@
                 <li><%=link_to "My Tournaments", profile_tournaments_path, class: "auth-link lg" %></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <div class="auth-link username"><%= current_user.name.split(" ").first %> <span class="caret"></span></div>
                         <div class="img-rounded profile-img">
-                          <img src="http://graph.facebook.com/v2.6/1786997181617714/picture?width=180&height=180"  class="img-circle" alt="profile picture">
+                          <%= image_tag(current_user.image + "?width=100&height=100", class: "img-circle") %>
                         </div>
                     </a>
                     <ul class="dropdown-menu">
@@ -54,7 +55,7 @@
         <div class="modal-body text-center">
           <div class="body-content">
             <p>
-              Sportnd is a community platform where anyone can organize and enroll in basketball
+              sportnd is a community platform where anyone can organize and enroll in basketball betting
               tournaments which are played exclusively on the weekend.
             </p>
           </div>

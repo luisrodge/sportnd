@@ -25,6 +25,8 @@ gem 'active_link_to'
 
 gem 'simple_form'
 
+gem 'haml'
+
 gem 'omniauth-facebook'
 gem 'koala'
 

@@ -24,4 +24,8 @@ module MembersHelper
     image_tag(user.image + "?width=110&height=110", class: "img-circle default")
   end
 
+  def first_name(user)
+    user.name.split(" ").first
+  end
+
 end
