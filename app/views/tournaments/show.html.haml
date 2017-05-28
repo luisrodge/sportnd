@@ -6,7 +6,7 @@
 					.col-md-2
 						= profile_image_md(@tournament.organizer)
 					.col-md-9
-						%h4.gray-txt
+						%h4.gray-txt.truncate
 							= "Organized by #{@tournament.organizer.name}"
 							%br
 							Dont be shy, anyone can join!
@@ -64,7 +64,7 @@
 						- else
 							%h3 Unable To Enroll
 							%h4
-								You are already enrolled in another
+								You are already participating in another
 								= link_to "tournament", tournament_path(current_user.tournament_this_date(@tournament)), class: "notice"
 								that falls on this same date.
 				- else
@@ -86,7 +86,7 @@
 				.row.gutter-60
 					.col-md-12.enrolled-teams-header
 						%h3 Teams Already Enrolled
-						%h4.gray-txt You can join a team only if your friend(on facebook) enrolled the team.
+						%h4.gray-txt You can join a team only if your friend(via facebook) enrolled the team.
 				- @tournament.teams.each do |team|
 					.team-enrolled
 						.row.gutter-60

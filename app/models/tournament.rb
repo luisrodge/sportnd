@@ -20,7 +20,7 @@ class Tournament < ApplicationRecord
   validate :start_new_tournament?, :organized_tournament_this_week?, if: :date
 
   # Pagination for infinite scroll feature
-  paginates_per 6
+  paginates_per 5
 
   # Prevents a user from starting a tournament on a date that he/she is already enrolled in another tournament
   def start_new_tournament?
