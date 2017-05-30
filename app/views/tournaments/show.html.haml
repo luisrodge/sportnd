@@ -4,7 +4,8 @@
 			.col-md-9
 				.row.gutter-10
 					.col-md-2
-						= profile_image_md(@tournament.organizer)
+						.responsive-member-md
+							= profile_image_md(@tournament.organizer)
 					.col-md-9
 						%h4.gray-txt.truncate
 							= "Organized by #{@tournament.organizer.name}"
@@ -39,7 +40,8 @@
 	.row.body.gutter-70
 		.col-md-5.venue
 			%h3.truncate= @tournament.venue.name
-			= image_tag(@tournament.venue.venue_image_url(:medium)) if @tournament.venue.venue_image?
+			.responsive-venue-md
+				= image_tag(@tournament.venue.venue_image_url(:medium), alt: "#{@tournament.venue.name}") if @tournament.venue.venue_image?
 		.col-md-7.col-sm-7.col-xs-7
 			- if @tournament.enrollment_period?
 				- if user_signed_in?
@@ -51,7 +53,8 @@
 								= leave_tournament_btn(@tournament, current_user.team_for_tournament(@tournament))
 							- current_user.team_for_tournament(@tournament).users.each do |user|
 								.col-md-4.col-sm-4.col-xs-4
-									= image_tag(user.image + "?height=85&width=85", class: "default img-circle")
+									.responsive-member-md
+										= profile_image_md(user)
 					- else
 						- if !current_user.has_tournament_this_date?(@tournament)
 							- if @tournament.remaining_capacity > 0
@@ -100,7 +103,8 @@
 									.col-md-4.col-sm-4.col-xs-6
 										.members
 											%h5.truncate= user.name
-											= profile_image_md(user)
+											.responsive-member-md
+												= profile_image_md(user)
 
 	- if policy(@tournament).destroy?
 		.manage-tournament

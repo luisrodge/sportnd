@@ -1,6 +1,7 @@
 .col-md-4
   %figure
-    = image_tag(venue.venue_image_url(:medium)) if venue.venue_image?
+    .responsive-venue-md
+      = image_tag(venue.venue_image_url(:medium), alt: "#{venue.name}") if venue.venue_image?
     %figcaption
       %h4.truncate= venue.name
       %h5.truncate= venue.address

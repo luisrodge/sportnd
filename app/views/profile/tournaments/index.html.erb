@@ -30,7 +30,9 @@
                 <h5 class="pull-right"><%= tournament_organized_title(tournament) %> Tournament <% if tournament.full? %><span class="tournament-full">Full</span><% end %></h5>
               </div>
               <div class="col-md-4">
-                <%= image_tag(tournament.venue.venue_image_url(:medium)) if tournament.venue.venue_image? %>
+								<div class="responsive-venue-md">
+									<%= image_tag(tournament.venue.venue_image_url(:medium), alt: "#{tournament.venue.name}") if tournament.venue.venue_image? %>
+								</div>
               </div>
               <div class="col-md-8 profile-tourament-details">
                   <h4><%= profile_tournament_date(tournament) %></h4>

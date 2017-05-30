@@ -1,7 +1,8 @@
 .member.box-shadow
   .row.gutter-60
     .col-md-3.col-sm-4.col-xs-4
-      = profile_image_md(member)
+      .responsive-member-md
+        = profile_image_md(member)
     .col-md-9.col-sm-8.col-xs-8
       %h4= member.name
       %h4= member.location

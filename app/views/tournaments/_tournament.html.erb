@@ -9,7 +9,9 @@
 			</div>
 			<div class="row gutter-60">
 				<div class="col-md-4">
-					<%= image_tag(tournament.venue.venue_image_url(:medium)) if tournament.venue.venue_image? %>
+					<div class="responsive-venue-md">
+						<%= image_tag(tournament.venue.venue_image_url(:medium), alt: "#{tournament.venue.name}") if tournament.venue.venue_image? %>
+					</div>
 				</div>
 				<div class="col-md-8">
 					<div class="details-shadow">
@@ -27,7 +29,9 @@
 					<div class="tournament-organized-by">
 							<div class="row gutter-10">
 								<div class="col-md-2 col-sm-3 col-xs-3">
-									<%= profile_image(tournament.organizer) %>
+									<div class="responsive-member">
+										<%= profile_image(tournament.organizer) %>
+									</div>
 								</div>
 								<div class="col-md-10 col-sm-9 col-xs-9">
 									<h4 class="gray-txt">Organized by <%= first_name(tournament.organizer) %></h4>

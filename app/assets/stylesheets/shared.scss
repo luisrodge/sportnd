@@ -19,7 +19,7 @@ body{
   .navbar-brand {
     color: #FFF;
     font-size: 29px;
-    padding-top: 7px;
+    padding-top: 6px;
     small {
       font-weight: normal;
       display:block;
@@ -50,7 +50,7 @@ body{
     background: #5fa441;
     padding: 6px 14px;
     border-radius: 24px;
-    margin-top: 14px;
+    margin-top: 12px;
   }
   .profile-img{
       margin-top: -5px;
@@ -79,6 +79,34 @@ div.info {
   p {
     margin: 0;
   }
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  padding-bottom: ($height / $width) * 100%;
+  img,
+  video,
+  iframe,
+  object,
+  embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.responsive-member {
+  @include aspect-ratio(100, 100);
+}
+
+.responsive-member-md {
+  @include aspect-ratio(180, 180);
+}
+
+.responsive-venue-md {
+  @include aspect-ratio(360, 360);
 }
 
 .tournaments-this-weekend {
@@ -445,7 +473,7 @@ label.message {
 }
 .fa-circle.white {
   color: #FFF;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #f7f7f7;
   border-radius: 100%;
 }
 .fa-circle.black {
@@ -664,7 +692,7 @@ img.default{
   border-right: 2px solid #FF7416;
 }
 .box-shadow.white {
-  border-right: 2px solid $light_border;
+  border-right: 2px solid #f7f7f7;
 }
 .box-shadow.gray {
   border-right: 2px solid #C7C7C7;
@@ -731,7 +759,7 @@ ul.teams {
 }
 
 .team-container.white {
-  border: 2px solid $light_border;
+  border: 2px solid #f7f7f7;
 }
 
 .team-container.blue {
