@@ -23,6 +23,8 @@ gem "pundit"
 
 gem 'active_link_to'
 
+gem 'searchkick'
+
 gem 'simple_form'
 
 gem 'haml'

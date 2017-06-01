@@ -1,6 +1,13 @@
 class MembersController < ApplicationController
   def index
-    @members = User.order("created_at DESC").page;
+    search = params[:q].present? ? params[:q] : nil
+    @members = if search
+      Kaminari.paginate_array(User.search(search)).page
+    else
+      User.order("created_at DESC").page;
+    end
+
+    #@members = User.order("created_at DESC").page;
 		@endpoint = pagination_members_path
 		@page_amount = @members.total_pages
   end

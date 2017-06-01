@@ -17,14 +17,18 @@ body{
   margin-bottom: 50px;
   border-radius: 0;
   .navbar-brand {
+    font-family: 'Source Sans Pro', sans-serif;
     color: #FFF;
-    font-size: 29px;
-    padding-top: 6px;
+    font-size: 25px;
+    padding-top: 7px;
+    font-weight: bold;
     small {
+      font-family: 'Roboto Condensed', sans-serif;
       font-weight: normal;
       display:block;
       font-size:17px;
-      padding-top: 3px;
+      padding-top: 1px;
+      letter-spacing: normal;
     }
   }
   .nav .open > a{
@@ -112,6 +116,28 @@ div.info {
 .tournaments-this-weekend {
   margin-bottom: 20px;
   text-align: right;
+}
+
+.search-form {
+  margin-bottom: 50px;
+  input[type="text"] {
+    border: 1px solid #ccc!important;
+    color: $gray!important;
+    height: 45px;
+    font-size: 17px;
+  }
+  .stylish-input-group .input-group-addon{
+      background: white !important;
+  }
+  .stylish-input-group .form-control{
+  	border-right:0;
+  	box-shadow:0 0 0;
+  	border-color:#ccc;
+  }
+  .stylish-input-group button{
+      border:0;
+      background:#FFF!important;
+  }
 }
 
 .profile-tourament-details{

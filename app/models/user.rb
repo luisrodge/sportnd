@@ -12,10 +12,20 @@ class User < ApplicationRecord
   has_many :enrollments, dependent: :destroy
   has_many :tournaments, through: :enrollments
 
+  # User ElasticSearch and searchkick for searching
+  searchkick 
+
   # Pagination for infinite scroll feature
   paginates_per 6
 
   MAX_ENROLLMENTS = 2
+
+  def search_data
+		{
+			name: name,
+      location: location
+		}
+	end
 
   # Devise & Facebook Omniauth
   def self.new_with_session(params, session)

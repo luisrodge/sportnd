@@ -1,0 +1,26 @@
+<% if User.any? %>
+	<div class="row search-form">
+		<%= form_tag members_path, method: :get do %>
+			<div class="imaginary_container">
+				<div class="input-group stylish-input-group">
+					<%= text_field_tag :q, params[:q], class: "form-control", autocomplete: :off, placeholder: "Search for members by name or address" %>
+					<span class="input-group-addon">
+						<button type="submit">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	<div class="row">
+		<div class="js-items-container">
+			<%= render partial: 'members/member', collection: @members %>
+		</div>
+		<div class="row">
+			<div class="col-md-1 center-block pagination" data-pagination-endpoint="<%= @endpoint %>" data-pagination-pages="<%= @page_amount %>">
+				= image_tag 'ajax-loader.gif'
+			</div>
+		</div>
+	</div>
+<% end %>

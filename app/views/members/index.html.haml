@@ -1,7 +1,0 @@
-- if User.any?
-  .row
-    .js-items-container
-      = render partial: 'members/member', collection: @members
-    .row
-      %div{class: "col-md-1 center-block pagination", "data-pagination-endpoint" => "#{@endpoint}", "data-pagination-pages" => "#{@page_amount}"}
-        = image_tag 'ajax-loader.gif'
