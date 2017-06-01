@@ -19,8 +19,31 @@ class Tournament < ApplicationRecord
   validates :bet_amount, numericality: true
   validate :start_new_tournament?, :organized_tournament_this_week?, if: :date
 
+  # User ElasticSearch and searchkick for searching
+  searchkick
+
   # Pagination for infinite scroll feature
   paginates_per 5
+
+  def search_data
+    attributes.merge(
+      venue_name_from_relation: self.venue_name_from_relation,
+      venue_address_from_relation: self.venue_address_from_relation,
+      organizer_name_from_relation: self.organizer_name_from_relation
+    )
+	end
+
+  def venue_name_from_relation
+    self.venue.name
+  end
+
+  def venue_address_from_relation
+    self.venue.address
+  end
+
+  def organizer_name_from_relation
+    self.organizer.name
+  end
 
   # Prevents a user from starting a tournament on a date that he/she is already enrolled in another tournament
   def start_new_tournament?

@@ -5,23 +5,28 @@
     <title>Home - Welcome</title>
     <%= csrf_meta_tags %>
 
-    <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz|Roboto+Condensed" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Roboto+Condensed" rel="stylesheet">
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body class="<%= controller_name %> <%= action_name %>">
+
     <%= render "header" %>
-      <div class="container" id="main">
-        <div class="row gutter-70">
-            <%= render "nav" %>
-          <div class="col-md-9">
-            <%= yield %>
-          </div>
+
+    <div class="container" id="main">
+      <div class="row gutter-70">
+        <div class="col-md-3">
+          <%= render "side_nav" %>
+          <%= render "notice_sidebar" if @notice_sidebar %>
+        </div>
+        <div class="col-md-9">
+          <%= yield %>
         </div>
       </div>
+    </div>
+
     <%= render "footer" %>
 
     <script>

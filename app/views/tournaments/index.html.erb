@@ -1,33 +1,20 @@
-<% if current_user %>
-	<% if policy(Tournament).new? %>
-		<div class="box-shadow home-new-tournament">
-			<section class="header">
-				<h2 class="text-center">It's the weekend!</h2>
-			</section>
-			<section class="body">
-				<h3 class="text-center">You can start your own tournament for next weekend</h3>
-				<p class="text-center"><%= link_to "New Tournament", new_profile_tournament_path, class: "btn btn-primary round" %></p>
-			</section>
-		</div>
-	<% end %>
-<% elsif Date.today.saturday? || Date.today.sunday? %>
-	<div class="box-shadow home-new-tournament">
-		<section class="header">
-			<h2 class="text-center">It's the weekend!</h2>
-		</section>
-		<section class="body">
-			<h3 class="text-center">Sign In or Sign Up to start your own tournament for next weekend</h3>
-			<p class="text-center"><%= link_to "New Tournament", new_profile_tournament_path, class: "btn btn-primary round" %></p>
-		</section>
-	</div>
-<% end %>
-
 <% if Tournament.any? %>
-	<% if !(Date.today.saturday? || Date.today.sunday?)  %>
-		<div class="info text-center">
-			<p>Hey there! You can participate any of the following tournaments or wait for this weekend to start your own.</p>
+	<div class="row search-form">
+		<div class="col-md-12">
+			<%= form_tag tournaments_path, method: :get do %>
+				<div class="imaginary_container">
+					<div class="input-group stylish-input-group">
+						<%= text_field_tag :q, params[:q], class: "form-control", autocomplete: :off, placeholder: "Find tournaments by organizer, address or court name" %>
+						<span class="input-group-addon">
+							<button type="submit">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</span>
+					</div>
+				</div>
+			<% end %>
 		</div>
-	<% end %>
+	</div>
 
 	<div class="tournaments-this-weekend">
 		<h4 class="gray-txt"><%= upcoming_tournaments_count(@tournaments) %></h4>
