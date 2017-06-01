@@ -1,5 +1,5 @@
 class TournamentsController < ApplicationController
-	before_action :notice_sidebar?
+	before_action :notice_sidebar?, only: :index
 
 	def index
 		search = params[:q].present? ? params[:q] : nil
