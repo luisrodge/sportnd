@@ -65,6 +65,7 @@ body {
     border-radius: 4px;
     padding: 30px 50px;
     background: #FFF;
+    border: 3px solid #5FA441;
     color: #424242;
     .phase {
       margin-bottom: 25px;
@@ -110,10 +111,15 @@ body {
 }
 
 div.footer {
-  background: #5FA441;
+  color: #424242;
+  background: #FFF;
+  border: 3px solid #5FA441;
   border-radius: 4px;
   padding: 20px;
   margin-bottom: 60px;
+  h2 {
+    font-size: 26px;
+  }
 }
 
 @media (max-width: 994px) {
