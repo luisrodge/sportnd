@@ -1,112 +1,143 @@
-<div class="row row-grid">
-	<div class="col-md-12 row-title text-center">
-		<h3>Open Tournaments</h3>
-		<%= link_to "See More", "#", class: "btn btn-default btn-sm" %>
-	</div>
-	<% Tournament.open.limit(3).order("created_at DESC").each do |tournament| %>
-		<%= link_to tournament_path(tournament) do %>
-			<div class="col-md-4">
-				<figure>
-					<div class="caption">
-						<%= image_tag(tournament.venue.venue_image_url(:medium)) if tournament.venue.venue_image? %>
-						<div class="caption-text text-center">
-							<h5><%= tournament.venue.name + " - " + tournament.venue.address %></h5>
-						</div>
-					</div>
-					<figcaption>
-						<h5 class="tournament-space">Space for <%= pluralize(tournament.capacity - tournament.teams.count, "team") %> remaining</h5>
-						<h5>Sunday @ around 4:30PM</h5>
-						<h5><%= tournament.team_size %> members per team</h5>
-						<h5><%= money_format(tournament.bet_amount) %> per team member</h5>
-						<div class="progress-container">
-							<h5>Bet total @ <%= money_format(tournament.current_bet_amount) %> of <%= money_format(tournament.total_bet_amount) %></h5>
-							<div class="progress">
-							  <div class="progress-bar" role="progressbar" aria-valuenow="<%= tournament.bet_amount_percentage %>"
-							  aria-valuemin="0" aria-valuemax="100" style="width:<%= tournament.bet_amount_percentage %>">
-							  </div>
-							</div>
-						</div>
-					</figcaption>
-				</figure>
-			</div>
-		<% end %>
-	<% end %>
+<div class="header">
+  <h1 class="text-center main-title">Coming soon, sportnd</h1>
+  <h3 class="text-center">A new & awesome sporting community coming to Belize for basketball players. Start tournaments
+  and have participating basketball players fund them!</h3>
+</div>
+<div class="nav">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#starting-tournament">Starting a tournament</a></li>
+    <li><a href="#enrolling">Enrolling in a tournament</a></li>
+    <li><a href="#balling">Balling</a></li>
+  </ul>
+</div>
+<div class="main-content">
+  <section class="sec-content">
+    <h1 class="sec-title" id="overview">Overview</h1>
+    <p>
+      sportnd is a community where basketball player accross Belize will be able to start and organize their own
+      Tournaments. Tournaments are played on the weekend at basketball courts throughout Belize.
+    </p>
+    <p>Now of course a tournament is oriented around multiple teams, but it also implies that once
+      the tournament has been played that the winning team will receive some sort of prize. Within the sportnd community,
+      tournaments aren't sponsored and that is because tournamets are funded by basketball players in the community
+      who participate in them.
+    </p>
+    <p>
+      This means that in order to enter any tournament, participating basketball players
+      will need to bring forth an entry amount required by the tournament on the day the tournament is to be played.
+      Once the tournament has been played, the total entry amount from each teams and it's memebers will be rewarded
+      to the winning team by the organizer of the tournament. That's right! Now we don't need to wait for some organization
+      to sponsor a tournament, we can now organize our own.
+    </p>
+  </section>
+  <section class="sec-content">
+    <h1 class="sec-title" id="starting-tournament">Starting a tournament</h1>
+    <p>
+      Starting a new tournament will be done using our website, sportnd.bz. In order for you to start a tournament the following
+      requirements must be met:
+      <ul>
+        <li>Starting a tournament has to be done on either Saturday or Sunday.</li>
+        <li>You can't start more than one tournament per weekend.</li>
+        <li>If enrolled in another tournament, your new tournament can't be created for matching that date.</li>
+      </ul>
+    </p>
+    <h2>Starting a tournament is as simple as choosing:</h2>
+    <ul>
+      <li>A court near you where the tournament will be played.</li>
+      <li>How many teams will be able to enroll in your tournament (2 minimum, 4 maximum).</li>
+      <li>How many members should be in a team (2 minimum, 3 maximum).</li>
+      <li>An entry amount per team member ($4 minimum, $6 maximum).</li>
+      <li>A date and time for when you want your tournament to be played (Saturday, Sunday).</li>
+      <li>A team color for which you want to enroll as (enrolling teams is as simple as choosing a team color).</li>
+    </ul>
+  </section>
+  <section class="sec-content">
+    <h1 class="sec-title" id="enrolling">Enrolling in a tournament</h1>
+    <p>Enrolling in a tournament will be done using our website. You will be able to enroll
+      in a tournament by enrolling a team or joining an already enrolled team. Once you've found a tournament
+       you'd like to participate in it's as simple as choosing a team color to enroll.
+       Your friends and only your friends will then be able to join your team. Since we use facebook as our registration
+       method, your friends list will determine whether a member can join your team or not depending if said member is part of that list.
+    </p>
+    <p>
+      Therefore, tournaments are inclusive, meaning anyone can enroll a team in a tournament, but teams are exclusive,
+       meaning only your friends will be able to join your team .How much friends can join your team
+       depends on the tournament. On the day of the tounament, you and each one of your team members will need to bring the required
+       entry amount (either $4, $5 or $6) to take part.
+    </p>
+    <h2>Enrollement requirements are as follow:</h2>
+    <ul>
+      <li>You have'nt reached the enrollemnt limit per weekend. You can participate in a total of two
+      tournaments per weekend. One on Saturday and one on Sunday, but never twice on the same day.</li>
+      <li>The tournament is still in the enrollment period. The enrollment period for a tournament spans from
+      the day the tournament was created up to the following Friday.</li>
+    </ul>
+  </section>
+  <section class="sec-content">
+    <h1 class="sec-title" id="balling">Let's ball - the fun part!</h1>
+    <p>As previously mentioned, all tournaments are played only on the weekend. The sportnd community
+    is oriented around two concepts. The website, which is used to start tournaments or enroll in them.
+    The basketball court, which is where the balling happens.</p>
+    <p>
+      Playing involves three phases - the organizer collecting
+      the entry fee from each participating team and it's members, the acutal playing, and the organizer rewarding the winning team
+      with the total entry amount previously collected from each participating team.
+    </p>
+    <div class="row phase">
+      <div class="col-md-12">
+        <h2>Phase One: Tournament organizer collects entry amount from participating teams.</h2>
+        <p>It is the responsibility of the organizer to collect the entry amount from each team, including
+          his team, and it's members before starting the tournament. This verifies that everyone participating
+          will be funding the tourament. Once this phase is done, the participants can begin playing.
+        </p>
+        <div class="col-md-8 col-sm-12 col-xs-12 center-block">
+          <img src="http://res.cloudinary.com/dwaavflqp/image/upload/v1496467863/OrganizerCollecting_a7seeo.png" alt="Organizer collecting">
+        </div>
+      </div>
+    </div>
+    <div class="row phase">
+      <div class="col-md-12">
+        <h2>Phase Two: Balling</h2>
+        <h4>We leave the finer details of the game up to you. You decide which two teams will play first, whether
+          three pointers are allowed, play full court or half court, etc...</h4><br/>
+        <p>This part is at the heart of sportnd. In order to have the best experience we ask you to please
+        play <strong>honest</strong> and have <strong>sportmanship</strong>. These are the two pillars of the sportnd community. Without them there
+        will be no trust and building of new relationships, not to mention that the overall fun for everyone
+        participating in the tournament will be degraded. <strong>We recommend that the other teams
+        waiting to play against each other keep track of the score between the two teams currently playing.</strong>
+        Overall, Don't be a sore looser, and since the players playing against each other
+        will be the one's calling fouls and other game related calls, it's imporant to be honest. Don't make bad calls
+        while playing just to give your team an advantage. Follow these basic principles and you'll have an outstanding basketball
+        experience. In the end, even if you loose you end up not loosing. You still got to play against other new players, established new
+        relationships, and have a good time. So it's really a win-win in either case.
+      </p>
+        <div class="col-md-8 col-sm-12 col-xs-12 center-block">
+          <img src="http://res.cloudinary.com/dwaavflqp/image/upload/v1496469622/Balling_f2tg9y.png" alt="Playing tournament">
+        </div>
+      </div>
+    </div>
+    <div class="row phase">
+      <div class="col-md-12">
+        <h2>Phase Three: Organizer rewards winning team with collected entry amount total</h2>
+        <p>This is the last phase of playing a tournament. Once the tournament has been played, the organizer
+        of the tournament is responsible of rewarding the winning team with the previously collected entry amount
+        total, in this example it's $40. The winning team will then distribute the winning total amongst it's members.
+        </p>
+        <div class="col-md-8 col-sm-12 col-xs-12 center-block">
+          <img src="http://res.cloudinary.com/dwaavflqp/image/upload/v1496472543/OganizerRewardingWinner_zylmgl.png" alt="Reward winning team">
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
-<div class="row row-grid">
-	<div class="col-md-12 row-title text-center">
-		<h3>Latest Members</h3>
-		<%= link_to "See More", "#", class: "btn btn-default btn-sm" %>
-	</div>
-	<% User.limit(4).order("created_at DESC").each do |user| %>
-		<div class="col-md-3">
-			<figure>
-				<%= image_tag(user.profile_image_url(:normal)) if user.profile_image? %>
-				<figcaption>
-					<h5><%= user.username %></h5>
-					<h5>San Ignacio, Cayo</h5>
-					<%= link_to "Recruit", "#", class: "btn btn-primary btn-sm btn-block" %>
-				</figcaption>
-			</figure>
-		</div>
-	<% end %>
+<div class="footer">
+    <h2 class="text-center">Follow us on facebook if you'd like to be notified when we officially launch the main website. Before
+    launching we'll be selecting four random followers to participate in the first ever sportnd tournament, so
+  do follow us because it may just be you!</h2></br>
+  <p class="text-center"><a href="https://www.facebook.com/sportndbelize/" class="btn btn-primary btn-lg">Follow Us On Facebook</a></p></br>
+
+    <h4 class="text-center"><em>It's worth mentioning that this is just a pre-launch website, and not the main website that will be used to start tournaments or
+    enroll in them. That's coming soon!</em></h4>
 </div>
-
-<div class="row row-grid">
-	<div class="col-md-12 row-title text-center">
-		<h3>Nearly Full Tournaments</h3>
-		<%= link_to "See More", "#", class: "btn btn-default btn-sm" %>
-	</div>
-	<% Tournament.open.limit(3).order("created_at DESC").each do |tournament| %>
-		<%= link_to tournament_path(tournament) do %>
-			<div class="col-md-4">
-				<figure>
-					<div class="caption">
-						<%= image_tag(tournament.venue.venue_image_url(:medium)) if tournament.venue.venue_image? %>
-						<div class="caption-text text-center">
-							<h5><%= tournament.venue.name + " - " + tournament.venue.address %></h5>
-						</div>
-					</div>
-					<figcaption>
-						<h5 class="tournament-space">Space for <%= pluralize(tournament.capacity - tournament.teams.count, "team") %> remaining</h5>
-						<h5>Sunday @ around 4:30PM</h5>
-						<h5><%= tournament.team_size %> members per team</h5>
-						<h5><%= money_format(tournament.bet_amount) %> per team member</h5>
-						<div class="progress-container">
-							<h5>Bet total @ <%= money_format(tournament.current_bet_amount) %> of <%= money_format(tournament.total_bet_amount) %></h5>
-							<div class="progress">
-							  <div class="progress-bar" role="progressbar" aria-valuenow="<%= tournament.bet_amount_percentage %>"
-							  aria-valuemin="0" aria-valuemax="100" style="width:<%= tournament.bet_amount_percentage %>">
-							  </div>
-							</div>
-						</div>
-					</figcaption>
-				</figure>
-			</div>
-		<% end %>
-	<% end %>
-</div>
-
-
-<div class="row row-grid">
-	<div class="col-md-12 row-title text-center">
-		<h3>Teams With Space</h3>
-		<%= link_to "See More", "#", class: "btn btn-default btn-sm" %>
-	</div>
-	<div class="col-md-3"><img src="http://hpci.net/wordpressNew/wp-content/uploads/2015/09/TeamCoaching.jpg" alt=""><p>San Ignacio, Cayo </p>
-		<a href="#" class="btn btn-primary btn-block btn-sm">Join</a>
-	</div>
-	<div class="col-md-3"><img src="http://hpci.net/wordpressNew/wp-content/uploads/2015/09/TeamCoaching.jpg" alt=""><p>Belize City, Belize</p>
-		<a href="#" class="btn btn-primary btn-block btn-sm">Join</a>
-
-	</div>
-	<div class="col-md-3"><img src="http://hpci.net/wordpressNew/wp-content/uploads/2015/09/TeamCoaching.jpg" alt=""><p>San Pedro, Belize</p>
-		<a href="#" class="btn btn-primary btn-block btn-sm">Join</a>
-
-	</div>
-	<div class="col-md-3"><img src="http://hpci.net/wordpressNew/wp-content/uploads/2015/09/TeamCoaching.jpg" alt=""><p>San Pedro, Belize</p>
-		<a href="#" class="btn btn-primary btn-block btn-sm">Join</a>
-
-	</div>
-</div>
-
