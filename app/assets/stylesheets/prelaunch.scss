@@ -10,6 +10,7 @@ body {
   font-family: 'Roboto Condensed', sans-serif;
   color: #FFF;
   background: #79BE5B;
+  border-top: 4px solid #5FA441;
 }
 
 .header {
@@ -118,7 +119,11 @@ div.footer {
   padding: 20px;
   margin-bottom: 60px;
   h2 {
-    font-size: 26px;
+    font-size: 22px;
+    line-height: 1.4em;
+  }
+  h4 {
+    color: #8A8A8A;
   }
 }
 
@@ -155,7 +160,10 @@ div.footer {
 
   div.footer {
     h2 {
-      font-size: 24px!important;
+      font-size: 19px!important;
+    }
+    h4 {
+      font-size: 16px!important;
     }
   }
 }
