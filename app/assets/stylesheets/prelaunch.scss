@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   color: #FFF;
   background: #79BE5B;
   border-top: 4px solid #5FA441;
@@ -19,7 +19,8 @@ body {
 
 .header {
   padding-top: 30px;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
+  font-family: 'Source Sans Pro', sans-serif;
   .main-title {
     font-size: 48px;
     font-weight: bold;
@@ -28,31 +29,21 @@ body {
   h1, h3 {
     margin: 0;
   }
+  h3 {
+    font-family: 'Roboto Condensed', sans-serif;
+  }
 }
 
-.nav {
-  background: #5fa441;
-  padding: 14px 12px;
-  border-radius: 4px;
-  z-index: 100;
-  margin-bottom: 60px;
-
-  ul {
-    list-style-type: none;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-    li {
-      display: inline-block;
-      padding-right: 32px;
-      a {
-        font-size: 24px;
-        color: #FFF;
-        text-decoration: none;
-        &:hover, &:focus {
-          border-bottom: 2px solid #79BE5B;
-        }
-      }
+.balling-phases {
+  margin-top: 20px;
+  .row {
+    margin-bottom: 20px;
+    h3 {
+      padding-bottom: 20px;
+    }
+    .col-md-12 {
+      border-top: 1px solid #F2F2F2;
+      padding-bottom: 34px;
     }
   }
 }
@@ -117,7 +108,7 @@ body {
 /* Container */
 @media (min-width: 1200px) {
     .container{
-        max-width: 940px;
+        max-width: 920px;
     }
 }
 
