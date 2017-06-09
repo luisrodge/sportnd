@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   #mount ActionCable.server => "/cable"
 
   root 'tournaments#index'
-  get 'details', to: 'pages#home'
+  get 'details', to: 'pages#details'
   
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }, :skip => [:registrations]
   as :user do
