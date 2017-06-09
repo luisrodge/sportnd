@@ -8,7 +8,6 @@
 
 body {
   font-family: 'Roboto Condensed', sans-serif;
-  border-top: 4px solid #5FA441;
   color: #424242;
 }
 
@@ -17,13 +16,15 @@ body {
 }
 
 .header {
+  background: url(https://res.cloudinary.com/dwaavflqp/image/upload/c_scale,q_80,w_1604/v1496982108/sabri-tuzcu-190600_cnucuc.jpg);
   padding-top: 30px;
-  margin-bottom: 30px;
-  border-bottom: 1px solid #f0f0f0;
-  padding-bottom: 30px;
+  margin-bottom: 12px;
+  padding-bottom: 40px;
+  color: #FFF;
+
   font-family: 'Source Sans Pro', sans-serif;
   .main-title {
-    color: #79BE5B;
+    color: #5FA441;
     font-size: 48px;
     font-weight: bold;
     padding-bottom: 8px;
@@ -59,6 +60,7 @@ body {
     width: 100%;
     height: auto;
   }
+
   .sec-content {
     font-size: 20px;
     border-radius: 4px;
@@ -67,6 +69,9 @@ body {
     color: #424242;
     h1 {
       font-size: 31px;
+      border-left: 4px solid #5FA441;
+      padding-left: 15px;
+      margin-bottom: 30px;
     }
   }
 }
