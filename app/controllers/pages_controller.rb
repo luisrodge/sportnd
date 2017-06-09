@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   layout 'prelaunch'
   
-  def home
+  def overview
   end
 
   def rules
