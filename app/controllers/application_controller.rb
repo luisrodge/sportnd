@@ -1,9 +1,16 @@
 class ApplicationController < ActionController::Base
 	include Pundit
+	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
 	protect_from_forgery with: :exception
 
-	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+	def after_sign_in_path_for(resource_or_scope)
+    if resource.sign_in_count == 1
+       new_product_path
+    else
+       root_path
+    end
+	end
 
 	protected
 

@@ -7,13 +7,13 @@ class User < ApplicationRecord
   has_many :memberships, dependent: :destroy
   has_many :teams, through: :memberships
 
-  has_many :started_tournaments, foreign_key: "organizer_id", class_name: 'Tournament'
+  has_many :organized_tournaments, foreign_key: "organizer_id", class_name: 'Tournament'
 
   has_many :enrollments, dependent: :destroy
   has_many :tournaments, through: :enrollments
 
   # User ElasticSearch and searchkick for searching
-  searchkick 
+  searchkick
 
   # Pagination for infinite scroll feature
   paginates_per 6
@@ -21,43 +21,35 @@ class User < ApplicationRecord
   MAX_ENROLLMENTS = 2
 
   def search_data
-		{
-			name: name,
+    {
+      name: name,
       location: location
-		}
-	end
+    }
+  end
 
   # Devise & Facebook Omniauth
   def self.new_with_session(params, session)
     super.tap do |user|
-	    if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-	      user.email = data["email"] if user.email.blank?
-	    end
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
     end
   end
 
   def self.from_omniauth(auth)
-    # Update picture url for existing user if changed in fb
-    if user = find_by_uid(auth.uid)
-      if auth.info.image.present? && auth.info.image != user.image
-        user.update_attributes(image: auth.info.image)
-      end
-      user
-    else
-      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-  	    user.email = auth.info.email
-  	    user.password = Devise.friendly_token[0,20]
-  	    user.name = auth.info.name  
-  	    user.image = auth.info.image
-  	    user.oauth_token = auth.credentials.token
-  	    user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.name = auth.info.name
+      user.image = auth.info.image
+      user.oauth_token = auth.credentials.token
+      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
 
-  	    graph = Koala::Facebook::API.new(auth.credentials.token)
-  	    user_location = graph.get_object("#{auth.uid}?fields=location")
-        if user_location["location"]
-  	       user.location = user_location["location"]["name"]
-         end
-  	  end
+      graph = Koala::Facebook::API.new(auth.credentials.token)
+      user_location = graph.get_object("#{auth.uid}?fields=location")
+      if user_location["location"]
+         user.location = user_location["location"]["name"]
+      end
     end
   end
 
@@ -73,7 +65,7 @@ class User < ApplicationRecord
 
   # Koala & Facebook
   def facebook
-  	@facebook ||= Koala::Facebook::API.new(oauth_token)
+    @facebook ||= Koala::Facebook::API.new(oauth_token)
   end
 
   def friends

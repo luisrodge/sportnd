@@ -4,7 +4,7 @@
 			<div class="row tournament-address">
 				<div class="col-md-12">
 					<h5 class="pull-left"><%= tournament.venue.name + ", " + tournament.venue.address %></h5>
-					<h5 class="pull-right"><%= tournament.sport.name %> Tournament  <% if tournament.full? %><span class="tournament-full">Full</span><% end %></h5>
+					<% if tournament.full? %><h5 class="pull-right"><span class="tournament-full">Full</span></h5><% end %>
 				</div>
 			</div>
 			<div class="row gutter-60">
