@@ -1,6 +1,6 @@
 <div class="notice-bar">
     <p class="notice-title">Hey there!</p>
-    <% if current_user %>
+    <% if current_member %>
       <% if policy(Tournament).new? %>
         <p>It's officially the weekend and you can now start your own tournament for next weekend!</p>
       <% else %>

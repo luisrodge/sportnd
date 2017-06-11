@@ -17,7 +17,7 @@ module TournamentsHelper
   end
 
   def tournament_organized_title(tournament)
-    if tournament.organizer == current_user
+    if tournament.organizer == current_member
       "Organized #{tournament.sport.name}"
     else
       "#{tournament.sport.name}"

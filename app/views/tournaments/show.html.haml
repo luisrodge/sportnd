@@ -44,19 +44,19 @@
 				= image_tag(@tournament.venue.venue_image_url(:medium), alt: "#{@tournament.venue.name}") if @tournament.venue.venue_image?
 		.col-md-7.col-sm-7.col-xs-7
 			- if @tournament.enrollment_period?
-				- if user_signed_in?
-					- if @tournament.enrolled?(current_user)
+				- if current_member
+					- if @tournament.enrolled?(current_member)
 						.row.enrolled-team
 							.col-md-12.header
-								%h3= "Enrolled With #{current_user.team_for_tournament(@tournament).color.name} Team"
+								%h3= "Enrolled With #{current_member.team_for_tournament(@tournament).color.name} Team"
 								= leave_team_btn(@tournament)
-								= leave_tournament_btn(@tournament, current_user.team_for_tournament(@tournament))
-							- current_user.team_for_tournament(@tournament).users.each do |user|
+								= leave_tournament_btn(@tournament, current_member.team_for_tournament(@tournament))
+							- current_member.team_for_tournament(@tournament).members.each do |member|
 								.col-md-4.col-sm-4.col-xs-4
 									.responsive-member-md
-										= profile_image_md(user)
+										= profile_image_md(member)
 					- else
-						- if !current_user.has_tournament_this_date?(@tournament)
+						- if !current_member.has_tournament_this_date?(@tournament)
 							- if @tournament.remaining_capacity > 0
 								%h2 Enroll New Team
 								%h4.gray-txt= teams_enrollment_status(@tournament)
@@ -68,7 +68,7 @@
 							%h3 Unable To Enroll
 							%h4
 								You are already participating in another
-								= link_to "tournament", tournament_path(current_user.tournament_this_date(@tournament)), class: "notice"
+								= link_to "tournament", tournament_path(current_member.tournament_this_date(@tournament)), class: "notice"
 								that falls on this same date.
 				- else
 					- if @tournament.remaining_capacity > 0
@@ -99,12 +99,12 @@
 									%h5.text-center.gray-txt= team_available_space(team)
 									= join_btn(team, "sm")
 							.col-md-8.col-sm-8.col-xs-12
-								- team.users.each do |user|
+								- team.members.each do |member|
 									.col-md-4.col-sm-4.col-xs-6
 										.members
-											%h5.truncate= user.name
+											%h5.truncate= member.name
 											.responsive-member-md
-												= profile_image_md(user)
+												= profile_image_md(member)
 
 	- if policy(@tournament).destroy?
 		.manage-tournament

@@ -7,7 +7,7 @@
 			</div>
 		<% else %>
 			<div class="col-md-12 cant-start-tournament">
-				<% if current_user.organized_for_upcoming_week? %>
+				<% if current_member.organized_for_upcoming_week? %>
 					<h3 class="text-center">You already started a tournament for the upcoming weekend</h3>
 					<p class="text-center"><%= link_to "New Tournament", new_profile_tournament_path, class: "btn btn-primary disabled round" %></p>
 				<% else %>
@@ -19,9 +19,9 @@
 	</div>
 </div>
 
-	<% if current_user.upcoming_tournaments.any? %>
+	<% if current_member.upcoming_tournaments.any? %>
 		<h3 class="text-center title">Your Upcoming Tournaments</h3>
-		<% current_user.upcoming_tournaments.each do |tournament| %>
+		<% current_member.upcoming_tournaments.each do |tournament| %>
         <div class="member-tournament box-shadow">
           <%= link_to tournament_path(tournament) do %>
             <div class="row gutter-60">

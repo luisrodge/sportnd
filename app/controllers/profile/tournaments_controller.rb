@@ -1,5 +1,5 @@
 class Profile::TournamentsController < ApplicationController
-	before_action :authenticate_user!
+	before_action :authenticate_member!
 	layout 'full', only: [:new, :create]
 
 	def index
@@ -24,13 +24,13 @@ class Profile::TournamentsController < ApplicationController
 		@tournament.sport = Sport.last
 		@tournament.eowd_date = Date.today.next_week.end_of_week - 2
 		@tournament.date = @tournament.eowd_date + (params[:tournament][:date].to_i - @tournament.eowd_date.wday)
-		@tournament.organizer = current_user
+		@tournament.organizer = current_member
 		if @tournament.valid?
 			@tournament.save
 			team = @tournament.teams.new(color_id: params[:tournament][:team_color_id])
-			team.captain = current_user
+			team.captain = current_member
 			team.save
-			@tournament.users << current_user
+			@tournament.members << current_member
 			redirect_to tournament_path(@tournament)
 		else
 			@tournament.teams.build if @tournament.teams.blank?

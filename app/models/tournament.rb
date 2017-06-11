@@ -4,12 +4,12 @@ class Tournament < ApplicationRecord
   belongs_to :venue
   belongs_to :sport
 
-  belongs_to :organizer, class_name: "User"
+  belongs_to :organizer, class_name: "Member"
 
   has_many :teams, dependent: :destroy
 
   has_many :enrollments, dependent: :destroy
-  has_many :users, -> { distinct }, through: :enrollments
+  has_many :members, -> { distinct }, through: :enrollments
 
   attr_accessor :team_color_id
 
@@ -52,26 +52,6 @@ class Tournament < ApplicationRecord
     end
   end
 
-  def can_enroll?(user)
-    if enrollment_period?
-      if !enrolled?(user)
-        if !user.has_tournament_this_date?(self)
-          if remaining_capacity > 0
-            return true
-          else
-            return false
-          end
-        else
-          return false
-        end
-      else
-        return false
-      end
-    else
-      return false
-    end
-  end
-
   # Ensures that a user can only start one tournament per weekend
   def organized_tournament_this_week?
     if self.organizer.organized_tournament_this_week?(self.date)
@@ -84,18 +64,18 @@ class Tournament < ApplicationRecord
   end
 
   # Returns true if a user is enrolled in a tournament
-  def enrolled?(user)
-    user.teams.where(tournament_id: self).any?
+  def enrolled?(member)
+    member.teams.where(tournament_id: self).any?
   end
 
   # Tournaments with available space either via new team enrollment or team membership
   def self.open
     #joins(:teams).group("tournaments.id").having("count(teams.id) < tournaments.capacity")
-    joins(:users).group("tournaments.id").having("count(users.id) < (tournaments.capacity * tournaments.team_size)")
+    joins(:members).group("tournaments.id").having("count(members.id) < (tournaments.capacity * tournaments.team_size)")
   end
 
   def full?
-    users.count == (capacity * team_size)
+    members.count == (capacity * team_size)
     #joins(:users).group("tournaments.id").having("count(users.id) < ? ", (capacity * team_size))
   end
 
@@ -104,7 +84,7 @@ class Tournament < ApplicationRecord
   end
 
   def teams_with_space
-    teams.joins(:users).group("teams.id").having("count(users.id) < ?", team_size).each.count
+    teams.joins(:members).group("teams.id").having("count(members.id) < ?", team_size).each.count
     #(tournaments.capacity * tournaments.team_size) - (tournaments.users)
   end
 
@@ -122,7 +102,7 @@ class Tournament < ApplicationRecord
   def current_bet_amount
     total = 0.0
     teams.each do |team|
-      total += team.users.count * bet_amount
+      total += team.members.count * bet_amount
     end
     total
   end

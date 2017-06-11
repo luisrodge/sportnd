@@ -1,4 +1,4 @@
-class User < ApplicationRecord
+class Member < ApplicationRecord
   #:validatable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
@@ -29,26 +29,26 @@ class User < ApplicationRecord
 
   # Devise & Facebook Omniauth
   def self.new_with_session(params, session)
-    super.tap do |user|
+    super.tap do |member|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
+        member.email = data["email"] if member.email.blank?
       end
     end
   end
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      user.name = auth.info.name
-      user.image = auth.info.image
-      user.oauth_token = auth.credentials.token
-      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |member|
+      member.email = auth.info.email
+      member.password = Devise.friendly_token[0,20]
+      member.name = auth.info.name
+      member.image = auth.info.image
+      member.oauth_token = auth.credentials.token
+      member.oauth_expires_at = Time.at(auth.credentials.expires_at)
 
       graph = Koala::Facebook::API.new(auth.credentials.token)
-      user_location = graph.get_object("#{auth.uid}?fields=location")
-      if user_location["location"]
-         user.location = user_location["location"]["name"]
+      member_location = graph.get_object("#{auth.uid}?fields=location")
+      if member_location["location"]
+         member.location = member_location["location"]["name"]
       end
     end
   end
@@ -116,5 +116,4 @@ class User < ApplicationRecord
     tournaments.where("Date(date) BETWEEN ? AND ?", Date.today.beginning_of_week,
         Date.today.end_of_week).count == MAX_ENROLLMENTS
   end
-
 end

@@ -12,20 +12,20 @@ module MembersHelper
     end
   end
 
-  def profile_image(user)
-    image_tag(user.image + "?width=100&height=100", class: "img-circle", alt: "#{user.name}")
+  def profile_image(member)
+    image_tag(member.image + "?width=100&height=100", class: "img-circle", alt: "#{member.name}")
   end
 
-  def profile_image_md(user)
-    image_tag(user.image + "?width=180&height=180", class: "img-circle", alt: "#{user.name}")
+  def profile_image_md(member)
+    image_tag(member.image + "?width=180&height=180", class: "img-circle", alt: "#{member.name}")
   end
 
-  def tournament_profile_img(user)
-    image_tag(user.image + "?width=110&height=110", class: "img-circle default")
+  def tournament_profile_img(member)
+    image_tag(member.image + "?width=110&height=110", class: "img-circle default")
   end
 
-  def first_name(user)
-    user.name.split(" ").first
+  def first_name(member)
+    member.name.split(" ").first
   end
 
 end

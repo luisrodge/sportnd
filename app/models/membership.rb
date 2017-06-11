@@ -1,4 +1,4 @@
 class Membership < ApplicationRecord
-  belongs_to :user
+  belongs_to :member
   belongs_to :team
 end

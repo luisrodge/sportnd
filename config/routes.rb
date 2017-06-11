@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   root 'tournaments#index'
   get 'details', to: 'pages#overview'
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }, :skip => [:registrations]
-  as :user do
-    get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
-    put 'users' => 'devise/registrations#update', :as => 'user_registration'
+  devise_for :members, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }, :skip => [:registrations]
+  as :member do
+    get 'members/edit' => 'devise/registrations#edit', :as => 'edit_member_registration'
+    put 'members' => 'devise/registrations#update', :as => 'member_registration'
   end
   resource :tournaments, only: :index do
     get :pagination
