@@ -1,14 +1,23 @@
 module MembersHelper
 
-  def member_tournaments_count(member)
-    if member.tournaments.any?
-      if member.tournaments_this_week.any?
-        content_tag :h4, "#{pluralize(member.tournaments.upcoming.count, 'tournament')}, #{member.tournaments_this_week.count} this weekend"
+  def days_balling_on(member)
+    if member.upcoming_tournaments.any?
+      if member.upcoming_tournaments.count > 1
+        "Balling on #{member.upcoming_tournaments.first.date} and #{member.upcoming_tournaments.last.date}"
+        capture do
+          concat "Balling on "
+          concat link_to("#{member.upcoming_tournaments.first.date.strftime("%A")}", tournament_path(member.tournament_this_date(member.upcoming_tournaments.first)), class: "notice")
+          concat " and "
+          concat link_to("#{member.upcoming_tournaments.last.date.strftime("%A")}", tournament_path(member.tournament_this_date(member.upcoming_tournaments.last)), class: "notice")
+        end
       else
-        content_tag :h4, pluralize(member.tournaments.upcoming.count, "tournament")
+        capture do
+          concat "Balling on "
+          concat link_to("#{member.upcoming_tournaments.first.date.strftime("%A")}", tournament_path(member.tournament_this_date(member.upcoming_tournaments.first)), class: "notice")
+        end
       end
     else
-      content_tag :h4, "No tournaments yet"
+      "No tournaments"
     end
   end
 

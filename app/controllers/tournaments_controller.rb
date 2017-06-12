@@ -1,5 +1,4 @@
 class TournamentsController < ApplicationController
-	before_action :notice_sidebar?, only: :index
 
 	def index
 		search = params[:q].present? ? params[:q] : nil
@@ -21,12 +20,6 @@ class TournamentsController < ApplicationController
 	def pagination
 	  tournaments = Tournament.upcoming.page(params[:page])
 		render partial: 'tournaments/tournament', layout: false, collection: tournaments
-	end
-
-	private
-
-	def notice_sidebar?
-		@notice_sidebar = true
 	end
 
 end
