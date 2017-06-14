@@ -73,6 +73,33 @@ body{
   }
 }
 
+.mobile-nav {
+  margin-bottom: 15px;
+  display: none;
+  border-top: 2px solid #5FA441;
+  padding-top: 18px;
+  margin-top: 20px;
+  a {
+    color: #FFF;
+    font-size: 18px;
+    &:first-of-type {
+      margin-right: 18px;
+    }
+  }
+  .mobile-username {
+    font-size: 18px;
+    display: inline-block;
+  }
+  .dropdown-menu {
+    right: 0;
+    left: auto;
+    border-radius: 0;
+    a {
+      font-size: 15px;
+    }
+  }
+}
+
 .navbar-collapse {
   padding-right: 0;
 }
@@ -1129,4 +1156,65 @@ footer{
         padding-bottom: 6px;
       }
     }
+}
+
+
+/* Responsive Styles  */
+@media (max-width: 766px) {
+  .container{
+      width: 100%;
+  }
+  .navbar-brand small {
+      font-size: 14px!important;
+      padding-top: 6px!important;
+  }
+  .sidebar {
+    li {
+      display: inline-block;
+      margin-right:  18px;
+      padding-top: 0!important;
+      border: 0px!important;
+      &:last-of-type {
+        margin: 0;
+      }
+    }
+  }
+  .venues.index {
+    .sidebar {
+      margin-bottom: 10px;
+    }
+  }
+  .tournaments.index {
+    .responsive-venue-md {
+      margin-bottom: 25px;
+    }
+    .tournament-address {
+      margin-bottom: 25px;
+    }
+    .details-shadow {
+      h4 {
+        padding-bottom: 7px;
+      }
+      .progress-container h4 {
+        padding-top: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width: 395px) {
+  .mobile-nav {
+    margin-top: 40px;
+  }
+}
+@media (max-width: 768px) {
+  .navbar-brand small {
+      padding-top: 6px!important;
+  }
+  .navbar-default .navbar-toggle {
+    display: none;
+  }
+  .mobile-nav {
+    display: block;
+  }
 }

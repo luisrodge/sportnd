@@ -11,3 +11,4 @@
 //= require picker.date
 //= require picker.time
 //= require datetime-config
+//= require shared

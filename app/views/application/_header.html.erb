@@ -37,8 +37,29 @@
               <% end %>
             </ul>
         </div>
+        <nav class="mobile-nav">
+              <% if current_member %>
+                  <a class="dropdown-toggle pull-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      <div class="mobile-username"><%= current_member.name.split(" ").first %> <span class="caret"></span></div>
+                      <div class="img-rounded profile-img">
+                        <%= image_tag(current_member.image + "?width=100&height=100", class: "img-circle", alt: "#{current_member.name}") %>
+                      </div>
+                  </a>
+                  <%=link_to "My Tournaments", profile_tournaments_path %>
+
+                  <ul class="dropdown-menu">
+                    <li><%= active_link_to "Account Settings", edit_member_registration_path %></li>
+                    <li role="separator" class="divider"></li>
+                    <li><%= link_to "Sign Out", destroy_member_session_path, method: :delete %></li>
+                  </ul>
+              <% else %>
+                <%=link_to "Sign In", member_facebook_omniauth_authorize_path %>
+                <a href="#" type="button" data-toggle="modal" data-target="#authModal">Sign Up</a>
+              <% end %>
+        </nav>
     </div>
 </nav>
+
 
 
 <!-- Sign In & Sign Up Modal -->
@@ -56,7 +77,7 @@
           <div class="body-content">
             <p>
               sportnd is a sports community where Belizeans can start basketball
-              tournaments played exclusively on the weekend at courts near you. All tournaments are funded by the basketball players who participate in them.
+              tournaments, which are played on the weekend at courts across Belize. All tournaments are funded by the basketball players who participate in them.
             </p>
           </div>
           <%= link_to "Log In With Facebook", member_facebook_omniauth_authorize_path, class: "facebook-btn" %>

@@ -8,12 +8,12 @@
 				</div>
 			</div>
 			<div class="row gutter-60">
-				<div class="col-md-4">
+				<div class="col-md-4 col-sm-5 col-xs-4">
 					<div class="responsive-venue-md">
 						<%= image_tag(tournament.venue.venue_image_url(:medium), alt: "#{tournament.venue.name}") if tournament.venue.venue_image? %>
 					</div>
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-8 col-sm-7 col-xs-8">
 					<div class="details-shadow">
 						<h4><%= format_datetime(tournament.date, tournament.time) %></h4>
 						<h4><%= teams_enrollment_status(tournament) %></h4>
