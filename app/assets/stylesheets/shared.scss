@@ -109,6 +109,17 @@ body{
   font-family: 'Roboto Condensed', sans-serif;
 }
 
+.tournament-noitce {
+  background: #5FA441;
+  color: #FFF;
+  margin-bottom: 35px;
+  padding: 6px 12px;
+  border-radius: 2px;
+  p {
+    margin: 0;
+  }
+}
+
 div.info {
   border: 1px solid #71BA51;
   padding: 12px 35px;
