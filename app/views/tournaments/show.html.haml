@@ -98,7 +98,7 @@
 									%h4.text-center= "#{team.color.name} Team"
 									%h5.text-center.gray-txt= team_available_space(team)
 									%br
-									%h5.text-center= "Enroller number: " + team.captain.phone if current_member == @tournament.organizer
+									%h5.text-center= "Enroller number: " + number_to_phone(team.captain.phone) if current_member == @tournament.organizer
 									= join_btn(team, "sm")
 							.col-md-8.col-sm-8.col-xs-7
 								- team.members.each do |member|
