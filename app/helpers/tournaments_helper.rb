@@ -18,9 +18,7 @@ module TournamentsHelper
 
   def tournament_organized_title(tournament)
     if tournament.organizer == current_member
-      "Organized #{tournament.sport.name}"
-    else
-      "#{tournament.sport.name}"
+      "Organized Tournament"
     end
   end
 

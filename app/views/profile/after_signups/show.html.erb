@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-12">
+    <h4>We recommend that you enter your phone number below so that you may receive tournament related updates
+      via text message from the tournament's organizer. Don't worry, only the organizer will be able to see your contact number.</h4><br/>
+  </div>
+  <div class="col-md-6 center-block">
+    <%= form_for current_member, url: profile_after_signup_path, method: :put do |f| %>
+      <div class="form-group">
+        <%= f.text_field :phone, class: "form-control input-lg", placeholder: "Enter your phone number" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "Continue", class: "btn btn-primary round" %>
+        Or <%= link_to  "Skip", root_path, class: "notice" %> (not recommended)
+      </div>
+    <% end %>
+  </div>
+</div>

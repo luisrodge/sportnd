@@ -4,13 +4,13 @@ class ApplicationController < ActionController::Base
 
 	protect_from_forgery with: :exception
 
-	# def after_sign_in_path_for(resource_or_scope)
-  #   if resource.sign_in_count == 1
-  #      new_product_path
-  #   else
-  #      root_path
-  #   end
-	# end
+	def after_sign_in_path_for(resource_or_scope)
+    if resource.sign_in_count == 1
+       profile_after_signup_path
+    else
+       root_path
+    end
+	end
 
 	def pundit_user
 	  current_member

@@ -49,6 +49,7 @@ body{
     }
   }
   .username {
+    margin-top: 1px;
     display: inline-block;
   }
   .auth-link.lg {
@@ -78,7 +79,7 @@ body{
   display: none;
   border-top: 2px solid #5FA441;
   padding-top: 18px;
-  margin-top: 20px;
+  margin-top: 15px;
   a {
     color: #FFF;
     font-size: 18px;
@@ -310,6 +311,12 @@ h2.devise-title{
 .tournament-enrolled-users {
   margin-top: 14px;
 }
+.after_signups.show {
+  display: flex!important;
+  #edit_member_1 {
+    margin-top: 50px;
+  }
+}
 
 .members.show {
   display: flex!important;
@@ -508,6 +515,10 @@ h2.devise-title{
   h5 {
     margin: 0;
   }
+}
+
+.profile-tournament-address {
+  margin-bottom: 18px;
 }
 
 .team-members {
@@ -777,7 +788,10 @@ img.default{
 .members {
   h5 {
     margin: 0;
-    padding-bottom: 8px;
+    padding-bottom: 4px;
+    &:last-of-type {
+      padding-bottom: 10px;
+    }
   }
 }
 

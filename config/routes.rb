@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :members , only: [:index]
 
   namespace :profile do
+    resource :after_signup, only: [:show, :update]
     resources :venues, except: [:show, :index]
   	resources :teams do
       resources :memberships, only: [:create, :destroy]

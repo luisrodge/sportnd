@@ -25,16 +25,16 @@
         <div class="member-tournament box-shadow">
           <%= link_to tournament_path(tournament) do %>
             <div class="row gutter-60">
-              <div class="col-md-12 tournament-address">
-								<h5 class="pull-left"><%= tournament.venue.name + ", " + tournament.venue.address %></h5>
-                <h5 class="pull-right"><%= tournament_organized_title(tournament) %> Tournament <% if tournament.full? %><span class="tournament-full">Full</span><% end %></h5>
+              <div class="col-md-12 tournament-address profile-tournament-address">
+                <h5><%= tournament_organized_title(tournament) %> <% if tournament.full? %><span class="tournament-full">Full</span><% end %></h5>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-4 col-sm-5 col-xs-4">
 								<div class="responsive-venue-md">
 									<%= image_tag(tournament.venue.venue_image_url(:medium), alt: "#{tournament.venue.name}") if tournament.venue.venue_image? %>
 								</div>
               </div>
-              <div class="col-md-8 profile-tourament-details">
+              <div class="col-md-8 col-sm-7 col-xs-8 profile-tourament-details">
+									<h4><%= tournament.venue.name + ", " + tournament.venue.address %></h4>
                   <h4><%= profile_tournament_date(tournament) %></h4>
 									<h4><%= teams_enrollment_status(tournament) %></h4>
 									<div class="progress-container">

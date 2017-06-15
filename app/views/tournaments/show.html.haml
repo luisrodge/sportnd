@@ -97,12 +97,15 @@
 								%div{class: "team-container #{team.color.name.downcase}"}
 									%h4.text-center= "#{team.color.name} Team"
 									%h5.text-center.gray-txt= team_available_space(team)
+									%br
+									%h5.text-center= "Enroller number: " + team.captain.phone if current_member == @tournament.organizer
 									= join_btn(team, "sm")
 							.col-md-8.col-sm-8.col-xs-7
 								- team.members.each do |member|
 									.col-md-4.col-sm-4.col-xs-6
 										.members
 											%h5.truncate= member.name
+											%h5= "Enroller" if team.captain == member
 											.responsive-member-md
 												= profile_image_md(member)
 
