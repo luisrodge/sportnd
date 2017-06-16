@@ -81,23 +81,18 @@ class Member < ApplicationRecord
     tournaments.where(organizer: self).where("Date(date) BETWEEN ? AND ?", Date.today.next_week.end_of_week - 2, Date.today.next_week.end_of_week).present?
   end
 
-  # Future tournaments for a user
   def upcoming_tournaments
     tournaments.where("date >= ? AND time <= ?", Date.today, Time.now).order("date ASC")
   end
 
-  # Check if the user is not enrolled in another tournament with the date matching this new enrollment's
-  # Max of two enrollments, one per weekend-day
   def has_tournament_this_date?(tournament)
     tournaments.where(date: tournament.date).exists?
   end
 
-  # Returns a tournament that falls on the same date as another
   def tournament_this_date(tournament)
     tournaments.where(date: tournament.date).first
   end
 
-  # Returns the team a user user is enrolled with for a tournament
   def team_for_tournament(tournament)
     teams.where(tournament_id: tournament).first
   end

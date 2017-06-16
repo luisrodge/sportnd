@@ -63,7 +63,6 @@ class Tournament < ApplicationRecord
     where('eowd_date >= ?', Date.today).order("created_at DESC")
   end
 
-  # Returns true if a user is enrolled in a tournament
   def enrolled?(member)
     member.teams.where(tournament_id: self).any?
   end

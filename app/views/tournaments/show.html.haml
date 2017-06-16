@@ -1,3 +1,7 @@
+.row
+	.col-md-12
+		= link_to("Share on Facebook", "https://www.facebook.com/sharer/sharer.php?u=#{tournament_url(@tournament)}", class: "facebook-btn pull-right")
+
 .box-shadow
 	.organizer
 		.row
@@ -69,7 +73,7 @@
 							%h4
 								You are already participating in another
 								= link_to "tournament", tournament_path(current_member.tournament_this_date(@tournament)), class: "notice"
-								that falls on this same date.
+								that falls on this same day.
 				- else
 					- if @tournament.remaining_capacity > 0
 						%h2 Enroll New Team

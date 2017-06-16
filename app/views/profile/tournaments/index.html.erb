@@ -20,12 +20,12 @@
 </div>
 
 	<% if current_member.upcoming_tournaments.any? %>
-		<h3 class="text-center title">Your Upcoming Tournaments</h3>
 		<div class="tournament-noitce">
 			<p>Tournaments that aren't completely full are considered unfunded, and won't be played. For tournaments
 			you organize that are full, be sure to text the different team enrollers and give them a reminder/update to ensure all
 			participants show up on the day the tournament is to be played.</p>
 		</div>
+		<h3 class="text-center title">Your Upcoming Tournaments</h3>
 		<% current_member.upcoming_tournaments.each do |tournament| %>
         <div class="member-tournament box-shadow">
           <%= link_to tournament_path(tournament) do %>

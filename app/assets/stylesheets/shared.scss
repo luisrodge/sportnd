@@ -49,7 +49,6 @@ body{
     }
   }
   .username {
-    margin-top: 1px;
     display: inline-block;
   }
   .auth-link.lg {
@@ -110,10 +109,10 @@ body{
 }
 
 .tournament-noitce {
-  background: #5FA441;
-  color: #FFF;
-  margin-bottom: 35px;
-  padding: 6px 12px;
+  border: 1px solid #79BE5B;
+  margin-bottom: 25px;
+  background: #FAFAFA;
+  padding: 6px 16px;
   border-radius: 2px;
   p {
     font-size: 15px;
@@ -992,6 +991,13 @@ hr.st {
 }
 
 .tournaments.show {
+  .facebook-btn {
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+  .box-shadow {
+    margin-top: 10px;
+  }
     .tournament-title {
       border-top: 1px solid $light_border;
       margin-bottom: 25px;
