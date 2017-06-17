@@ -1242,6 +1242,14 @@ footer{
   .mobile-nav {
     margin-top: 40px;
   }
+  .tournaments.index {
+    .box-shadow {
+      h4 {
+        font-size: 15px;
+        color: #000;
+      }
+    }
+  }
 }
 @media (max-width: 768px) {
   .navbar-brand small {

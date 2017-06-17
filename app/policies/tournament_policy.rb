@@ -1,6 +1,6 @@
 class TournamentPolicy < ApplicationPolicy
   def new?
-    return true #if !(member.organized_for_upcoming_week?) && (Date.today.saturday? || Date.today.sunday?)
+    return true if !(member.organized_for_upcoming_week?) && (Date.today.saturday? || Date.today.sunday?)
   end
 
   def destroy?
