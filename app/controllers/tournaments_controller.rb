@@ -3,7 +3,7 @@ class TournamentsController < ApplicationController
 	def index
 		search = params[:q].present? ? params[:q] : nil
 		@tournaments = if search
-      Kaminari.paginate_array(Tournament.search(search, where: {eowd_date: {"gte": "now/d"}})).page
+      Kaminari.paginate_array(Tournament.search(search, where: {eowd_date: {gte: Date.today}})).page
     else
       Tournament.upcoming.page
     end
