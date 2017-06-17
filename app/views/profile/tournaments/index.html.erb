@@ -1,3 +1,5 @@
+<% content_for :title, "Your profile" %>
+
 <div class="box-shadow profile-header">
 	<div class="row">
 		<% if policy(Tournament).new? %>
@@ -21,8 +23,8 @@
 
 	<% if current_member.upcoming_tournaments.any? %>
 		<div class="tournament-noitce">
-			<p>Tournaments that aren't completely full are considered unfunded, and won't be played. For tournaments
-			you organize that are full, be sure to text the different team enrollers and give them a reminder/update to ensure all
+			<p>Tournaments that aren't completely full are considered unfunded, and <span class="em">won't</span> be played. For tournaments
+			you organize that are full, be sure to <span class="em">text</span> the different team enrollers and give them a reminder/update to ensure all
 			participants show up on the day the tournament is to be played.</p>
 		</div>
 		<h3 class="text-center title">Your Upcoming Tournaments</h3>

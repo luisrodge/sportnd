@@ -120,6 +120,10 @@ body{
   }
 }
 
+.em {
+  color: #000;
+}
+
 div.info {
   border: 1px solid #71BA51;
   padding: 12px 35px;
@@ -639,7 +643,7 @@ label.message {
 
 .tournaments.new, .tournaments.create {
   .new-header{
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     border-bottom: 1px solid #f1f1f1;
     padding-bottom: 30px;
     h2, h4 {

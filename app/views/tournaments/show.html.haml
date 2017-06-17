@@ -1,3 +1,5 @@
+= content_for :title, "Tournament @  #{@tournament.venue.address}" 
+
 .row
 	.col-md-12
 		= link_to("Share on Facebook", "https://www.facebook.com/sharer/sharer.php?u=#{tournament_url(@tournament)}", class: "facebook-btn pull-right")
