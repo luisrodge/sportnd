@@ -23,6 +23,8 @@ class Profile::TournamentsController < ApplicationController
 		@tournament = Tournament.new(tournament_params)
 		@tournament.sport = Sport.last
 		@tournament.team_size = 2
+		@tournament.bet_amount = 5
+		@tournament.capacity = 4
 		@tournament.eowd_date = Date.today.next_week.end_of_week - 2
 		@tournament.date = @tournament.eowd_date + (params[:tournament][:date].to_i - @tournament.eowd_date.wday)
 		@tournament.organizer = current_member

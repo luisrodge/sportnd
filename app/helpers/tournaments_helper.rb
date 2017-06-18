@@ -71,7 +71,7 @@ module TournamentsHelper
 
   def options_for_bet_amount
     [
-      ['$6','6'],
+      ['$5','5'],
       ['$8','8']
     ]
   end

@@ -3,9 +3,9 @@
 <div class="row gutter-100">
 	<div class="col-md-7">
 		<div class="new-header">
-			<h2 class="text-center">Kick off your new tournament</h2>
-			<h4 class="text-center gray-txt">The day you select will be relative to next weekend</h4>
-			<h4 class="text-center gray-txt">Currently limited to 2 members per team</h4>
+			<h2 class="text-center">Kick off your new tournament</h2><br/>
+			<h4 class="gray-txt">Tournament limited to 4 teams, with 2 members per team.</h4>
+			<h4 class="gray-txt">Entry amount currently limited to $5 per team member.</h4>
 		</div>
 		<%= form_for [:profile, @tournament] do |f| %>
 		<ul>
@@ -13,14 +13,6 @@
 			<li><%= msg %></li>
 		<% end %>
 		</ul>
-			<div class="form-group">
-				<%= f.label :capacity, "How many teams can enroll?", class: "lb-lg" %>
-				<%= f.select :capacity, options_for_team_enrolls, {}, prompt: 'Select One', class: "form-control input-lg selectpicker" %>
-			</div>
-			<div class="form-group">
-				<%= f.label :bet_amount, "Entry amount per team member?", class: "lb-lg" %>
-				<%= f.select :bet_amount, options_for_bet_amount, {}, prompt: 'Select One', class: "form-control input-lg selectpicker" %>
-			</div>
 			<div class="form-group">
 				<%= f.label :venue_id, "Played at which court?", class: "lb-lg" %>
 				<%= f.select :venue_id, options_for_select(Venue.all.map{ |c| [c.name, c.id, {"data-subtext"=>"- #{c.address}"}] }), {}, class: "form-control input-lg selectpicker", title: "Choose court near you" %>
