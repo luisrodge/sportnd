@@ -3,6 +3,8 @@ $(function () {
     $('.members.index').length > 0)) {
     return;
   }
+  $('.row').removeClass('gutter-70');
+  
 
   var THRESHOLD = 300;
   var $paginationElem = $('.pagination');
