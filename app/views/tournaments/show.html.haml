@@ -1,8 +1,8 @@
-= content_for :title, "Tournament @  #{@tournament.venue.address}" 
-
-.row
-	.col-md-12
-		= link_to("Share on Facebook", "https://www.facebook.com/sharer/sharer.php?u=#{tournament_url(@tournament)}", class: "facebook-btn pull-right")
+= content_for :title, "Tournament @  #{@tournament.venue.address}"
+- if @tournament.enrollment_period?
+	.row
+		.col-md-12
+			= link_to("Share on Facebook", "https://www.facebook.com/sharer/sharer.php?u=#{tournament_url(@tournament)}", class: "facebook-btn pull-right")
 
 .box-shadow
 	.organizer
@@ -19,7 +19,11 @@
 							Dont be shy, anyone can join!
 			- if @tournament.full?
 				.col-md-3
-					%span.tournament-full.full-lg.pull-right Full
+					%span.tournament-full.full-lg.pull-right Funded
+			- elsif !@tournament.enrollment_period?
+				.col-md-3
+					%span.tournament-full.full-lg.unfunded.pull-right Unfunded
+
 
 	.tournament-main-details
 		.row

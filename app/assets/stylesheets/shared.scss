@@ -151,6 +151,10 @@ div.info {
   }
 }
 
+.tournament-full.full-lg.unfunded.pull-right {
+  background: #EBBD63;
+}
+
 .responsive-member {
   @include aspect-ratio(100, 100);
 }
