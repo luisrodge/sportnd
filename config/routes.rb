@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   #root 'pages#overview'
 
   root 'tournaments#index'
-  get 'details', to: 'pages#overview'
+  get 'about', to: 'pages#about'
 
   devise_for :members, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }, :skip => [:registrations]
   as :member do

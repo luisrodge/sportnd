@@ -81,7 +81,7 @@ body{
   margin-top: 15px;
   a {
     color: #FFF;
-    font-size: 18px;
+    font-size: 17px;
     &:first-of-type {
       margin-right: 18px;
     }
@@ -800,6 +800,47 @@ img.default{
   }
 }
 
+.pages.about {
+  .balling-phases {
+    margin-top: 20px;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 15px;
+    .row {
+      margin-bottom: 40px;
+      h3 {
+        border-left: 4px solid #5FA441;
+        padding-left: 12px;
+      }
+      .col-md-12 {
+        padding-bottom: 34px;
+      }
+    }
+  }
+
+
+  .main-content {
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    .sec-content {
+      font-size: 18px;
+      border-radius: 4px;
+      background: #FFF;
+      color: #424242;
+      p{
+        padding-bottom: 20px;
+      }
+      h2 {
+        margin: 0;
+        padding-bottom: 14px;
+        font-family: 'Source Sans Pro', sans-serif;
+      }
+    }
+  }
+}
+
 .members {
   h5 {
     margin: 0;
@@ -1238,6 +1279,16 @@ footer{
 @media (max-width: 395px) {
   .mobile-nav {
     margin-top: 40px;
+  }
+  .sidebar {
+    a {
+      font-size: 15px;
+      color: #000;
+
+    }
+  }
+  .navbar.navbar-default {
+      margin-bottom: 30px;
   }
   .tournaments.index {
     .box-shadow {

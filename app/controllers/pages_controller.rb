@@ -1,9 +1,6 @@
 class PagesController < ApplicationController
-  layout 'prelaunch'
   
-  def overview
+  def about
   end
 
-  def rules
-  end
 end
